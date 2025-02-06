@@ -198,6 +198,10 @@
             correctCounts[country] = 0;
         }
 
+        function shuffleArray(array) {
+        return array.slice().sort(() => Math.random() - 0.5); // 新しい配列を返す
+        }
+        
         countryDropdown.addEventListener('click', (e) => {
             if (e.target.tagName === 'A') {
                 e.preventDefault();
@@ -205,6 +209,7 @@
                 if (selectedCountry && quizzes[selectedCountry]) {
                     currentCountry = selectedCountry;
                     currentQuizIndex = 0;
+                    quizzes[currentCountry] = shuffleArray(quizzes[currentCountry]); 
                     loadQuiz();
                 } else {
                     quizSection.style.display = 'none';
