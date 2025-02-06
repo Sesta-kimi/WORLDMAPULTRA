@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界地図ultra</title>
+    <link rel="stylesheet" href="kaken2.2.css"> <!-- 外部CSSファイルをリンク -->
+    <style>
+        /* 背景画像を設定 */
+        body {
+            background-image: url('https://images.rawpixel.com/image_social_landscape/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTEwL3Jhd3BpeGVsb2ZmaWNlNl9waG90b19vZl9lYXJ0aF9mb3JtX3NwYWNlX3JlYWxpc3RpY19zdHlsZV9yZWFsaV9jODA5MDU2My1iNmRkLTQ0ZDgtYTkzMy1hNjRiNzQ0ODVlOWJfMS5qcGc.jpg'); /* ここに背景画像のパスを指定 */
+            background-size: cover; /* 画像を画面全体に拡大・縮小 */
+            background-repeat: no-repeat; /* 画像を繰り返さない */
+            background-attachment: fixed; /* スクロール時に背景を固定 */
+            background-position: center; /* 中央に配置 */
+        }
+
+        /* テキストの視認性を向上 */
+        nav, #quiz-section {
+            background-color: rgba(253, 219, 147, 0.925); /* 背景を半透明に設定 */
+            border-radius: 10px; /* 角を丸くする */
+            padding: 20px;
+            margin: 10px auto;
+            max-width: 1200px;
+        }
+    </style>
+</head>
+<body>
+    <nav id="navigation">
+        <a href="3.kaken2.1.html" class="logo">世界地图ultra<span>+</span></a>
+        <ul class="links">
+            <li><a href="3.kaken2.1.html">首页</a></li>
+            <li><a href="3.kaken2.1.html"></a></li>
+            <li><a href="https://www.google.com/maps" target="_blank">世界地图</a></li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">测试<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="3.africa_quiz.html">非洲</a></li>
+                    <li><a href="3.asia_quiz.html">亚洲</a></li>
+                    <li><a href="3.europe_quiz.html_">欧洲</a></li>
+                    <li><a href="3.north-america_quiz.html">北美</a></li>
+                    <li><a href="3.south-america_quiz.html">南美洲</a></li>
+                    <li><a href="3.oceania_quiz.html">大洋洲</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">国<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="3.africa.html">非洲</a></li>
+                    <li><a href="3.asia.html">亚洲</a></li>
+                    <li><a href="3.europe.html">欧洲</a></li>
+                    <li><a href="3.north_america.html">北美</a></li>
+                    <li><a href="3.south_america.html">南美洲</a></li>
+                    <li><a href="3.oseania.html">大洋洲</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">Language<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="1.kaken2.1.html">1.日本語</a></li>
+                    <li><a href="2.kaken2.1.html">2.English (U.S.)</a></li>
+                    <li><a href="3.kaken2.1.html">3.中文</a></li>
+                    <li><a href="4.kaken2.1.html">4.한국어</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    
+    <div id="info-container">
+        <h1>亚洲地区国家概况</h1>
+        <p>从以下国家中选择:</p>
+
+        <!-- ドロップダウンメニュー -->
+        <div class="dropdown">
+            <a href="#" class="trigger-drop">选择国家<i class="arrow"></i></a>
+            <ul class="drop" id="country-dropdown">
+                <li><a href="#" data-country="turkey">土耳其</a></li>
+                <li><a href="#" data-country="indonesia">印度尼西亚</a></li>
+                <li><a href="#" data-country="qatar">卡塔尔</a></li>
+                <li><a href="#" data-country="philippines">菲律宾</a></li>
+                <li><a href="#" data-country="israel">以色列</a></li>
+            </ul>
+        </div>
+
+        <!-- 国情報セクション -->
+        <div id="country-info" style="display:none;">
+            <h2 id="country-name"></h2>
+            <div id="country-details"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const countryDropdown = document.getElementById('country-dropdown');
+            const countryInfo = document.getElementById('country-info');
+            const countryName = document.getElementById('country-name');
+            const countryDetails = document.getElementById('country-details');
+
+            // 国情報データ
+            const countryData = {
+                turkey: {
+                    name: '土耳其',
+                    details: `
+                        <h3>基本信息</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 8,537万人</li>
+                            <li><strong>地区:</strong> 783.600㎢</li>
+                            <li><strong>首府城市:</strong> 喃喃/li>
+                            <li><strong>语言:</strong> 土耳其语</li>
+                            <li><strong>主要宗教:</strong> 伊斯兰教</li>
+                        </ul>
+
+                        <h3>生活</h3>
+                        <ul>
+                            <li></li>
+                            <li></li>
+                        </ul>
+
+                        <h3>膳食</h3>
+                        <ul>
+                            <li>烤肉串和土耳其冰淇淋非常有名。</li>
+                            <li>嘴里含着食物说话是不礼貌的。</li>
+                            <li>吃饭时擤鼻涕或用牙签剔牙是不礼貌的。</li>
+                        </ul>
+
+                        <h3>礼仪</h3>
+                        <ul>
+                            <li>不要向穆斯林推销含有猪肉的食品。</li>
+                            <li>在寺庙，不允许穿着暴露皮肤或头发的服装。</li>
+                            <li>老年人优先。</li>
+                            <li>用食指和拇指做 “0 ”形是同性恋的标志。</li>
+                            <li>调侃意味着解雇。</li>
+                            <li>在交谈或公共聚会中咀嚼口香糖是不礼貌的行为。</li>
+                        </ul>
+
+                        <h3>旅游景点</h3>
+                        <ul>
+                            <li>卡帕多吉亚</li>
+                            <li>伊斯坦布尔</li>
+                            <li>帕姆卡莱（帕姆卡莱的西班牙语名称）</li>
+                            <li>以弗所</li>
+                        </ul>
+                    `
+                },
+                indonesia: {
+                    name: '印度尼西亚',
+                    details: `
+                        <h3>基本信息</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 2.775億人</li>
+                            <li><strong>地区:</strong> 1,905,000㎢</li>
+                            <li><strong>都城:</strong> 雅加达</li>
+                            <li><strong>语言:</strong> 印度尼西亚语</li>
+                            <li><strong>主要宗教:</strong> 伊斯兰教</li>
+                        </ul>
+                        <h3>生命</h3>
+                        <ul>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+
+                        <h3>膳食</h3>
+                        <ul>
+                            <li>以仁当牛肉、巴素肉丸汤和三巴酱而闻名。</li>
+                            <li>不要端起碗来吃。</li>
+                            <li>用右手吃饭</li>
+                        </ul>
+
+                        <h3>礼仪</h3>
+                        <ul>
+                            <li>伊斯兰教禁止饮酒和吃猪肉。</li>
+                            <li>左手被认为是不干净的，因此握手和传递物品时使用右手。</li>
+                            <li>避免在公共场合过度拉皮条。</li>
+                            <li>头部被认为是身体的神圣部位，不能触碰。</li>
+                        </ul>
+
+                        <h3>旅游景点</h3>
+                        <ul>
+                            <li>苏门答腊岛（苏门答腊-安达曼）</li>
+                            <li>峇里岛</li>
+                            <li>科莫多国家公园</li>
+                        </ul>
+                        `
+                },
+                qatar: {
+                    name: '卡塔尔',
+                    details: `
+                        <h3>基本信息</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 271.6万人</li>
+                            <li><strong>地区:</strong> 11.570㎢</li>
+                            <li><strong>都城:</strong> 多哈</li>
+                            <li><strong>语言:</strong> 阿拉伯语</li>
+                            <li><strong>主要宗教:</strong> 伊斯兰教</li>
+                        </ul>
+
+                        <h3>生命</h3>
+                        <ul>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+
+                        <h3>膳食</h3>
+                        <ul>
+                            <li>Magboos、biryani 和羊排非常有名。</li>
+                            <li>饭前洗手非常重要，因为大部分食物都是用手吃的。</li>
+                        </ul>
+
+                        <h3>礼仪</h3>
+                        <ul>
+                            <li>女性应避免穿着暴露过多皮肤或明显显示身体系统的服装。</li>
+                            <li>男士应尽量避免穿短裤。</li>
+                            <li>禁止饮酒和食用猪肉。</li>
+                        </ul>
+
+                        <h3>旅游景点</h3>
+                        <ul>
+                            <li>蓝色清真寺</li>
+                            <li>卡塔尔博物馆</li>
+                            <li>苏赫瓦-基夫</li>
+                            <li>沙漠</li>
+                        </ul>
+                        `
+                },
+                philippines: {
+                    name: '菲律宾',
+                    details:  `
+                        <h3>基本信息</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 1.173億人</li>
+                            <li><strong>地区:</strong> 300,000㎢</li>
+                            <li><strong>都城:</strong> 马尼拉</li>
+                            <li><strong>语言:</strong> 他加禄语、英语</li>
+                            <li><strong>主要宗教:</strong> 伊斯兰教</li>
+                        </ul>
+
+                        <h3>生命</h3>
+                        <ul>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+
+                        <h3>膳食</h3>
+                        <ul>
+                            <li>Lechon Habuk、Sisig 和 Sinigan 都很有名。</li>
+                            <li>一般装在一个拼盘里，这样每个人都可以分享自己的盘子。</li>
+                            <li>在此过程中，向上级领导和年长者学习是一种良好的行为习惯。</li>
+                            <li>如果有人请你品尝一道菜，不要拒绝。</li>
+                        </ul>
+
+                        <h3>礼仪</h3>
+                        <ul>
+                            <li>车辆在通过人行横道时享有优先权。</li>
+                            <li>厕纸不能冲洗。</li>
+                            <li>小费一般为账单的 10%~20%。</li>
+                        </ul>
+
+                        <h3>旅游景点</h3>
+                        <ul>
+                            <li>麦克坦岛</li>
+                            <li>马卡蒂</li>
+                            <li>维甘历史名城</li>
+                        </ul>
+                        `
+                },
+                israel: {
+                    name: '以色列',
+                    details:  `
+                        <h3>基本信息</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 975.7万人</li>
+                            <li><strong>地区:</strong> 22,140㎢</li>
+                            <li><strong>都城:</strong> 耶路撒冷</li>
+                            <li><strong>语言:</strong> 希伯来文</li>
+                            <li><strong>主要宗教:</strong> 犹太教</li>
+                        </ul>
+
+                        <h3>生命</h3>
+                        <ul>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+
+                        <h3>膳食</h3>
+                        <ul>
+                            <li>Falafel、Shishakshuka、Shawarma 和 Savich 都很有名。/li>
+                            <li>可能被吃掉的动物是基本的食草动物。</li>
+                            <li>虾、牡蛎和章鱼不宜食用。</li>
+                        </ul>
+
+                        <h3>礼仪</h3>
+                        <ul>
+                            <li>有一条规定，从周五日落到周六日落，什么都不能做。</li>
+                            <li>届时，除个别情况外，公共交通将暂停。</li>
+                            <li>有些人还遵守 39 项不同的禁令，例如不耕种、播种、破土、写字或点火。</li>
+                        </ul>
+
+                        <h3>旅游景点</h3>
+                        <ul>
+                            <li>愁墙</li>
+                            <li>拿撒勒人</li>
+                            <li>死海</li>
+                            <li>马萨达</li>
+                        </ul>
+                        `
+                }
+            };
+
+            // 国を選択した際の処理
+            countryDropdown.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                    e.preventDefault();
+                    const selectedCountry = e.target.getAttribute('data-country');
+                    if (selectedCountry && countryData[selectedCountry]) {
+                        const data = countryData[selectedCountry];
+                        countryName.textContent = data.name;
+                        countryDetails.innerHTML = data.details;
+
+                        // 国情報セクションを表示
+                        countryInfo.style.display = 'block';
+                    } else {
+                        countryInfo.style.display = 'none'; // 国情報セクションを隠す
+                    }
+                }
+            });
+        });
+    </script>
+
+    <style>
+        /* 国情報ページのスタイル */
+        #info-container {
+            max-width: 800px;
+            margin: 100px auto;
+            background-color: var(--color-base);
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: var(--color-text);
+        }
+
+        p {
+            text-align: center;
+            font-size: 18px;
+            color: var(--color-text);
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .trigger-drop {
+            padding: 10px;
+            background-color: var(--color-accent);
+            color: var(--color-base);
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .drop {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 100%;
+            background: var(--color-base);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+            z-index: 1000;
+        }
+
+        .dropdown:hover .drop {
+            display: block;
+        }
+
+        .drop li {
+            list-style: none;
+            padding: 10px;
+        }
+
+        .drop li a {
+            display: block;
+            padding: 10px;
+            color: var(--color-text);
+            transition: background-color 0.3s;
+        }
+
+        .drop li a:hover {
+            background-color: var(--color-accent);
+            color: var(--color-base);
+        }
+
+        #country-details {
+            white-space: pre-line;
+            text-align: left;
+        }
+
+        ul {
+            margin-left: 20px;
+        }
+    </style>
+</body>
+</html>

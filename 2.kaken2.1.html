@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Map Ultra</title>
+    <link rel="stylesheet" href="kaken2.2.css"> <!-- 外部CSSファイルをリンク -->
+    <style>
+        /* 背景画像を設定 */
+        body {
+            background-image: url('https://images.rawpixel.com/image_social_landscape/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTEwL3Jhd3BpeGVsb2ZmaWNlNl9waG90b19vZl9lYXJ0aF9mb3JtX3NwYWNlX3JlYWxpc3RpY19zdHlsZV9yZWFsaV9jODA5MDU2My1iNmRkLTQ0ZDgtYTkzMy1hNjRiNzQ0ODVlOWJfMS5qcGc.jpg'); /* ここに背景画像のパスを指定 */
+            background-size: cover; /* 画像を画面全体に拡大・縮小 */
+            background-repeat: no-repeat; /* 画像を繰り返さない */
+            background-attachment: fixed; /* スクロール時に背景を固定 */
+            background-position: center; /* 中央に配置 */
+        }
+
+        /* テキストの視認性を向上 */
+        nav, #quiz-section {
+            background-color: rgba(253, 219, 147, 0.925); /* 背景を半透明に設定 */
+            border-radius: 10px; /* 角を丸くする */
+            padding: 20px;
+            margin: 10px auto;
+            max-width: 1200px;
+        }
+    </style>
+</head>
+<body>
+    <!-- ナビゲーションメニュー -->
+    <nav id="navigation">
+        <a href="1.kaken2.1.html" class="logo">World Map Ultra<span>+</span></a>
+        <ul class="links">
+            <li><a href="1.kaken2.1.html">Home</a></li>
+            <li><a href="https://www.google.com/maps" target="_blank">World Map</a></li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">quiz<i class="arrow"></i></a>
+                <ul class="drop">
+                    <!-- クイズリンク -->
+                    <li><a href="2.africa_quiz.html">Africa</a></li>
+                    <li><a href="2.asia_quiz.html">Asia</a></li>
+                    <li><a href="2.europe_quiz.html">Europe</a></li>
+                    <li><a href="2.north-america_quiz.html">North America</a></li>
+                    <li><a href="2.south-america_quiz.html">South America</a></li>
+                    <li><a href="2.oceania_quiz.html">Oceania</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">Country<i class="arrow"></i></a>
+                <ul class="drop">
+                    <!-- 国リンク -->
+                    <li><a href="2.africa.html">Africa</a></li>
+                    <li><a href="2.asia.html">Asia</a></li>
+                    <li><a href="2.europe.html">Europe</a></li>
+                    <li><a href="2.north_america.html">North America</a></li>
+                    <li><a href="2.south_america.html">South America</a></li>
+                    <li><a href="2.oseania.html">Oceania</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">Language<i class="arrow"></i></a>
+                <ul class="drop">
+                    <!-- 言語リンク -->
+                    <li><a href="1.kaken2.1.html">1.日本語</a></li>
+                    <li><a href="2.kaken2.1.html">2.English (U.S.)</a></li>
+                    <li><a href="3.kaken2.1.html">3.中文</a></li>
+                    <li><a href="4.kaken2.1.html">4.한국어</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    
+    <div id="info-container">
+        <h1>World</h1>
+        <p></p>
+    </div>
+
+    <!-- スクリプト -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const quizLinks = document.querySelectorAll('.drop li a[data-country]');
+            
+            quizLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const country = link.getAttribute('data-country');
+                    const quizPage = `1.${country}_quiz.html`;
+                    
+                    if (quizPage) {
+                        window.location.href = quizPage;
+                    } else {
+                        alert('ページが見つかりません');
+                    }
+                });
+            });
+        });
+    </script>
+    <style>
+        /* 国情報ページのスタイル */
+        #info-container {
+            max-width: 800px;
+            margin: 100px auto;
+            background-color: var(--color-base);
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: var(--color-text);
+        }
+
+        p {
+            text-align: center;
+            font-size: 18px;
+            color: var(--color-text);
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .trigger-drop {
+            padding: 10px;
+            background-color: var(--color-accent);
+            color: var(--color-base);
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .drop {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 100%;
+            background: var(--color-base);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+            z-index: 1000;
+        }
+
+        .dropdown:hover .drop {
+            display: block;
+        }
+
+        .drop li {
+            list-style: none;
+            padding: 10px;
+        }
+
+        .drop li a {
+            display: block;
+            padding: 10px;
+            color: var(--color-text);
+            transition: background-color 0.3s;
+        }
+
+        .drop li a:hover {
+            background-color: var(--color-accent);
+            color: var(--color-base);
+        }
+    </style>
+</body>
+</html>

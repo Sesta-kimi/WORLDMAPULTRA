@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界地図ultra</title>
+    <link rel="stylesheet" href="kaken2.2.css"> <!-- 外部CSSファイルをリンク -->
+    <style>
+        /* 背景画像を設定 */
+        body {
+            background-image: url('https://images.rawpixel.com/image_social_landscape/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTEwL3Jhd3BpeGVsb2ZmaWNlNl9waG90b19vZl9lYXJ0aF9mb3JtX3NwYWNlX3JlYWxpc3RpY19zdHlsZV9yZWFsaV9jODA5MDU2My1iNmRkLTQ0ZDgtYTkzMy1hNjRiNzQ0ODVlOWJfMS5qcGc.jpg'); /* ここに背景画像のパスを指定 */
+            background-size: cover; /* 画像を画面全体に拡大・縮小 */
+            background-repeat: no-repeat; /* 画像を繰り返さない */
+            background-attachment: fixed; /* スクロール時に背景を固定 */
+            background-position: center; /* 中央に配置 */
+        }
+
+        /* テキストの視認性を向上 */
+        nav, #quiz-section {
+            background-color: rgba(253, 219, 147, 0.925); /* 背景を半透明に設定 */
+            border-radius: 10px; /* 角を丸くする */
+            padding: 20px;
+            margin: 10px auto;
+            max-width: 1200px;
+        }
+    </style>
+</head>
+<body>
+    <nav id="navigation">
+        <a href="3.kaken2.1.html" class="logo">世界地图ultra<span>+</span></a>
+        <ul class="links">
+            <li><a href="3.kaken2.1.html">首页</a></li>
+            <li><a href="https://www.google.com/maps" target="_blank">世界地图</a></li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">测试<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="3.africa_quiz.html">非洲</a></li>
+                    <li><a href="3.asia_quiz.html">亚洲</a></li>
+                    <li><a href="3.europe_quiz.html_">欧洲</a></li>
+                    <li><a href="3.north-america_quiz.html">北美</a></li>
+                    <li><a href="3.south-america_quiz.html">南美洲</a></li>
+                    <li><a href="3.oceania_quiz.html">大洋洲</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">国家<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="3.africa.html">非洲</a></li>
+                    <li><a href="3.asia.html">亚洲</a></li>
+                    <li><a href="3.europe.html">欧洲</a></li>
+                    <li><a href="3.north_america.html">北美</a></li>
+                    <li><a href="3.south_america.html">南美洲</a></li>
+                    <li><a href="3.oseania.html">大洋洲</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">Language<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="1.kaken2.1.html">1.日本語</a></li>
+                    <li><a href="2.kaken2.1.html">2.English (U.S.)</a></li>
+                    <li><a href="3.kaken2.1.html">3.中文</a></li>
+                    <li><a href="4.kaken2.1.html">4.한국어</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    
+    <div id="info-container">
+        <h1>北美地区国家概况。</h1>
+        <p>从以下国家中选择:</p>
+
+        <!-- ドロップダウンメニュー -->
+        <div class="dropdown">
+            <a href="#" class="trigger-drop">选择国家<i class="arrow"></i></a>
+            <ul class="drop" id="country-dropdown">
+                <li><a href="#" data-country="cuba">古巴</a></li>
+                <li><a href="#" data-country="jamaica">牙买加</a></li>
+                <li><a href="#" data-country="dominican">多米尼加共和国</a></li>
+                <li><a href="#" data-country="haiti">海地</a></li>
+                <li><a href="#" data-country="jamaica">牙买加</a></li>
+            </ul>
+        </div>
+
+        <!-- 国情報セクション -->
+        <div id="country-info" style="display:none;">
+            <h2 id="country-name"></h2>
+            <div id="country-details"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const countryDropdown = document.getElementById('country-dropdown');
+            const countryInfo = document.getElementById('country-info');
+            const countryName = document.getElementById('country-name');
+            const countryDetails = document.getElementById('country-details');
+
+            // 国情報データ
+            const countryData = {
+                cuba: {
+                    name: '古巴',
+                    details: `
+                        <h3>基本信息</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 1,121万人</li>
+                            <li><strong>地区:</strong> 109,884㎢</li>
+                            <li><strong>都城:</strong> 哈瓦那</li>
+                            <li><strong>语言:</strong> 西班牙语</li>
+                            <li><strong>主要宗教:</strong>原则自由</li>
+                        </ul>
+
+                        <h3>生命</h3>
+                        <ul>
+                            <li>这里几乎没有交通拥堵，也没有发展中国家常见的交通堵塞造成的压力。</li>
+                            <li>在古巴，从汽车租赁公司以长期合同租车很常见。</li>
+                        </ul>
+
+                        <h3>膳食</h3>
+                        <ul>
+                            <li>古巴人先喝汤，然后开始吃其他配菜。</li>
+                            <li>一种名为 “frijoles ”的黑腰豆汤是家庭烹饪的主食。</li>
+                            <li>用手吃饭在古巴美食中很常见，因为在古巴，吃饭是一件社交活动，用餐时的交谈和微笑非常重要。</li>
+                        </ul>
+
+                        <h3>礼仪</h3>
+                        <ul>
+                            <li>在古巴，时间可以灵活掌握，约会迟到并不是什么大问题。</li>
+                        </ul>
+
+                        <h3>旅游景点</h3>
+                        <ul>
+                            <li>哈瓦那老城：哈瓦那老城又称 “哈瓦那旧城”，是古巴的首都。 哈瓦那老城最初由西班牙人建造，这里不仅有复古的建筑，还有贯穿全城的经典。</li>
+                            <li>维纳莱斯山谷：从哈瓦那出发的一日游，但可欣赏到壮观的景色。</li>
+                            <li>圣佩德罗-德拉罗卡城堡：文艺复兴风格的建筑，集坚固与实用之美于一身，1997 年被列入《世界文化名录》。</li>
+                        </ul>
+
+                    `
+                },
+                jamaica: {
+                    name: '牙买加',
+                    details: `
+                        <h3>基本信息</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 29.61 亿人</li>
+                            <li><strong>地区:</strong> 10,991㎢</li>
+                            <li><strong>都城:</strong> 金斯敦</li>
+                            <li><strong>语言:</strong> 英语</li>
+                            <li><strong>主要宗教:</strong> 基督教</li>
+                        </ul>
+
+                        <h3>生命</h3>
+                        <ul>
+                            <li>辫子不仅是一种时尚宣言，也是一个人宗教信仰的标志，尽管不同的人都喜欢把它作为一种时尚宣言。</li>
+                            <li>牙买加的 “回归非洲 ”运动（拉斯特法里教）将人的身体视为圣殿，规定不在自己身上动刀子，不留长发。</li>
+                        </ul>
+
+                        <h3>膳食</h3>
+                        <ul>
+                            <li>营养很重要，蒸香蕉和土豆是主食。</li>
+                            <li>牙买加人的标准早餐是配以阿基奇和咸鱼或鸡肉。</li>
+                            <li>在牙买加，禁止给还不会说语言的儿童吃肉类食品。</li>
+                        </ul>
+
+                        <h3>礼仪</h3>
+                        <ul>
+                            <li>女士优先是根本。</li>
+                            <li>说话时，要看着对方的眼睛，尊重老年人。</li>
+                            <li>在公共场合奔跑会被误认为是犯罪，所以不要着急，不要奔跑，不要着急。</li>
+                            <li>禁止在公共场所吸烟。</li>                        
+                        </ul>
+                        <h3>旅游景点</h3>
+                        <ul>
+                            <li>雷鬼巨星鲍勃-马利博物馆：鲍勃-马利与家人度过生命最后六年的家。 馆内陈列着马利最喜爱的物品和唱片。</li>
+                            <li>邓斯利巴尔瀑布公园：牙买加众多瀑布中最著名的一个。 沿着 180 米长的瀑布攀登，深受游客欢迎。</li>
+                        </ul>
+                    `
+                },
+                dominican: {
+                    name: '多米尼加共和国',
+                    details: `
+                        <h3>基本信息</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 1,123万人</li>
+                            <li><strong>地区:</strong> 48,442㎢</li>
+                            <li><strong>都城:</strong> (民主共和国） 圣多明各</li>
+                            <li><strong>语言:</strong> 西班牙语</li>
+                            <li><strong>主要宗教:</strong> 天主教</li>
+                        </ul>
+
+                        <h3>生命</h3>
+                        <ul>
+                            <li>梅伦格（Merengue）、巴哈塔桑（Bachatação）、雷加埃顿（Regaeton）和萨尔萨（Salsa）等流行音乐已成为国家音乐。</li>
+                            <li>每月七月在圣多明各举行的梅伦格舞节吸引了众多国内外游客，许多艺术家的传统绘画、雕塑和陶艺作品在此展出。</li>
+                        </ul>
+
+                        <h3>膳食</h3>
+                        <ul>
+                            <li>这里有独特的地中海、非洲、西班牙和印度菜系，典型的有莫方戈（mofongo）、桑科乔（sancocho）和莫罗（morro）。</li>
+                        </ul>
+
+                        <h3>礼仪</h3>
+                        <ul>
+                            <li>独立广场和国家陵墓有卫兵站岗，以保持纯洁，请勿扰民。</li>
+                            <li>边境和军事设施禁止拍照。 还有其他禁区，如教堂等。</li>
+                        </ul>
+
+                        <h3>旅游景点</h3>
+                        <ul>
+                            <li>巴瓦罗海滩：多米尼加共和国海滩度假区的骄傲。 在海滩游泳时，您可以看到沿岸美丽的酒店。</li>
+                            <li>Hoyo Azul：蓬塔卡纳洞穴中的水晶蓝喷泉。</li>
+                        </ul>
+                    `
+                },
+                haiti: {
+                    name: '海地',
+                    details: `
+                        <h3>基本信息</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 1,158万人</li>
+                            <li><strong>地区:</strong> 27,750㎢</li>
+                            <li><strong>都城:</strong> 太子港</li>
+                            <li><strong>语言:</strong> 法语、海地克里奥尔语。</li>
+                            <li><strong>主要宗教:</strong> 基督教、伏都教等。</li>
+                        </ul>
+                        <h3>生命</h3>
+                        <ul>
+                            <li>这里气候温和，一年四季都可以穿短袖，有许多丘陵和山脉，大部分农村都没有公共水电供应。</li>
+                            <li>使用木炭代替煤气，用蜡烛或油灯照明，如果需要用电，则使用发电机。</li>
+                            <li>饮用水和生活用水是从泉水和河水中提取的，装在称为 “加仑 ”的塑料桶中。</li>
+                        </ul>
+
+                        <h3>膳食</h3>
+                        <ul>
+                            <li>主食因人而异，包括米饭、面包和香蕉。</li>
+                            <li>大多数情况下，它们会配上用肉或鱼炖煮而成的酱汁。</li>
+                        </ul>
+
+                        <h3>礼仪</h3>
+                        <ul>
+                            <li>在海地，用餐时分享食物被认为很重要。</li>
+                            <li>海地是一个宗教多元化的国家，宗教活动和节日非常重要，需要尊重和参与这些活动。</li>
+                        </ul>
+
+                        <h3>旅游景点</h3>
+                        <ul>
+                            <li>圣苏西城堡：这里保留着海地独立初期的历史建筑，作为国家历史公园被列入世界遗产名录。</li>
+                            <li>拉帕迪：以美丽的加勒比海而闻名的旅游胜地，这里有丰富多彩的海上运动和各种活动。</li>
+                        </ul>
+                    `
+                },
+                jamaica: {
+                    name: '牙买加',
+                    details: `
+                        <h3>基本信息</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 约 290 万人</li>
+                            <li><strong>地区:</strong> 約1万4400㎢</li>
+                            <li><strong>都城:</strong> 金斯敦</li>
+                            <li><strong>语言:</strong> 英语</li>
+                            <li><strong>主要宗教:</strong> 基督教</li>
+                        </ul>
+                        <h3>生命</h3>
+                        <ul>
+                            <li>它的特点是节奏感强的音乐文化，并因鲍勃-马利（Bob Marley）等艺术家而闻名。</li>
+                        </ul>
+                        <h3>膳食</h3>
+                        <ul>
+                            <li>Jerk 鸡肉和 Red Stripe 啤酒很受欢迎。</li>
+                        </ul>
+                        <h3>礼仪</h3>
+                        <ul>
+                            <li>需要进行友好和坦诚的交流。</li>
+                        </ul>
+                    `
+                }
+            };
+
+            // 国を選択した際の処理
+            countryDropdown.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                    e.preventDefault();
+                    const selectedCountry = e.target.getAttribute('data-country');
+                    if (selectedCountry && countryData[selectedCountry]) {
+                        const data = countryData[selectedCountry];
+                        countryName.textContent = data.name;
+                        countryDetails.innerHTML = data.details;
+
+                        // 国情報セクションを表示
+                        countryInfo.style.display = 'block';
+                    } else {
+                        countryInfo.style.display = 'none'; // 国情報セクションを隠す
+                    }
+                }
+            });
+        });
+    </script>
+
+    <style>
+        /* 国情報ページのスタイル */
+        #info-container {
+            max-width: 800px;
+            margin: 100px auto;
+            background-color: var(--color-base);
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: var(--color-text);
+        }
+
+        p {
+            text-align: center;
+            font-size: 18px;
+            color: var(--color-text);
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .trigger-drop {
+            padding: 10px;
+            background-color: var(--color-accent);
+            color: var(--color-base);
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .drop {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 100%;
+            background: var(--color-base);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+            z-index: 1000;
+        }
+
+        .dropdown:hover .drop {
+            display: block;
+        }
+
+        .drop li {
+            list-style: none;
+            padding: 10px;
+        }
+
+        .drop li a {
+            display: block;
+            padding: 10px;
+            color: var(--color-text);
+            transition: background-color 0.3s;
+        }
+
+        .drop li a:hover {
+            background-color: var(--color-accent);
+            color: var(--color-base);
+        }
+    </style>
+</body>
+</html>
+

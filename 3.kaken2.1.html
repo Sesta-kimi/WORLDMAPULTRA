@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>超级世界地图</title>
+    <link rel="stylesheet" href="kaken2.2.css"> <!-- 外部CSSファイルをリンク -->
+    <style>
+        /* 背景画像を設定 */
+        body {
+            background-image: url('https://images.rawpixel.com/image_social_landscape/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTEwL3Jhd3BpeGVsb2ZmaWNlNl9waG90b19vZl9lYXJ0aF9mb3JtX3NwYWNlX3JlYWxpc3RpY19zdHlsZV9yZWFsaV9jODA5MDU2My1iNmRkLTQ0ZDgtYTkzMy1hNjRiNzQ0ODVlOWJfMS5qcGc.jpg'); /* ここに背景画像のパスを指定 */
+            background-size: cover; /* 画像を画面全体に拡大・縮小 */
+            background-repeat: no-repeat; /* 画像を繰り返さない */
+            background-attachment: fixed; /* スクロール時に背景を固定 */
+            background-position: center; /* 中央に配置 */
+        }
+
+        /* テキストの視認性を向上 */
+        nav, #quiz-section {
+            background-color: rgba(253, 219, 147, 0.925); /* 背景を半透明に設定 */
+            border-radius: 10px; /* 角を丸くする */
+            padding: 20px;
+            margin: 10px auto;
+            max-width: 1200px;
+        }
+    </style>
+</head>
+<body>
+    <!-- ナビゲーションメニュー -->
+    <nav id="navigation">
+        <a href="3.kaken2.1.html" class="logo">世界地图ultra<span>+</span></a>
+        <ul class="links">
+            <li><a href="3.kaken2.1.html">首页</a></li>
+            <li><a href="https://www.google.com/maps" target="_blank">世界地图</a></li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">测试<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="3.africa_quiz.html">非洲</a></li>
+                    <li><a href="3.asia_quiz.html">亚洲</a></li>
+                    <li><a href="3.europe_quiz.html_">欧洲</a></li>
+                    <li><a href="3.north-america_quiz.html">北美</a></li>
+                    <li><a href="3.south-america_quiz.html">南美洲</a></li>
+                    <li><a href="3.oceania_quiz.html">大洋洲</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">国家<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="3.africa.html">非洲</a></li>
+                    <li><a href="3.asia.html">亚洲</a></li>
+                    <li><a href="3.europe.html">欧洲</a></li>
+                    <li><a href="3.north_america.html">北美</a></li>
+                    <li><a href="3.south_america.html">南美洲</a></li>
+                    <li><a href="3.oseania.html">大洋洲</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">Language<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="1.kaken2.1.html">1.日本語</a></li>
+                    <li><a href="2.kaken2.1.html">2.English (U.S.)</a></li>
+                    <li><a href="3.kaken2.1.html">3.中文</a></li>
+                    <li><a href="4.kaken2.1.html">4.한국어</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    
+    <!-- クイズセクション -->
+    <div id="quiz-section"></div>
+
+    <!-- スクリプト -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const quizLinks = document.querySelectorAll('.drop li a[data-country]');
+            
+            quizLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const country = link.getAttribute('data-country');
+                    const quizPage = `1.${country}_quiz.html`;
+                    
+                    if (quizPage) {
+                        window.location.href = quizPage;
+                    } else {
+                        alert('未找到页面。');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

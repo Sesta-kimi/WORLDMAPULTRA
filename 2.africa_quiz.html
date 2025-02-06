@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World map ultra</title>
+    <link rel="stylesheet" href="kaken2.2.css"> <!-- 外部CSSファイルをリンク -->
+    <style>
+        /* 背景画像を設定 */
+        body {
+            background-image: url('https://images.rawpixel.com/image_social_landscape/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTEwL3Jhd3BpeGVsb2ZmaWNlNl9waG90b19vZl9lYXJ0aF9mb3JtX3NwYWNlX3JlYWxpc3RpY19zdHlsZV9yZWFsaV9jODA5MDU2My1iNmRkLTQ0ZDgtYTkzMy1hNjRiNzQ0ODVlOWJfMS5qcGc.jpg'); /* ここに背景画像のパスを指定 */
+            background-size: cover; /* 画像を画面全体に拡大・縮小 */
+            background-repeat: no-repeat; /* 画像を繰り返さない */
+            background-attachment: fixed; /* スクロール時に背景を固定 */
+            background-position: center; /* 中央に配置 */
+        }
+
+        /* テキストの視認性を向上 */
+        nav, #quiz-section {
+            background-color: rgba(253, 219, 147, 0.925); /* 背景を半透明に設定 */
+            border-radius: 10px; /* 角を丸くする */
+            padding: 20px;
+            margin: 10px auto;
+            max-width: 1200px;
+        }
+    </style>
+</head>
+<body>
+    <nav id="navigation">
+        <a href="2.kaken2.1.html" class="logo">World map ultra<span>+</span></a>
+        <ul class="links">
+            <li><a href="2.kaken2.1.html">Home</a></li>
+            <li><a href="https://www.google.com/maps" target="_blank">World map</a></li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">Quiz<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="2.africa_quiz.html">Africa</a></li>
+                    <li><a href="2.asia_quiz.html">Asian</a></li>
+                    <li><a href="2.europe_quiz.html">Europe</a></li>
+                    <li><a href="2.north-america_quiz.html">North America</a></li>
+                    <li><a href="2.south-america_quiz.html">South America</a></li>
+                    <li><a href="2.oceania_quiz.html">Oceania</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">country<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="2.africa.html">Africa</a></li>
+                    <li><a href="2.asia.html">Asian</a></li>
+                    <li><a href="2.europe.html">Europe</a></li>
+                    <li><a href="2.north_america.html">North America</a></li>
+                    <li><a href="2.south_america.html">South America</a></li>
+                    <li><a href="2.oseania.html">Oceania</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">Language<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="1.kaken2.1.html">1.日本語</a></li>
+                    <li><a href="2.kaken2.1.html">2.English (U.S.)</a></li>
+                    <li><a href="3.kaken2.1.html">3.中文</a></li>
+                    <li><a href="4.kaken2.1.html">4.한국어</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    
+    <div id="quiz-container">
+        <h1>Africa Regional Quiz</h1>
+        <p>Please choose from the following countries:</p>
+
+        <!-- ドロップダウンメニュー -->
+        <div class="dropdown">
+            <a href="#" class="trigger-drop">Select a Country<i class="arrow"></i></a>
+            <ul class="drop" id="country-dropdown">
+                <li><a href="#" data-country="nigeria">Nigeria</a></li>
+                <li><a href="#" data-country="egypt">Egypt</a></li>
+                <li><a href="#" data-country="south-africa">South Africa</a></li>
+                <li><a href="#" data-country="kenya">Kenya</a></li>
+                <li><a href="#" data-country="ghana">Ghana</a></li>
+            </ul>
+        </div>
+
+        <!-- クイズエリア -->
+        <div id="quiz-section" style="display:none;">
+            <h2 id="quiz-question"></h2>
+            <ul id="quiz-options" class="quiz-options"></ul>
+            <div id="quiz-result"></div>
+            <button id="next-quiz" style="display:none;">Go to next quiz</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const countryDropdown = document.getElementById('country-dropdown');
+            const quizSection = document.getElementById('quiz-section');
+            const quizQuestion = document.getElementById('quiz-question');
+            const quizOptions = document.getElementById('quiz-options');
+            const quizResult = document.getElementById('quiz-result');
+            const nextQuizButton = document.getElementById('next-quiz');
+            const correctSound = new Audio('correct.mp3');
+            const wrongSound = new Audio('wrong.mp3');
+
+            // クイズデータ
+            const quizzes = {
+                nigeria: [
+                    {
+                        question: 'What is the capital of Nigeria?',
+                        options: ['Lagos', 'Abuja.', 'Port Harcourt', 'Cano.'],
+                        correctAnswer: 'Abuja.'
+                    },
+                    {
+                        question: 'What is the most spoken language in Nigeria?',
+                        options: ['Fulani (language)', 'Hausa (language)', 'Wartburg language', 'English (language)'],
+                        correctAnswer: 'English (language)'
+                    },
+                    {
+                        question: 'What are the colors of the Nigerian flag?',
+                        options: ['Green and white', 'Red and White', 'blue and white', 'black and white'],
+                        correctAnswer: 'Green and white'
+                    }
+                ],
+                egypt: [
+                    {
+                        question: 'Where is the capital of Egypt?',
+                        options: ['Cairo', 'Alexandria', 'Luxor', 'Giza'],
+                        correctAnswer: 'Cairo'
+                    },
+                    {
+                        question: 'What are the iconic buildings of Egypt?',
+                        options: ['Pyramids', 'Great Wall of China', 'Acropolis', 'Stonehenge'],
+                        correctAnswer: 'Pyramids'
+                    },
+                    {
+                        question: 'What is the main religion in Egypt?',
+                        options: ['Christianity', 'Islam', 'Hinduism', 'Buddhism'],
+                        correctAnswer: 'Islam'
+                    }
+                ],
+                'south-africa': [
+                    {
+                        question: 'What is the capital of South Africa?',
+                        options: ['Pretoria', 'Cape Town', 'Durban', 'Johannesburg'],
+                        correctAnswer: 'Pretoria'
+                    },
+                    {
+                        question: 'What currency is used in South Africa?',
+                        options: ['US Dollar', 'Euro', 'South African Rand', 'Pound Sterling'],
+                        correctAnswer: 'South African Rand'
+                    },
+                    {
+                        question: 'What is the national flower of South Africa?',
+                        options: ['Banksia', 'Flower of Life', 'Protea', 'Daisy'],
+                        correctAnswer: 'Protea'
+                    }
+                ],
+                kenya: [
+                    {
+                        question: 'Where is the capital of Kenya?',
+                        options: ['Nairobi', 'Mombasa', 'Kisumu', 'Nakuru'],
+                        correctAnswer: 'Nairobi'
+                    },
+                    {
+                        question: 'What animals are famous in Kenya?',
+                        options: ['Lion', 'Elephant', 'Giraffe', 'All Above'],
+                        correctAnswer: 'All Above'
+                    },
+                    {
+                        question: 'What animal is depicted on the Kenyan flag?',
+                        options: ['rhino', 'zebra', 'hyena', 'spear behind shield'],
+                        correctAnswer: 'spear behind shield'
+                    }
+                ],
+                ghana: [
+                    {
+                        question: 'Where is the capital of Ghana?',
+                        options: ['Akula', 'Kumasi', 'Tamale', 'Tema'],
+                        correctAnswer: 'Akula'
+                    },
+                    {
+                        question: 'What are the main crops grown in Ghana?',
+                        options: ['coffee', 'cocoa', 'banana', 'rice'],
+                        correctAnswer: 'cocoa'
+                    },
+                    {
+                        question: 'When is Independence Day in Ghana?',
+                        options: ['July 4', 'March 6', 'August 15', 'November 28'],
+                        correctAnswer: 'March 6'
+                    }
+                ]
+            };
+
+            let currentCountry;
+        let currentQuizIndex = 0;
+        let correctCounts = {};
+        
+        for (const country in quizzes) {
+            correctCounts[country] = 0;
+        }
+
+        function shuffleArray(array) {
+        return array.slice().sort(() => Math.random() - 0.5); // 新しい配列を返す
+        }
+        
+        countryDropdown.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A') {
+                e.preventDefault();
+                const selectedCountry = e.target.getAttribute('data-country');
+                if (selectedCountry && quizzes[selectedCountry]) {
+                    currentCountry = selectedCountry;
+                    currentQuizIndex = 0;
+                    quizzes[currentCountry] = shuffleArray(quizzes[currentCountry]); 
+                    loadQuiz();
+                } else {
+                    quizSection.style.display = 'none';
+                }
+            }
+        });
+        
+        function loadQuiz() {
+            const quizData = quizzes[currentCountry][currentQuizIndex];
+            quizQuestion.textContent = quizData.question;
+            quizOptions.innerHTML = '';
+            quizData.options.forEach(option => {
+                const li = document.createElement('li');
+                const button = document.createElement('button');
+                button.textContent = option;
+                button.classList.add('quiz-option');
+                button.setAttribute('data-answer', option);
+                li.appendChild(button);
+                quizOptions.appendChild(li);
+
+                button.addEventListener('click', () => {
+                    document.querySelectorAll('.quiz-option').forEach(btn => {
+                        btn.disabled = true;
+                        if (btn.textContent === quizData.correctAnswer) {
+                            btn.style.backgroundColor = '#4CAF50';
+                        } else {
+                            btn.style.backgroundColor = '#FF6347';
+                        }
+                    });
+
+                    if (option === quizData.correctAnswer) {
+                        quizResult.innerHTML = `<h3 style="color: #4CAF50;">Correct！congratulations！</h3>`;
+                        correctCounts[currentCountry]++;
+                        correctSound.play();
+                    } else {
+                        quizResult.innerHTML = `<h3 style="color: #FF6347;">Unfortunately, it is incorrect.<br>The correct answer is  <strong>${quizData.correctAnswer}</strong> です。</h3>`;
+                        wrongSound.play();
+                    }
+                    nextQuizButton.style.display = 'block';
+                });
+            });
+
+            quizSection.style.display = 'block';
+            quizResult.innerHTML = '';
+            nextQuizButton.style.display = 'none';
+        }
+
+        nextQuizButton.addEventListener('click', () => {
+            currentQuizIndex++;
+            if (currentQuizIndex < quizzes[currentCountry].length) {
+                loadQuiz();
+            } else {
+                quizResult.innerHTML = `<h3>${currentCountry.toUpperCase()}Quiz Ends！${quizzes[currentCountry].length}out of${correctCounts[currentCountry]}questions correct！</h3>`;
+                nextQuizButton.style.display = 'none';
+            }
+        });
+    });
+    </script>
+
+    <style>
+        /* クイズページのスタイル */
+        #quiz-container {
+            max-width: 800px;
+            margin: 100px auto;
+            background-color: var(--color-base);
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: var(--color-text);
+        }
+
+        p {
+            text-align: center;
+            font-size: 18px;
+            color: var(--color-text);
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .trigger-drop {
+            padding: 10px;
+            background-color: var(--color-accent);
+            color: var(--color-base);
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .drop {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 100%;
+            background: var(--color-base);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+            z-index: 1000;
+        }
+
+        .dropdown:hover .drop {
+            display: block;
+        }
+
+        .drop li {
+            list-style: none;
+            padding: 10px;
+        }
+
+        .drop li a {
+            display: block;
+            padding: 10px;
+            color: var(--color-text);
+            transition: background-color 0.3s;
+        }
+
+        .drop li a:hover {
+            background-color: var(--color-accent);
+            color: var(--color-base);
+        }
+
+        .quiz-options {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .quiz-option {
+            padding: 10px;
+            background-color: var(--color-accent);
+            color: var(--color-base);
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .quiz-option:hover {
+            background-color: lighten(var(--color-accent), 20%);
+        }
+
+        #quiz-result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+        }
+    </style>
+</body>
+</html>

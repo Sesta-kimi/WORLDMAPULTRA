@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World map ultra</title>
+    <link rel="stylesheet" href="kaken2.2.css"> <!-- 外部CSSファイルをリンク -->
+    <style>
+        /* 背景画像を設定 */
+        body {
+            background-image: url('https://images.rawpixel.com/image_social_landscape/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTEwL3Jhd3BpeGVsb2ZmaWNlNl9waG90b19vZl9lYXJ0aF9mb3JtX3NwYWNlX3JlYWxpc3RpY19zdHlsZV9yZWFsaV9jODA5MDU2My1iNmRkLTQ0ZDgtYTkzMy1hNjRiNzQ0ODVlOWJfMS5qcGc.jpg'); /* ここに背景画像のパスを指定 */
+            background-size: cover; /* 画像を画面全体に拡大・縮小 */
+            background-repeat: no-repeat; /* 画像を繰り返さない */
+            background-attachment: fixed; /* スクロール時に背景を固定 */
+            background-position: center; /* 中央に配置 */
+        }
+
+        /* テキストの視認性を向上 */
+        nav, #quiz-section {
+            background-color: rgba(253, 219, 147, 0.925); /* 背景を半透明に設定 */
+            border-radius: 10px; /* 角を丸くする */
+            padding: 20px;
+            margin: 10px auto;
+            max-width: 1200px;
+        }
+    </style>
+</head>
+<body>
+    <nav id="navigation">
+        <a href="2.kaken2.1.html" class="logo">World map ultra<span>+</span></a>
+        <ul class="links">
+            <li><a href="2.kaken2.1.html">Home</a></li>
+            <li><a href="https://www.google.com/maps" target="_blank">World map</a></li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">Quiz<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="2.africa_quiz.html">Africa</a></li>
+                    <li><a href="2.asia_quiz.html">Asian</a></li>
+                    <li><a href="2.europe_quiz.html">Europe</a></li>
+                    <li><a href="2.north-america_quiz.html">North America</a></li>
+                    <li><a href="2.south-america_quiz.html">South America</a></li>
+                    <li><a href="2.oceania_quiz.html">Oceania</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">Country<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="2.africa.html">Africa</a></li>
+                    <li><a href="2.asia.html">Asian</a></li>
+                    <li><a href="2.europe.html">Europe</a></li>
+                    <li><a href="2.north_america.html">North America</a></li>
+                    <li><a href="2.south_america.html">South America</a></li>
+                    <li><a href="2.oseania.html">Oceania</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">Language<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="1.kaken2.1.html">1.日本語</a></li>
+                    <li><a href="2.kaken2.1.html">2.English (U.S.)</a></li>
+                    <li><a href="3.kaken2.1.html">3.中文</a></li>
+                    <li><a href="4.kaken2.1.html">4.한국어</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    
+    <div id="info-container">
+        <h1>Country Profile for Asia</h1>
+        <p>Please choose from the following countries:</p>
+
+        <!-- ドロップダウンメニュー -->
+        <div class="dropdown">
+            <a href="#" class="trigger-drop">Select a Country<i class="arrow"></i></a>
+            <ul class="drop" id="country-dropdown">
+                <li><a href="#" data-country="turkey">Turkey</a></li>
+                <li><a href="#" data-country="indonesia">Indonesia</a></li>
+                <li><a href="#" data-country="qatar">Qatar</a></li>
+                <li><a href="#" data-country="philippines">Philippines</a></li>
+                <li><a href="#" data-country="israel">Israel</a></li>
+            </ul>
+        </div>
+
+        <!-- 国情報セクション -->
+        <div id="country-info" style="display:none;">
+            <h2 id="country-name"></h2>
+            <div id="country-details"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const countryDropdown = document.getElementById('country-dropdown');
+            const countryInfo = document.getElementById('country-info');
+            const countryName = document.getElementById('country-name');
+            const countryDetails = document.getElementById('country-details');
+
+            // 国情報データ
+            const countryData = {
+                turkey: {
+                    name: 'Turkey',
+                    details: `
+                        <h3>Basic Information</h3>
+                        <ul>
+                            <li><strong>Population:</strong> 85.37 million</li>
+                            <li><strong>Area:</strong> 783.600㎢</li>
+                            <li><strong>Capital city:</strong> Aangkara</li>
+                            <li><strong>Language:</strong> Turkish (language)</li>
+                            <li><strong>Major Religions:</strong> Islam</li>
+                        </ul>
+
+                        <h3>Living</h3>
+                        <ul>
+                            <li></li>
+                            <li></li>
+                        </ul>
+
+                        <h3>Meal</h3>
+                        <ul>
+                            <li>Kebabs and Turkish ice cream are famous.</li>
+                            <li>It is bad manners to talk with food in your mouth.</li>
+                            <li>It is impolite to blow one's nose or pick one's teeth with a toothpick while eating.</li>
+                        </ul>
+
+                        <h3>Manners</h3>
+                        <ul>
+                            <li>Do not promote food containing pork to Muslims.</li>
+                            <li>In temples, clothing that exposes skin or hair is not permitted.</li>
+                            <li>Priority is given to the elderly.</li>
+                            <li>Making a “0” shape with the index finger and thumb is a sign of homosexuality.</li>
+                            <li>Tongue-in-cheek means dismissal.</li>
+                            <li>It is rude to chew gum during a conversation or public gathering.。</li>
+                        </ul>
+
+                        <h3>Tourist attraction</h3>
+                        <ul>
+                            <li>Cappadogia</li>
+                            <li>Istanbul</li>
+                            <li>Pamukkale</li>
+                            <li>Ephesus</li>
+                        </ul>
+                    `
+                },
+                indonesia: {
+                    name: 'Indonesia',
+                    details: `
+                        <h3>Basic Information</h3>
+                        <ul>
+                            <li><strong>Population:</strong> 277.5 million</li>
+                            <li><strong>Area:</strong> 1,905,000 km²</li>
+                            <li><strong>Capital:</strong> Jakarta</li>
+                            <li><strong>Language:</strong> Indonesian</li>
+                            <li><strong>Major Religion:</strong> Islam</li>
+                        </ul>
+
+                        <h3>Living</h3>
+                        <ul>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+
+                        <h3>Meal</h3>
+                        <ul>
+                            <li>Famous for its rendang beef, bakso meatball soup, and sambal sauce.</li>
+                            <li>Do not lift the bowl to eat.</li>
+                            <li>Eat with your right hand.</li>
+                        </ul>
+
+                        <h3>manners</h3>
+                        <ul>
+                            <li>Alcohol and pork are prohibited because of Islam.</li>
+                            <li>Since the left hand is considered impure, the right hand is used for shaking hands and passing things.</li>
+                            <li>Refrain from excessive skinship in public.</li>
+                            <li>The head is considered a sacred part of the body and should not be touched.</li>
+                        </ul>
+
+                        <h3>Tourist attraction</h3>
+                        <ul>
+                            <li>Sumatra (island)</li>
+                            <li>Bali</li>
+                            <li>Komodo National Park</li>
+                        </ul>
+                        `
+                },
+                qatar: {
+                    name: 'Qatar',
+                    details: `
+                        <h3>Basic Information</h3>
+                        <ul>
+                        <li><strong>Population:</strong> 2.716 million</li>
+                        <li><strong>Area:</strong> 11.570 km²</li>
+                        <li><strong>Capital:</strong> Doha</li>
+                        <li><strong>Language:</strong> Arabic</li>
+                        <li><strong>Major Religion:</strong> Islam</li>
+                        </ul>
+
+                        <h3>Living</h3>
+                        <ul>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+
+                        <h3>Meal</h3>
+                        <ul>
+                            <li>The restaurant is famous for its magbooths, biryani, and lamb chops.</li>
+                            <li>Handwashing before eating is important because most food is eaten with the hands.</li>
+                        </ul>
+
+                        <h3>Manners</h3>
+                        <ul>
+                            <li>Women should avoid wearing clothing that exposes too much skin or clearly shows their body structure.</li>
+                            <li>Men should avoid short pants whenever possible.</li>
+                            <li>Alcohol and pork are prohibited.</li>
+                        </ul>
+
+                        <h3>Tourist attraction</h3>
+                        <ul>
+                            <li>Blue Mosque</li>
+                            <li>Qatar Museum</li>
+                            <li>Sukhwar Kif</li>
+                            <li>desert</li>
+                        </ul>
+                        `
+                },
+                philippines: {
+                    name: 'Philippines',
+                    details:  `
+                        <h3>Basic Information</h3>
+                        <ul>
+                            <li><strong>Population:</strong> 117.3 million</li>
+                            <li><strong>Area:</strong> 300,000 km²</li>
+                            <li><strong>Capital:</strong> Manila</li>
+                            <li><strong>Language:</strong> Tagalog, English</li>
+                            <li><strong>Major Religion:</strong> Islam</li>
+                        </ul>
+
+                        <h3>Living</h3>
+                        <ul>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+
+                        <h3>Meal</h3>
+                        <ul>
+                            <li>Lechon Habuk, Sisig, and Sinigan are well known.</li>
+                            <li>Generally, the food is served on a platter so that each person can share it on his or her own plate.</li>
+                            <li>In this case, it is good manners to take it from the supervisor or an older person.</li>
+                            <li>If you are offered a dish that is new to you, don't refuse it.</li>
+                        </ul>
+
+                        <h3>manners</h3>
+                        <ul>
+                            <li>Cars have priority when crossing at crosswalks.</li>
+                            <li>Toilet paper should not be flushed.</li>
+                            <li>Tipping is generally 10%~20% of the bill.</li>
+                        </ul>
+
+                        <h3>Tourist attraction</h3>
+                        <ul>
+                            <li>Mactan Island</li>
+                            <li>Makati</li>
+                            <li>Historic City of Vigan</li>
+                        </ul>
+                        `
+                },
+                israel: {
+                    name: 'Israel',
+                    details:  `
+                        <h3>Basic Information</h3>
+                        <ul>
+                            <li><strong>Population:</strong> 9.757 million</li>
+                            <li><strong>Area:</strong> 22,140 km²</li>
+                            <li><strong>Capital:</strong> Jerusalem</li>
+                            <li><strong>Language:</strong> Hebrew</li>
+                            <li><strong>Major Religion:</strong> Judaism</li>
+                        </ul>
+
+                        <h3>Living</h3>
+                        <ul>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+
+                        <h3>Meal</h3>
+                        <ul>
+                            <li>Falafel, Shishakshuka, Shawarma, and Savich are well-known.</li>
+                            <li>The animals that are allowed to eat are basic herbivores.</li>
+                            <li>Do not eat shrimp, oysters, or octopus.</li>
+                        </ul>
+
+                        <h3>manners</h3>
+                        <ul>
+                            <li>There's a rule that you're not allowed to do anything from sundown on Friday to sundown on Saturday.</li>
+                            <li>At that time, public transportation will be suspended, with some exceptions.</li>
+                            <li>Some also observe 39 different prohibitions, for example, they do not “plow,” “sow,” “break,” “write,” or “set on fire” at all.</li>
+                        </ul>
+
+                        <h3>Tourist attraction</h3>
+                        <ul>
+                            <li>Wall of sorrow</li>
+                            <li>Nazarene</li>
+                            <li>Dead Sea</li>
+                            <li>Masada</li>
+                        </ul>
+                        `
+                }
+            };
+
+            // 国を選択した際の処理
+            countryDropdown.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                    e.preventDefault();
+                    const selectedCountry = e.target.getAttribute('data-country');
+                    if (selectedCountry && countryData[selectedCountry]) {
+                        const data = countryData[selectedCountry];
+                        countryName.textContent = data.name;
+                        countryDetails.innerHTML = data.details;
+
+                        // 国情報セクションを表示
+                        countryInfo.style.display = 'block';
+                    } else {
+                        countryInfo.style.display = 'none'; // 国情報セクションを隠す
+                    }
+                }
+            });
+        });
+    </script>
+
+    <style>
+        /* 国情報ページのスタイル */
+        #info-container {
+            max-width: 800px;
+            margin: 100px auto;
+            background-color: var(--color-base);
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: var(--color-text);
+        }
+
+        p {
+            text-align: center;
+            font-size: 18px;
+            color: var(--color-text);
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .trigger-drop {
+            padding: 10px;
+            background-color: var(--color-accent);
+            color: var(--color-base);
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .drop {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 100%;
+            background: var(--color-base);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+            z-index: 1000;
+        }
+
+        .dropdown:hover .drop {
+            display: block;
+        }
+
+        .drop li {
+            list-style: none;
+            padding: 10px;
+        }
+
+        .drop li a {
+            display: block;
+            padding: 10px;
+            color: var(--color-text);
+            transition: background-color 0.3s;
+        }
+
+        .drop li a:hover {
+            background-color: var(--color-accent);
+            color: var(--color-base);
+        }
+
+        #country-details {
+            white-space: pre-line;
+            text-align: left;
+        }
+
+        ul {
+            margin-left: 20px;
+        }
+    </style>
+</body>
+</html>

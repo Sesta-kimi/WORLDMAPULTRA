@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World map ultra</title>
+    <link rel="stylesheet" href="kaken2.2.css"> <!-- 外部CSSファイルをリンク -->
+</head>
+<body>
+    <nav id="navigation">
+        <a href="2.kaken2.1.html" class="logo">World map ultra<span>+</span></a>
+        <ul class="links">
+            <li><a href="2.kaken2.1.html">Home</a></li>
+            <li><a href="https://www.google.com/maps" target="_blank">World map</a></li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">Quiz<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="2.africa_quiz.html">Africa</a></li>
+                    <li><a href="2.asia_quiz.html">Asian</a></li>
+                    <li><a href="2.europe_quiz.html">Europe</a></li>
+                    <li><a href="2.north-america_quiz.html">North America</a></li>
+                    <li><a href="2.south-america_quiz.html">South America</a></li>
+                    <li><a href="2.oceania_quiz.html">Oceania</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">Country<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="2.africa.html">Africa</a></li>
+                    <li><a href="2.asia.html">Asian</a></li>
+                    <li><a href="2.europe.html">Europe</a></li>
+                    <li><a href="2.north_america.html">North America</a></li>
+                    <li><a href="2.south_america.html">South America</a></li>
+                    <li><a href="2.oseania.html">Oceania</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">Language<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="1.kaken2.1.html">1.日本語</a></li>
+                    <li><a href="2.kaken2.1.html">2.English (U.S.)</a></li>
+                    <li><a href="3.kaken2.1.html">3.中文</a></li>
+                    <li><a href="4.kaken2.1.html">4.한국어</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    
+    <div id="info-container">
+        <h1>Oceania Country Profile</h1>
+        <p>Please choose from the following countries:</p>
+
+        <!-- ドロップダウンメニュー -->
+        <div class="dropdown">
+            <a href="#" class="trigger-drop">Select a Country<i class="arrow"></i></a>
+            <ul class="drop" id="country-dropdown">
+                <li><a href="#" data-country="australia">Australia✓</a></li>
+                <li><a href="#" data-country="new-zealand">New Zealand</a></li>
+                <li><a href="#" data-country="tonga">Tonga</a></li>
+                <li><a href="#" data-country="solomon islands">Solomon Islands</a></li>
+                <li><a href="#" data-country="palau">Palau</a></li>
+            </ul>
+        </div>
+
+        <!-- 国情報セクション -->
+        <div id="country-info" style="display:none;">
+            <h2 id="country-name"></h2>
+            <div id="country-details"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const countryDropdown = document.getElementById('country-dropdown');
+            const countryInfo = document.getElementById('country-info');
+            const countryName = document.getElementById('country-name');
+            const countryDetails = document.getElementById('country-details');
+
+            // 国情報データ
+            const countryData = {
+                australia: {
+                    name: 'Australia',
+                    details: `
+                        <h3>Basic Information</h3>
+                        <ul>
+                            <li><strong>population:</strong> 26.64 million people</li>
+                            <li><strong>area:</strong> 7,741,000㎢</li>
+                            <li><strong>capital city:</strong> Canberra</li>
+                            <li><strong>Language:</strong> English</li>
+                            <li><strong>Major Religions:</strong> Christian, Catholic, Anglican (diverse)</li>
+                        </ul>
+
+                        <h3>living</h3>
+                        <ul>
+                            <li>left-hand side driving is the rule</li>
+                            <li>I don't wear a mask when I have a cold.</li>
+                        </ul>
+
+                        <h3>meal</h3>
+                        <ul>
+                            <li>Meat pies, kangaroo meat, barramundi, and hamburgers are the main items eaten.</li>
+                            <li>It is not customary to tip.</li>
+                            <li>Soup and noodles are not eaten noisily.</li>
+                            <li>Do not speak with food in your mouth.</li>
+                        </ul>
+
+                        <h3>manners</h3>
+                        <ul>
+                            <li>When someone greets you, smile back.</li>
+                            <li>When boarding a bus, signal the driver.</li>
+                            <li>While sniffing is bad manners, it is not against manners to do so by holding it back with a handkerchief or the like.</li>
+                        </ul>
+
+                        <h3>tourist attraction</h3>
+                        <ul>
+                            <li>ululu</li>
+                            <li>Great Barrier Reef</li>
+                            <li>Great Ocean Road</li>
+                            <li>Sydney Opera House</li>
+                        </ul>
+                    `
+                },
+                'new-zealand': {
+                    name: 'New Zealand',
+                    details: `
+                        <h3>Basic Information</h3>
+                        <ul>
+                            <li><strong>population:</strong> Approximately 900,000 people</li>
+                            <li><strong>area:</strong> 約18,300㎢</li>
+                            <li><strong>capital city:</strong> sba</li>
+                            <li><strong>Language:</strong> English, Fijian</li>
+                            <li><strong>Major Religions:</strong> Christianity</li>
+                        </ul>
+
+                        <h3>living</h3>
+                        <ul>
+                            <li>,</li>
+                            <li>,</li>
+                        </ul>
+
+                        <h3>meal</h3>
+                        <ul>
+                            <li>King salmon, fish and chips, lamb, and green muscles are the main items eaten.</li>
+                            <li>The plate is left on the table to eat.</li>
+                            <li>There is no culture of saying “Itadakimasu” and “Gochisosama.</li>
+                        </ul>
+
+                        <h3>manners</h3>
+                        <ul>
+                            <li>Look the other person in the eye during conversation.</li>
+                            <li>Do not reach out and take things (have someone else take them for you).</li>
+                            <li>Leave the door open after using the toilet.</li>
+                        </ul>
+
+                        <h3>tourist attraction</h3>
+                        <ul>
+                            <li>Auckland</li>
+                            <li>Waikato</li>
+                            <li>fjord run</li>
+                            <li>Queenstown</li>
+                        </ul>
+                    `
+                },
+                tonga: {
+                    name: 'Tonga',
+                    details: `
+                        <h3>Basic Information</h3>
+                        <ul>
+                            <li><strong>population:</strong> 10.78 million people</li>
+                            <li><strong>area:</strong> 748㎢</li>
+                            <li><strong>capital city:</strong> aquarophagus</li>
+                            <li><strong>Language:</strong> English, Tongan</li>
+                            <li><strong>Major Religions:</strong> Christianity</li>
+                        </ul>
+
+                        <h3>living</h3>
+                        <ul>
+                            <li>,</li>
+                            <li>,</li>
+                        </ul>
+
+                        <h3>meal</h3>
+                        <ul>
+                            <li>Otayka, kapabul, and kare (curry) are the main foods eaten.</li>
+                            <li>There is no culture of eating at a fixed time; people eat when they are hungry or when they have time.</li>
+                            <li>They are often eaten in the garden or outdoors, not at the dining table.</li>
+                        </ul>
+
+                        <h3>manners</h3>
+                        <ul>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+
+                        <h3>tourist attraction</h3>
+                        <ul>
+                            <li>whale swim</li>
+                            <li>Anaful Cave</li>
+                            <li>Haatafu Beach</li>
+                            <li>Mapuabaca (blowhole)</li>
+                        </ul>
+                    `
+                },
+                'solomon islands': {
+                    name: 'Solomon Islands',
+                    details: `
+                        <h3>Basic Information</h3>
+                        <ul>
+                            <li><strong>population:</strong> 740,400,000 people</li>
+                            <li><strong>area:</strong> 28,900㎢</li>
+                            <li><strong>capital city:</strong> Honiara</li>
+                            <li><strong>Language:</strong> English, Pidgin</li>
+                            <li><strong>Major Religions:</strong> Roman Catholic, Anglican</li>
+                        </ul>
+
+                        <h3>living</h3>
+                        <ul>
+                            <li>,</li>
+                            <li>,</li>
+                        </ul>
+
+                        <h3>meal</h3>
+                        <ul>
+                            <li>Cassava, coconut juice, and coconut kumara are famous.</li>
+                        </ul>
+
+                        <h3>manners</h3>
+                        <ul>
+                            <li>Keep your baggage close to your skin to avoid pickpockets and looters.</li>
+                            <li>No place-holding in restaurants.</li>
+                        </ul>
+
+                        <h3>tourist attraction</h3>
+                        <ul>
+                            <li>Bonegi Beach</li>
+                            <li>Solomon Islands National Museum</li>
+                            <li>Honiara Central Market</li>
+                        </ul>
+                    `
+                },
+                palau: {
+                    name: 'Palau',
+                    details: `
+                        <h3>Basic Information</h3>
+                        <ul>
+                            <li><strong>population:</strong> 1.806 million people</li>
+                            <li><strong>area:</strong> 458㎢</li>
+                            <li><strong>capital city:</strong> musselmod </li>
+                            <li><strong>Language:</strong> English, Palauan</li>
+                            <li><strong>Major Religions:</strong> Christianity</li>
+                        </ul>
+
+                        <h3>living</h3>
+                        <ul>
+                            <li>,</li>
+                            <li>,</li>
+                        </ul>
+
+                        <h3>meal</h3>
+                        <ul>
+                            <li>Famous for its taro, mangrove crabs, and bat soup.</li>
+                        </ul>
+
+                        <h3>manners</h3>
+                        <ul>
+                            <li>Avoid flashy clothing.</li>
+                            <li>Do not accept colored goods, etc., even if recommended by locals.</li>
+                        </ul>
+
+                        <h3>tourist attraction</h3>
+                        <ul>
+                            <li>Milky Way</li>
+                            <li>Seventy Island</li>
+                            <li>Rock Island</li>
+                            <li>marine lake</li>
+                        </ul>
+                    `
+                }
+            };
+
+            // 国を選択した際の処理
+            countryDropdown.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                    e.preventDefault();
+                    const selectedCountry = e.target.getAttribute('data-country');
+                    if (selectedCountry && countryData[selectedCountry]) {
+                        const data = countryData[selectedCountry];
+                        countryName.textContent = data.name;
+                        countryDetails.innerHTML = data.details;
+
+                        // 国情報セクションを表示
+                        countryInfo.style.display = 'block';
+                    } else {
+                        countryInfo.style.display = 'none'; // 国情報セクションを隠す
+                    }
+                }
+            });
+        });
+    </script>
+
+    <style>
+        /* 国情報ページのスタイル */
+        #info-container {
+            max-width: 800px;
+            margin: 100px auto;
+            background-color: var(--color-base);
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: var(--color-text);
+        }
+
+        p {
+            text-align: center;
+            font-size: 18px;
+            color: var(--color-text);
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .trigger-drop {
+            padding: 10px;
+            background-color: var(--color-accent);
+            color: var(--color-base);
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .drop {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 100%;
+            background: var(--color-base);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+            z-index: 1000;
+        }
+
+        .dropdown:hover .drop {
+            display: block;
+        }
+
+        .drop li {
+            list-style: none;
+            padding: 10px;
+        }
+
+        .drop li a {
+            display: block;
+            padding: 10px;
+            color: var(--color-text);
+            transition: background-color 0.3s;
+        }
+
+        .drop li a:hover {
+            background-color: var(--color-accent);
+            color: var(--color-base);
+        }
+
+        #country-details {
+            white-space: pre-line;
+            text-align: left;
+        }
+
+        ul {
+            margin-left: 20px;
+        }
+    </style>
+</body>
+</html>

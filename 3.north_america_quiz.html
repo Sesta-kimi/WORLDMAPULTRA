@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界地図ultra</title>
+    <link rel="stylesheet" href="kaken2.2.css"> <!-- 外部CSSファイルをリンク -->
+    <style>
+        /* 背景画像を設定 */
+        body {
+            background-image: url('https://images.rawpixel.com/image_social_landscape/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTEwL3Jhd3BpeGVsb2ZmaWNlNl9waG90b19vZl9lYXJ0aF9mb3JtX3NwYWNlX3JlYWxpc3RpY19zdHlsZV9yZWFsaV9jODA5MDU2My1iNmRkLTQ0ZDgtYTkzMy1hNjRiNzQ0ODVlOWJfMS5qcGc.jpg'); /* ここに背景画像のパスを指定 */
+            background-size: cover; /* 画像を画面全体に拡大・縮小 */
+            background-repeat: no-repeat; /* 画像を繰り返さない */
+            background-attachment: fixed; /* スクロール時に背景を固定 */
+            background-position: center; /* 中央に配置 */
+        }
+
+        /* テキストの視認性を向上 */
+        nav, #quiz-section {
+            background-color: rgba(253, 219, 147, 0.925); /* 背景を半透明に設定 */
+            border-radius: 10px; /* 角を丸くする */
+            padding: 20px;
+            margin: 10px auto;
+            max-width: 1200px;
+        }
+    </style>
+</head>
+<body>
+    <nav id="navigation">
+        <a href="3.kaken2.1.html" class="logo">世界地图ultra<span>+</span></a>
+        <ul class="links">
+            <li><a href="3.kaken2.1.html">首页</a></li>
+            <li><a href="https://www.google.com/maps" target="_blank">世界地图</a></li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">测试<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="3.africa_quiz.html">非洲</a></li>
+                    <li><a href="3.asia_quiz.html">亚洲</a></li>
+                    <li><a href="3.europe_quiz.html_">欧洲</a></li>
+                    <li><a href="3.north-america_quiz.html">北美</a></li>
+                    <li><a href="3.south-america_quiz.html">南美洲</a></li>
+                    <li><a href="3.oceania_quiz.html">大洋洲</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">国家<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="3.africa.html">非洲</a></li>
+                    <li><a href="3.asia.html">亚洲</a></li>
+                    <li><a href="3.europe.html">欧洲</a></li>
+                    <li><a href="3.north_america.html">北美</a></li>
+                    <li><a href="3.south_america.html">南美洲</a></li>
+                    <li><a href="3.oseania.html">大洋洲</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">Language<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="1.kaken2.1.html">1.日本語</a></li>
+                    <li><a href="2.kaken2.1.html">2.English (U.S.)</a></li>
+                    <li><a href="3.kaken2.1.html">3.中文</a></li>
+                    <li><a href="4.kaken2.1.html">4.한국어</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <div id="quiz-container">
+        <h1>北美地区测验</h1>
+        <p>从以下国家中选择:</p>
+
+        <!-- ドロップダウンメニュー -->
+        <div class="dropdown">
+            <a href="#" class="trigger-drop">选择国家<i class="arrow"></i></a>
+            <ul class="drop" id="country-dropdown">
+                <li><a href="#" data-country="usa">美国</a></li>
+                <li><a href="#" data-country="canada">加拿大</a></li>
+                <li><a href="#" data-country="mexico">墨西哥</a></li>
+                <li><a href="#" data-country="jamaica">牙买加</a></li>
+                <li><a href="#" data-country="cuba">古巴</a></li>
+            </ul>
+        </div>
+
+        <div id="quiz-section" style="display:none;">
+            <h2 id="quiz-question"></h2>
+            <ul id="quiz-options" class="quiz-options"></ul>
+            <div id="quiz-result"></div>
+            <button id="next-quiz" style="display:none;">下一个测验</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const countryDropdown = document.getElementById('country-dropdown');
+            const quizSection = document.getElementById('quiz-section');
+            const quizQuestion = document.getElementById('quiz-question');
+            const quizOptions = document.getElementById('quiz-options');
+            const quizResult = document.getElementById('quiz-result');
+            const nextQuizButton = document.getElementById('next-quiz');
+            const correctSound = new Audio('correct.mp3');
+            const wrongSound = new Audio('wrong.mp3');
+
+            // クイズデータ
+            const quizzes = {
+                usa: [
+                    {
+                        question: '美国首都在哪里？',
+                        options: ['华盛顿特区', '纽约', '洛杉矶', '芝加哥'],
+                        correctAnswer: '华盛顿特区'
+                    },
+                    {
+                        question: '什么是典型的美国菜？',
+                        options: ['汉堡', '意大利面', '咖喱', '玉米饼'],
+                        correctAnswer: '汉堡'
+                    },
+                    {
+                        question: '美国国旗上有多少颗星星？',
+                        options: ['50', '48', '52', '45'],
+                        correctAnswer: '50'
+                    }
+                ],
+                canada: [
+                    {
+                        question: '加拿大的首都在哪里？',
+                        options: ['Ottawa', 'Toronto.', 'Vancouver', 'Montreal'],
+                        correctAnswer: 'Ottawa'
+                    },
+                    {
+                        question: 'What type of leaf is on the Canadian flag?',
+                        options: ['maple', 'oak', 'poplar', 'pine tree'],
+                        correctAnswer: 'maple'
+                    },
+                    {
+                        question: 'What are the most famous festivals in Canada?',
+                        options: ['Canada Day', 'Halloween', 'Christmas', 'Thanksgiving '],
+                        correctAnswer: 'Canada Day'
+                    }
+                ],
+                mexico: [
+                    {
+                        question: 'Where is the capital of Mexico?',
+                        options: ['México City', 'Guadalajara', 'Monterrey', 'Cancun'],
+                        correctAnswer: 'México City'
+                    },
+                    {
+                        question: 'What are some typical Mexican dishes?',
+                        options: ['Tacos', 'Pasta', 'Pizza', 'Curry'],
+                        correctAnswer: 'Tacos'
+                    },
+                    {
+                        question: 'What is the most famous drink in Mexico?',
+                        options: ['テキーラ', 'ワイン', 'ビール', 'ウイスキー'],
+                        correctAnswer: 'テキーラ'
+                    }
+                ],
+                jamaica: [
+                    {
+                        question: 'Where is the capital of Jamaica?',
+                        options: ['Kingston.', 'モンテゴベイ', 'オーチョリオス', 'マンチェスター'],
+                        correctAnswer: 'Kingston.'
+                    },
+                    {
+                        question: 'What music genres are famous in Jamaica?',
+                        options: ['reggae', 'ロック', 'ジャズ', 'ブルース'],
+                        correctAnswer: 'reggae'
+                    },
+                    {
+                        question: 'What are the colours on the Jamaican flag?',
+                        options: ['Black, green, gold.', '赤、白、青', '青、白、緑', '赤、黄、黒'],
+                        correctAnswer: 'Black, green, gold.'
+                    }
+                ],
+                cuba: [
+                    {
+                        question: 'Where is the capital of Cuba?',
+                        options: ['Havana', 'マタンザス', 'サンタクララ', 'トリニダ'],
+                        correctAnswer: 'Havana'
+                    },
+                    {
+                        question: 'What music genres are famous in Cuba?',
+                        options: ['salsa', 'ロック', 'ポップ', 'ジャズ'],
+                        correctAnswer: 'salsa'
+                    },
+                    {
+                        question: 'What are the colours on the Cuban flag?',
+                        options: ['Blue, white, red.', 'Red, green, black.', 'Blue, white, green.', 'Black, red, yellow.'],
+                        correctAnswer: 'Blue, white, red.'
+                    }
+                ]
+            };
+
+            let currentCountry;
+        let currentQuizIndex = 0;
+        let correctCounts = {};
+        
+        for (const country in quizzes) {
+            correctCounts[country] = 0;
+        }
+        
+        function shuffleArray(array) {
+        return array.slice().sort(() => Math.random() - 0.5); // 新しい配列を返す
+        }
+
+        countryDropdown.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A') {
+                e.preventDefault();
+                const selectedCountry = e.target.getAttribute('data-country');
+                if (selectedCountry && quizzes[selectedCountry]) {
+                    currentCountry = selectedCountry;
+                    currentQuizIndex = 0;
+                    quizzes[currentCountry] = shuffleArray(quizzes[currentCountry]); 
+                    loadQuiz();
+                } else {
+                    quizSection.style.display = 'none';
+                }
+            }
+        });
+        
+        function loadQuiz() {
+            const quizData = quizzes[currentCountry][currentQuizIndex];
+            quizQuestion.textContent = quizData.question;
+            quizOptions.innerHTML = '';
+            quizData.options.forEach(option => {
+                const li = document.createElement('li');
+                const button = document.createElement('button');
+                button.textContent = option;
+                button.classList.add('quiz-option');
+                button.setAttribute('data-answer', option);
+                li.appendChild(button);
+                quizOptions.appendChild(li);
+
+                button.addEventListener('click', () => {
+                    document.querySelectorAll('.quiz-option').forEach(btn => {
+                        btn.disabled = true;
+                        if (btn.textContent === quizData.correctAnswer) {
+                            btn.style.backgroundColor = '#4CAF50';
+                        } else {
+                            btn.style.backgroundColor = '#FF6347';
+                        }
+                    });
+
+                    if (option === quizData.correctAnswer) {
+                        quizResult.innerHTML = `<h3 style="color: #4CAF50;">正确的！祝贺！</h3>`;
+                        correctCounts[currentCountry]++;
+                        correctSound.play();
+                    } else {
+                        quizResult.innerHTML = `<h3 style="color: #FF6347;">悔过、不正确。<br>正确答案是 <strong>${quizData.correctAnswer}</strong> です。</h3>`;
+                        wrongSound.play();
+                    }
+                    nextQuizButton.style.display = 'block';
+                });
+            });
+
+            quizSection.style.display = 'block';
+            quizResult.innerHTML = '';
+            nextQuizButton.style.display = 'none';
+        }
+
+        nextQuizButton.addEventListener('click', () => {
+            currentQuizIndex++;
+            if (currentQuizIndex < quizzes[currentCountry].length) {
+                loadQuiz();
+            } else {
+                quizResult.innerHTML = `<h3>${currentCountry.toUpperCase()}测验结束！${quizzes[currentCountry].length}个问题中有${correctCounts[currentCountry]}个回答正确。</h3>`;
+                nextQuizButton.style.display = 'none';
+            }
+        });
+    });
+    </script>
+
+    <style>
+        /* クイズページのスタイル */
+        #quiz-container {
+            max-width: 800px;
+            margin: 100px auto;
+            background-color: var(--color-base);
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: var(--color-text);
+        }
+
+        p {
+            text-align: center;
+            font-size: 18px;
+            color: var(--color-text);
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .trigger-drop {
+            padding: 10px;
+            background-color: var(--color-accent);
+            color: var(--color-base);
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .drop {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 100%;
+            background: var(--color-base);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+            z-index: 1000;
+        }
+
+        .dropdown:hover .drop {
+            display: block;
+        }
+
+        .drop li {
+            list-style: none;
+            padding: 10px;
+        }
+
+        .drop li a {
+            display: block;
+            padding: 10px;
+            color: var(--color-text);
+            transition: background-color 0.3s;
+        }
+
+        .drop li a:hover {
+            background-color: var(--color-accent);
+            color: var(--color-base);
+        }
+
+        .quiz-options {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .quiz-option {
+            padding: 10px;
+            background-color: var(--color-accent);
+            color: var(--color-base);
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .quiz-option:hover {
+            background-color: lighten(var(--color-accent), 20%);
+        }
+
+        #quiz-result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+        }
+    </style>
+</body>
+</html>

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World map ultra</title>
+    <link rel="stylesheet" href="kaken2.2.css"> <!-- 外部CSSファイルをリンク -->
+</head>
+<body>
+    <nav id="navigation">
+        <a href="2.kaken2.1.html" class="logo">World map ultra<span>+</span></a>
+        <ul class="links">
+            <li><a href="2.kaken2.1.html">Home</a></li>
+            <li><a href="https://www.google.com/maps" target="_blank">World map</a></li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">Quiz<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="2.africa_quiz.html">Africa</a></li>
+                    <li><a href="2.asia_quiz.html">Asian</a></li>
+                    <li><a href="2.europe_quiz.html">Europe</a></li>
+                    <li><a href="2.north-america_quiz.html">North America</a></li>
+                    <li><a href="2.south-america_quiz.html">South America</a></li>
+                    <li><a href="2.oceania_quiz.html">Oceania</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">Country<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="2.africa.html">Africa</a></li>
+                    <li><a href="2.asia.html">Asian</a></li>
+                    <li><a href="2.europe.html">Europe</a></li>
+                    <li><a href="2.north_america.html">North America</a></li>
+                    <li><a href="2.south_america.html">South America</a></li>
+                    <li><a href="2.oseania.html">Oceania</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">Language<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="1.kaken2.1.html">1.日本語</a></li>
+                    <li><a href="2.kaken2.1.html">2.English (U.S.)</a></li>
+                    <li><a href="3.kaken2.1.html">3.中文</a></li>
+                    <li><a href="4.kaken2.1.html">4.한국어</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    
+    <div id="info-container">
+        <h1>South America Region Country Profile</h1>
+        <p>Please choose from the following countries:</p>
+
+        <!-- ドロップダウンメニュー -->
+        <div class="dropdown">
+            <a href="#" class="trigger-drop">Select a Country<i class="arrow"></i></a>
+            <ul class="drop" id="country-dropdown">
+                <li><a href="#" data-country="argentina">Argentina</a></li>
+                <li><a href="#" data-country="chile">Chile</a></li>
+                <li><a href="#" data-country="brazil">Brazil</a></li>
+                <li><a href="#" data-country="colombia">Colombia</a></li>
+                <li><a href="#" data-country="peru">Peru</a></li>
+            </ul>
+        </div>
+
+        <!-- 国情報セクション -->
+        <div id="country-info" style="display:none;">
+            <h2 id="country-name"></h2>
+            <div id="country-details"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const countryDropdown = document.getElementById('country-dropdown');
+            const countryInfo = document.getElementById('country-info');
+            const countryName = document.getElementById('country-name');
+            const countryDetails = document.getElementById('country-details');
+
+            // 国情報データ
+            const countryData = {
+                argentina: {
+                    name: 'Argentina',
+                    details: `
+                        <h3>Basic Information</h3>
+                        <ul>
+                            <li><strong>population:</strong> 46.65 million people</li>
+                            <li><strong>area:</strong> 2,780,000㎢</li>
+                            <li><strong>capital city:</strong> Buenos Aires</li>
+                            <li><strong>Language:</strong> Spanish</li>
+                            <li><strong>Major Religions:</strong>Christianity</li>
+                        </ul>
+
+                        <h3>living</h3>
+                        <ul>
+                            <li>、</li>
+                            <li>、</li>
+                        </ul>
+
+                        <h3>meal</h3>
+                        <ul>
+                            <li>Asado, choripan, empanadas, etc. are mostly eaten.</li>
+                            <li>No noise should be made during meals and dishes should not be lifted.</li>
+                            <li>When handing out salt, place it on the table and do not hand it over.</li>
+                        </ul>
+
+                        <h3>manners</h3>
+                        <ul>
+                            <li>Do not eat while walking.</li>
+                            <li>It is bad manners to call on a Sunday morning.</li>
+                            <li>Do not arrive too early for the appointment.</li>
+                        </ul>
+
+                        <h3>tourist attraction</h3>
+                        <ul>
+                            <li>Iguazu Falls</li>
+                            <li>Umawaka Valley</li>
+                        </ul>
+
+                    `
+                    
+                },
+                chile: {
+                    name: 'Chile',
+                    details: `
+                        <h3>Basic Information</h3>
+                        <ul>
+                            <li><strong>population:</strong> 19.63 million people</li>
+                            <li><strong>area:</strong> 756,600㎢</li>
+                            <li><strong>capital city:</strong> Santiago</li>
+                            <li><strong>Language:</strong> Spanish</li>
+                            <li><strong>Major Religions:</strong>Catholic</li>
+                        </ul>
+
+                        <h3>living</h3>
+                        <ul>
+                            <li></li>
+                            <li></li>
+                        </ul>
+
+                        <h3>meal</h3>
+                        <ul>
+                            <li></li>
+                            <li>Caesura and paila marina are the main food sources.</li>
+                            <li>Do not touch food directly.</li>
+                            <li>Always place the table from wrist to wrist.</li>
+                        </ul>
+
+                        <h3>manners</h3>
+                        <ul>
+                            <li>Avoid flashy clothing.</li>
+                            <li>Avoid walking alone and do not go to places where there are few people.</li>
+                        </ul>
+
+                        <h3>tourist attraction</h3>
+                        <ul>
+                            <li>Easter Island</li>
+                            <li>parpaline</li>
+                            <li>Roads of the Andes</li>
+                            <li>Churches in Chiloé</li>
+                        </ul>
+
+                    `
+                    
+                },
+                brazil: {
+                    name: 'Brazil',
+                    details: `
+                        <h3>Basic Information</h3>
+                        <ul>
+                            <li><strong>population:</strong> 216.4 billion people</li>
+                            <li><strong>area:</strong> 8,510,000㎢</li>
+                            <li><strong>capital city:</strong> Brasilia</li>
+                            <li><strong>Language:</strong> Portuguese</li>
+                            <li><strong>Major Religions:</strong>Catholic</li>
+                        </ul>
+
+                        <h3>living</h3>
+                        <ul>
+                            <li></li>
+                            <li></li>
+                        </ul>
+
+                        <h3>meal</h3>
+                        <ul>
+                            <li>Cocinha, palmito, churrasco, and alaje are the main foods eaten.</li>
+                            <li>Do not touch food directly (even sandwiches, use a knife or fork).</li>
+                            <li>Do not keep your phone on your desk.</li>
+                        </ul>
+
+                        <h3>manners</h3>
+                        <ul>
+                            <li>Do not flush soiled paper in the toilet, but throw it in the trash.</li>
+                            <li>Refrain from going out at night and act with more than one person.</li>
+                        </ul>
+
+                        <h3>tourist attraction</h3>
+                        <ul>
+                            <li>Colgovado Hill</li>
+                            <li>Rensoith</li>
+                            <li>Old Salvador</li>
+                        </ul>
+
+                    `
+
+                },
+                colombia: {
+                    name: 'Colombia',
+                    details: `
+                        <h3>Basic Information</h3>
+                        <ul>
+                            <li><strong>population:</strong> 52.09 million people</li>
+                            <li><strong>area:</strong> 1,142,000㎢</li>
+                            <li><strong>capital city:</strong> Bogoda</li>
+                            <li><strong>Language:</strong> Spanish</li>
+                            <li><strong>Major Religions:</strong>Catholic</li>
+                        </ul>
+
+                        <h3>living</h3>
+                        <ul>
+                            <li></li>
+                            <li></li>
+                        </ul>
+
+                        <h3>meal</h3>
+                        <ul>
+                            <li>Empanadas, ajiaco, and tamales are the most commonly eaten tamales.</li>
+                            <li>Eat food without leaving any leftovers.</li>
+                            <li>Lunch is the main meal.</li>
+                        </ul>
+
+                        <h3>manners</h3>
+                        <ul>
+                            <li>Eye contact is extremely important.</li>
+                            <li>Do not carry guidebooks with you (you will be watched and it will be dangerous).</li>
+                        </ul>
+
+                        <h3>tourist attraction</h3>
+                        <ul>
+                            <li>The Church of Salt</li>
+                            <li>ラSuhas </li>
+                            <li>Plaza de Bolivar</li>
+                        </ul>
+
+                    `
+
+                },
+                peru: {
+                    name: 'Peru',
+                    details: `
+                        <h3>Basic Information</h3>
+                        <ul>
+                            <li><strong>population:</strong> 34.35 million people</li>
+                            <li><strong>area:</strong> 1,285,000㎢</li>
+                            <li><strong>capital city:</strong> Lima</li>
+                            <li><strong>Language:</strong> Spanish</li>
+                            <li><strong>Major Religions:</strong>Roman Catholic</li>
+                        </ul>
+
+                        <h3>living</h3>
+                        <ul>
+                            <li></li>
+                            <li></li>
+                        </ul>
+
+                        <h3>meal</h3>
+                        <ul>
+                            <li>Ceviche, lomo saltado, and inca cola are the main foods.</li>
+                            <li>Knife in right hand, fork in left hand.</li>
+                            <li>Eat all the food instead of leaving a little.</li>
+                        </ul>
+
+                        <h3>manners</h3>
+                        <ul>
+                            <li>Refrain from exposing skin in religious institutions and at traditional festivals.</li>
+                        </ul>
+
+                        <h3>tourist attraction</h3>
+                        <ul>
+                            <li>Machu Picchu</li>
+                            <li>Cusco.</li>
+                            <li>Nazca terrestrial painting</li>
+                        </ul>
+
+                    `
+
+                }
+            };
+
+            // 国を選択した際の処理
+            countryDropdown.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                    e.preventDefault();
+                    const selectedCountry = e.target.getAttribute('data-country');
+                    if (selectedCountry && countryData[selectedCountry]) {
+                        const data = countryData[selectedCountry];
+                        countryName.textContent = data.name;
+                        countryDetails.innerHTML = data.details;
+
+                        // 国情報セクションを表示
+                        countryInfo.style.display = 'block';
+                    } else {
+                        countryInfo.style.display = 'none'; // 国情報セクションを隠す
+                    }
+                }
+            });
+        });
+    </script>
+
+    <style>
+        /* 国情報ページのスタイル */
+        #info-container {
+            max-width: 800px;
+            margin: 100px auto;
+            background-color: var(--color-base);
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: var(--color-text);
+        }
+
+        p {
+            text-align: center;
+            font-size: 18px;
+            color: var(--color-text);
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .trigger-drop {
+            padding: 10px;
+            background-color: var(--color-accent);
+            color: var(--color-base);
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .drop {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 100%;
+            background: var(--color-base);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+            z-index: 1000;
+        }
+
+        .dropdown:hover .drop {
+            display: block;
+        }
+
+        .drop li {
+            list-style: none;
+            padding: 10px;
+        }
+
+        .drop li a {
+            display: block;
+            padding: 10px;
+            color: var(--color-text);
+            transition: background-color 0.3s;
+        }
+
+        .drop li a:hover {
+            background-color: var(--color-accent);
+            color: var(--color-base);
+        }
+    </style>
+</body>
+</html>
+

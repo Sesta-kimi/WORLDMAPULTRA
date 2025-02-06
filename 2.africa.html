@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World map ultra</title>
+    <link rel="stylesheet" href="kaken2.2.css"> <!-- 外部CSSファイルをリンク -->
+    <style>
+        /* 背景画像を設定 */
+        body {
+            background-image: url('https://images.rawpixel.com/image_social_landscape/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTEwL3Jhd3BpeGVsb2ZmaWNlNl9waG90b19vZl9lYXJ0aF9mb3JtX3NwYWNlX3JlYWxpc3RpY19zdHlsZV9yZWFsaV9jODA5MDU2My1iNmRkLTQ0ZDgtYTkzMy1hNjRiNzQ0ODVlOWJfMS5qcGc.jpg'); /* ここに背景画像のパスを指定 */
+            background-size: cover; /* 画像を画面全体に拡大・縮小 */
+            background-repeat: no-repeat; /* 画像を繰り返さない */
+            background-attachment: fixed; /* スクロール時に背景を固定 */
+            background-position: center; /* 中央に配置 */
+        }
+
+        /* テキストの視認性を向上 */
+        nav, #quiz-section {
+            background-color: rgba(253, 219, 147, 0.925); /* 背景を半透明に設定 */
+            border-radius: 10px; /* 角を丸くする */
+            padding: 20px;
+            margin: 10px auto;
+            max-width: 1200px;
+        }
+    </style>
+</head>
+<body>
+    <nav id="navigation">
+        <a href="2.kaken2.1.html" class="logo">World map ultra<span>+</span></a>
+        <ul class="links">
+            <li><a href="2.kaken2.1.html">Home</a></li>
+            <li><a href="https://www.google.com/maps" target="_blank">World map</a></li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">Quiz<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="2.africa_quiz.html">Africa</a></li>
+                    <li><a href="2.asia_quiz.html"></a>Asian</li>
+                    <li><a href="2.europe_quiz.html_"></a>Europe</li>
+                    <li><a href="2.north-america_quiz.html">North America</a></li>
+                    <li><a href="2.south-america_quiz.html">South America</a></li>
+                    <li><a href="2.oceania_quiz.html">Oceania</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">Country<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="2.africa.html">Africa</a></li>
+                    <li><a href="2.asia.html">Asian</a></li>
+                    <li><a href="2.europe.html">Europe</a></li>
+                    <li><a href="2.north_america.html">North America</a></li>
+                    <li><a href="2.south_america.html">South America</a></li>
+                    <li><a href="2.oseania.html">Oceania</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">Language<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="1.kaken2.1.html">1.日本語</a></li>
+                    <li><a href="2.kaken2.1.html">2.English (U.S.)</a></li>
+                    <li><a href="3.kaken2.1.html">3.中文</a></li>
+                    <li><a href="4.kaken2.1.html">4.한국어</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    
+    <div id="info-container">
+        <h1>Country Profile for Africa</h1>
+        <p>Please choose from the following countries:</p>
+
+        <!-- ドロップダウンメニュー -->
+        <div class="dropdown">
+            <a href="#" class="trigger-drop">Select a Country<i class="arrow"></i></a>
+            <ul class="drop" id="country-dropdown">
+                <li><a href="#" data-country="nigeria">Nigeria</a></li>
+                <li><a href="#" data-country="egypt">Egypt</a></li>
+                <li><a href="#" data-country="south-africa">South Africa</a></li>
+                <li><a href="#" data-country="mali">Republic of Mali</a></li>
+                <li><a href="#" data-country="ghana">Ghana</a></li>
+            </ul>
+        </div>
+
+        <!-- 国情報セクション -->
+        <div id="country-info" style="display:none;">
+            <h2 id="country-name"></h2>
+            <div id="country-details"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const countryDropdown = document.getElementById('country-dropdown');
+            const countryInfo = document.getElementById('country-info');
+            const countryName = document.getElementById('country-name');
+            const countryDetails = document.getElementById('country-details');
+
+            // 国情報データ
+            const countryData = {
+                nigeria: {
+                    name: 'Nigeria',
+                    details: `
+                        <h3>Basic Information</h3>
+                        <ul>
+                            <li><strong>Population:</strong> 222.8 million</li>
+                            <li><strong>Area:</strong> 923,773㎢</li>
+                            <li><strong>Capital city:</strong> Abuja.</li>
+                            <li><strong>Language:</strong> English (official language)</li>
+                            <li><strong>Major Religions:</strong> Islam, (mainly in the north), Christianity (mainly in the south), traditional religions (all regions)</li>
+                        </ul>
+
+                        <h3>Living</h3>
+                        <ul>
+                            <li>The economy is growing, but many impoverished people are not living very affluent lives.</li>
+                            <li>Currently, the emphasis is on dietary changes.</li>
+                        </ul>
+
+                        <h3>Meal</h3>
+                        <ul>
+                            <li>Yams, cassava potatoes, and serimona flour (the kind that makes pasta-like food) are staples.</li>
+                            <li>The main way to eat the staple food is to process it like a rice cake, tear it apart with your hands, dip it in sauce, and eat it with your bare hands.</li>
+                        </ul>
+
+                        <h3>Manners</h3>
+                        <ul>
+                            <li>Do not feed eggs to small children, as the legend says that if you feed them eggs, they will become thieves!。</li>
+                        </ul>
+
+                        <h3>Tourist attraction</h3>
+                        <ul>
+                            <li></li>
+                        </ul>
+                    `
+                },
+                egypt: {
+                    name: 'Egypt',
+                    details: `
+                        <h3>Basic Information</h3>
+                        <ul>
+                            <li><strong>Population:</strong> 112.7 billion people</li>
+                            <li><strong>Area:</strong> 1,002,000㎢</li>
+                            <li><strong>Capital city:</strong> Cairo</li>
+                            <li><strong>Language:</strong> Arabic (language)</li>
+                            <li><strong>Major Religions:</strong> Islam</li>
+                        </ul>
+
+                        <h3>Living</h3>
+                        <ul>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+
+                        <h3>Meal</h3>
+                        <ul>
+                            <li>Koshari, tater meyer, and aeshi are eaten.</li>
+                            <li>Because the left hand is considered impure, the fingertips of the right hand are used for eating.</li>
+                            <li>Do not engage in the act of eating with a large bite spread out.</li>
+                            <li>Leave a little food.</li>
+                        </ul>
+
+                        <h3>Manners</h3>
+                        <ul>
+                            <li>Excessively revealing clothing should be avoided.</li>
+                            <li>Drinking alcohol outdoors, except in restaurants, tourist hotels, etc., should also be avoided.</li>
+                            <li>Do not pet the child.</li>
+                            <li>Basically, do not take pictures.</li>
+                        </ul>
+
+                        <h3>Tourist attraction</h3>
+                        <ul>
+                            <li>Pyramid</li>
+                            <li>Abu Simbel Temple</li>
+                        </ul>
+                        `
+                },
+                'south-africa': {
+                    name: 'South Africa',
+                    details: `
+                        <h3>Basic Information</h3>
+                        <ul>
+                            <li><strong>Population:</strong> 62.03 million</li>
+                            <li><strong>Area:</strong> 122,000㎢</li>
+                            <li><strong>Capital city:</strong> Pretoria</li>
+                            <li><strong>Language:</strong> English, Afrikaans</li>
+                            <li><strong>Major Religions:</strong> Christianity</li>
+                        </ul>
+
+                        <h3>Living</h3>
+                        <ul>
+                            <li>I don't care much about time.</li>
+                            <li>A large number of people ride in the back of a car (means of transportation).</li>
+                            <li>Stores close early on Saturdays and Sundays.</li>
+                        </ul>
+
+                        <h3>Meal</h3>
+                        <ul>
+                            <li>Poiki, bunny chow, and milk tarts are some of the foods eaten.</li>
+                            <li>Basically, dry foods are eaten well.</li>
+                            <li>Influenced by the food culture of various countries.</li>
+                        </ul>
+
+                        <h3>Manners</h3>
+                        <ul>
+                            <li>It is common for them to arrive 10~15 minutes late for the meeting.</li>
+                            <li>Tipping should be 10% of the fee.</li>
+                            <li>Basically no smoking (to protect the environment).</li>
+                        </ul>
+
+                        <h3>Tourist Attractions</h3>
+                        <ul>
+                            <li>Cape Town</li>
+                            <li>Kruger National Park</li>
+                            <li></li>
+                            <li>Town of Jacaranda, Pretoria</li>
+                        </ul>
+                        `
+                },
+                mali: {
+                    name: 'Republic of Mali',
+                    details:  `
+                        <h3>Basic Information</h3>
+                        <ul>
+                            <li><strong>Population:</strong> 23.29 million</li>
+                            <li><strong>Area:</strong> 124,000㎢</li>
+                            <li><strong>Capital city:</strong> bamako</li>
+                            <li><strong>Language:</strong> Bambara, Fulfulde</li>
+                            <li><strong>Major Religions:</strong> Islam, Christianity</li>
+                        </ul>
+
+                        <h3>Living</h3>
+                        <ul>
+                            <li>It has one of the highest poverty rates in the world, a lack of safe drinking water, and insufficiently understood knowledge of health and sanitation.</li>
+                            <li>The quality of primary education is low and the completion rate is poor.</li>
+                            <li>Many problems, such as inadequate understanding of the protection of children, prevent sustainable agriculture.</li>
+                        </ul>
+
+                        <h3>Meal</h3>
+                        <ul>
+                            <li>In the south, “To” is a staple food.</li>
+                            <li>As a side dish, it is eaten with okra or a sauce made from baobab leaves.</li>
+                            <li>In the north, a sauce called “fakkoy” is eaten with rice.</li>
+                            <li>Okra and baobab sauce are also eaten with the to.</li>
+                        </ul>
+
+                        <h3>Manners</h3>
+                        <ul>
+                            <li>Nearly 80% of the population adheres to Islam, so there are buildings and ruins related to mosques.</li>
+                        </ul>
+
+                        <h3>Tourist attraction</h3>
+                        <ul>
+                            <li>Timbuktu: Registered as a World Heritage site in 1988, Timbuktu was once so prosperous that it was also called the “Golden Land,” but is now already buried due to ongoing desertification.</li>
+                            <li>Bandigala Cliffs: This is also a World Heritage site, and its mysterious and beautiful architecture attracts many Malian tourists.</li>
+                            <li>Mali National Objects Museum: A collection of valuable and varied cultural materials from Mali.</li>
+                        </ul>
+                        `
+                },
+                ghana: {
+                    name: 'Ghana.',
+                    details: 'Ghana is located in West Africa and has a rich history and culture. The capital is Accra, and the primary language is English.'
+                }
+            };
+
+            // 国を選択した際の処理
+            countryDropdown.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                    e.preventDefault();
+                    const selectedCountry = e.target.getAttribute('data-country');
+                    if (selectedCountry && countryData[selectedCountry]) {
+                        const data = countryData[selectedCountry];
+                        countryName.textContent = data.name;
+                        countryDetails.innerHTML = data.details; // HTMLを挿入
+
+                        // 国情報セクションを表示
+                        countryInfo.style.display = 'block';
+                    } else {
+                        countryInfo.style.display = 'none'; // 国情報セクションを隠す
+                    }
+                }
+            });
+        });
+    </script>
+
+    <style>
+        /* 国情報ページのスタイル */
+        #info-container {
+            max-width: 800px;
+            margin: 100px auto;
+            background-color: var(--color-base);
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: var(--color-text);
+        }
+
+        p {
+            text-align: center;
+            font-size: 18px;
+            color: var(--color-text);
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .trigger-drop {
+            padding: 10px;
+            background-color: var(--color-accent);
+            color: var(--color-base);
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .drop {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 100%;
+            background: var(--color-base);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+            z-index: 1000;
+        }
+
+        .dropdown:hover .drop {
+            display: block;
+        }
+
+        .drop li {
+            list-style: none;
+            padding: 10px;
+        }
+
+        .drop li a {
+            display: block;
+            padding: 10px;
+            color: var(--color-text);
+            transition: background-color 0.3s;
+        }
+
+        .drop li a:hover {
+            background-color: var(--color-accent);
+            color: var(--color-base);
+        }
+    </style>
+</body>
+</html>

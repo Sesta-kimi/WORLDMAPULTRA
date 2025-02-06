@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界地図ultra</title>
+    <link rel="stylesheet" href="kaken2.2.css"> <!-- 外部CSSファイルをリンク -->
+    <style>
+        /* 背景画像を設定 */
+        body {
+            background-image: url('https://images.rawpixel.com/image_social_landscape/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTEwL3Jhd3BpeGVsb2ZmaWNlNl9waG90b19vZl9lYXJ0aF9mb3JtX3NwYWNlX3JlYWxpc3RpY19zdHlsZV9yZWFsaV9jODA5MDU2My1iNmRkLTQ0ZDgtYTkzMy1hNjRiNzQ0ODVlOWJfMS5qcGc.jpg'); /* ここに背景画像のパスを指定 */
+            background-size: cover; /* 画像を画面全体に拡大・縮小 */
+            background-repeat: no-repeat; /* 画像を繰り返さない */
+            background-attachment: fixed; /* スクロール時に背景を固定 */
+            background-position: center; /* 中央に配置 */
+        }
+
+        /* テキストの視認性を向上 */
+        nav, #quiz-section {
+            background-color: rgba(253, 219, 147, 0.925); /* 背景を半透明に設定 */
+            border-radius: 10px; /* 角を丸くする */
+            padding: 20px;
+            margin: 10px auto;
+            max-width: 1200px;
+        }
+    </style>
+</head>
+<body>
+    <nav id="navigation">
+        <a href="3.kaken2.1.html" class="logo">世界地图ultra<span>+</span></a>
+        <ul class="links">
+            <li><a href="3.kaken2.1.html">首页</a></li>
+            <li><a href="https://www.google.com/maps" target="_blank">世界地图</a></li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">测试<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="3.africa_quiz.html">非洲</a></li>
+                    <li><a href="3.asia_quiz.html">亚洲</a></li>
+                    <li><a href="3.europe_quiz.html_">欧洲</a></li>
+                    <li><a href="3.north-america_quiz.html">北美</a></li>
+                    <li><a href="3.south-america_quiz.html">南美洲</a></li>
+                    <li><a href="3.oceania_quiz.html">大洋洲</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">国家<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="3.africa.html">非洲</a></li>
+                    <li><a href="3.asia.html">亚洲</a></li>
+                    <li><a href="3.europe.html">欧洲</a></li>
+                    <li><a href="3.north_america.html">北美</a></li>
+                    <li><a href="3.south_america.html">南美洲</a></li>
+                    <li><a href="3.oseania.html">大洋洲</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">Language<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="1.kaken2.1.html">1.日本語</a></li>
+                    <li><a href="2.kaken2.1.html">2.English (U.S.)</a></li>
+                    <li><a href="3.kaken2.1.html">3.中文</a></li>
+                    <li><a href="4.kaken2.1.html">4.한국어</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    
+    <div id="info-container">
+        <h1>南美地区国家概况。</h1>
+        <p>从以下国家中选择:</p>
+
+        <!-- ドロップダウンメニュー -->
+        <div class="dropdown">
+            <a href="#" class="trigger-drop">国を選択<i class="arrow"></i></a>
+            <ul class="drop" id="country-dropdown">
+                <li><a href="#" data-country="argentina">阿根廷</a></li>
+                <li><a href="#" data-country="chile">智利</a></li>
+                <li><a href="#" data-country="brazil">巴西</a></li>
+                <li><a href="#" data-country="colombia">哥伦比亚</a></li>
+                <li><a href="#" data-country="peru">秘鲁</a></li>
+            </ul>
+        </div>
+
+        <!-- 国情報セクション -->
+        <div id="country-info" style="display:none;">
+            <h2 id="country-name"></h2>
+            <div id="country-details"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const countryDropdown = document.getElementById('country-dropdown');
+            const countryInfo = document.getElementById('country-info');
+            const countryName = document.getElementById('country-name');
+            const countryDetails = document.getElementById('country-details');
+
+            // 国情報データ
+            const countryData = {
+                argentina: {
+                    name: '阿根廷',
+                    details: `
+                        <h3>基本情報</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 4,665万人</li>
+                            <li><strong>地区:</strong> 2,780,000㎢</li>
+                            <li><strong>都城:</strong> 布宜诺斯艾利斯。</li>
+                            <li><strong>语言:</strong> 西班牙语</li>
+                            <li><strong>主要宗教:</strong>基督教</li>
+                        </ul>
+
+                        <h3>生命</h3>
+                        <ul>
+                            <li>、</li>
+                            <li>、</li>
+                        </ul>
+
+                        <h3>膳食</h3>
+                        <ul>
+                            <li>アサードやチョリパン、エンパナーダなどが主に食べられる,主要食物有 Asado、choripan 和 empanadas。</li>
+                            <li>进餐时不得发出声音，也不得端起碗筷。</li>
+                            <li>递盐时，把盐放在桌子上，不要递过去。</li>
+                        </ul>
+
+                        <h3>礼仪</h3>
+                        <ul>
+                            <li>不要边走边吃。</li>
+                            <li>周日上午打电话是不礼貌的。</li>
+                            <li>在指定时间之前，不要过早到达。</li>
+                        </ul>
+
+                        <h3>旅游景点</h3>
+                        <ul>
+                            <li>伊瓜苏瀑布</li>
+                            <li>乌玛瓦卡山谷</li>
+                        </ul>
+
+                    `
+                    
+                },
+                chile: {
+                    name: '智利',
+                    details: `
+                        <h3>基本信息</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 1,963万人</li>
+                            <li><strong>地区:</strong> 756,600㎢</li>
+                            <li><strong>都城:</strong> 圣地亚哥</li>
+                            <li><strong>语言:</strong> 西班牙语</li>
+                            <li><strong>主要宗教:</strong>天主教</li>
+                        </ul>
+
+                        <h3>生命</h3>
+                        <ul>
+                            <li></li>
+                            <li></li>
+                        </ul>
+
+                        <h3>膳食</h3>
+                        <ul>
+                            <li></li>
+                            <li>凯撒、皮拉玛里娜主要是食用。</li>
+                            <li>不要直接接触食物。</li>
+                            <li>始终将手腕先放在桌面上。</li>
+                        </ul>
+
+                        <h3>礼仪</h3>
+                        <ul>
+                            <li>避免穿着华丽的服装。</li>
+                            <li>避免独自行走，不要去荒无人烟的地方。</li>
+                        </ul>
+
+                        <h3>旅游景点</h3>
+                        <ul>
+                            <li>复活节岛</li>
+                            <li>帕帕林林</li>
+                            <li>安第斯公路</li>
+                            <li>奇洛埃的教堂</li>
+                        </ul>
+
+                    `
+                    
+                },
+                brazil: {
+                    name: '巴西',
+                    details: `
+                        <h3>基本情報</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 2,164億人</li>
+                            <li><strong>地区:</strong> 8,510,000㎢</li>
+                            <li><strong>都城:</strong> 巴西利亚</li>
+                            <li><strong>语言:</strong> 葡萄牙语</li>
+                            <li><strong>主要宗教:</strong>天主教</li>
+                        </ul>
+
+                        <h3>生命</h3>
+                        <ul>
+                            <li></li>
+                            <li></li>
+                        </ul>
+
+                        <h3>膳食</h3>
+                        <ul>
+                            <li>科西尼亚、帕尔米托、巴西烤肉、阿拉盖主要是食用。</li>
+                            <li>不要直接接触食物（即使是三明治，也要用刀或叉）。</li>
+                            <li>不要把手机放在桌上。</li>
+                        </ul>
+
+                        <h3>礼仪</h3>
+                        <ul>
+                            <li>不要把脏纸冲进马桶，而是扔进垃圾桶。</li>
+                            <li>避免夜间外出，并采取多重行动。</li>
+                        </ul>
+
+                        <h3>旅游景点</h3>
+                        <ul>
+                            <li>科尔戈巴德山</li>
+                            <li>朗索瓦（法国）</li>
+                            <li>萨尔瓦多老城</li>
+                        </ul>
+
+                    `
+
+                },
+                colombia: {
+                    name: '哥伦比亚',
+                    details: `
+                        <h3>基本信息</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 5,209万人</li>
+                            <li><strong>地区:</strong> 1,142,000㎢</li>
+                            <li><strong>都城:</strong> 博戈达</li>
+                            <li><strong>语言:</strong> 西班牙语</li>
+                            <li><strong>主要宗教:</strong>天主教</li>
+                        </ul>
+
+                        <h3>生命</h3>
+                        <ul>
+                            <li></li>
+                            <li></li>
+                        </ul>
+
+                        <h3>膳食</h3>
+                        <ul>
+                            <li>蛋卷、鲷鱼、玉米面主要是食用。</li>
+                            <li>吃东西时不要留下任何食物。</li>
+                            <li>午餐是主餐。</li>
+                        </ul>
+
+                        <h3>礼仪</h3>
+                        <ul>
+                            <li>眼神交流极为重要。</li>
+                            <li>不要随身携带旅游指南（很容易被发现，而且很危险）。</li>
+                        </ul>
+
+                        <h3>旅游景点</h3>
+                        <ul>
+                            <li>盐教堂</li>
+                            <li>拉斯哈斯教堂</li>
+                            <li>玻利瓦尔广场</li>
+                        </ul>
+
+                    `
+
+                },
+                peru: {
+                    name: '秘鲁',
+                    details: `
+                        <h3>基本信息</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 3,435万人</li>
+                            <li><strong>地区:</strong> 1,285,000㎢</li>
+                            <li><strong>都城:</strong> 利马</li>
+                            <li><strong>语言:</strong> 西班牙语</li>
+                            <li><strong>主要宗教:</strong>罗马天主教</li>
+                        </ul>
+
+                        <h3>生命</h3>
+                        <ul>
+                            <li></li>
+                            <li></li>
+                        </ul>
+
+                        <h3>膳食</h3>
+                        <ul>
+                            <li>生鱼片、鮓、印加可乐主要是食用。</li>
+                            <li>右手持刀，左手持叉。</li>
+                            <li>吃光所有食物，而不是留下一些。</li>
+                        </ul>
+
+                        <h3>礼仪</h3>
+                        <ul>
+                            <li>在宗教机构或传统节日中不应裸露皮肤。</li>
+                        </ul>
+
+                        <h3>旅游景点</h3>
+                        <ul>
+                            <li>马丘比丘</li>
+                            <li>库斯科</li>
+                            <li>纳斯卡陆地绘画</li>
+                        </ul>
+
+                    `
+
+                }
+            };
+
+            // 国を選択した際の処理
+            countryDropdown.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                    e.preventDefault();
+                    const selectedCountry = e.target.getAttribute('data-country');
+                    if (selectedCountry && countryData[selectedCountry]) {
+                        const data = countryData[selectedCountry];
+                        countryName.textContent = data.name;
+                        countryDetails.innerHTML = data.details;
+
+                        // 国情報セクションを表示
+                        countryInfo.style.display = 'block';
+                    } else {
+                        countryInfo.style.display = 'none'; // 国情報セクションを隠す
+                    }
+                }
+            });
+        });
+    </script>
+
+    <style>
+        /* 国情報ページのスタイル */
+        #info-container {
+            max-width: 800px;
+            margin: 100px auto;
+            background-color: var(--color-base);
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: var(--color-text);
+        }
+
+        p {
+            text-align: center;
+            font-size: 18px;
+            color: var(--color-text);
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .trigger-drop {
+            padding: 10px;
+            background-color: var(--color-accent);
+            color: var(--color-base);
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .drop {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 100%;
+            background: var(--color-base);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+            z-index: 1000;
+        }
+
+        .dropdown:hover .drop {
+            display: block;
+        }
+
+        .drop li {
+            list-style: none;
+            padding: 10px;
+        }
+
+        .drop li a {
+            display: block;
+            padding: 10px;
+            color: var(--color-text);
+            transition: background-color 0.3s;
+        }
+
+        .drop li a:hover {
+            background-color: var(--color-accent);
+            color: var(--color-base);
+        }
+    </style>
+</body>
+</html>
+

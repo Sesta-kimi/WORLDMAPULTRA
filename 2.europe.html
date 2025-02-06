@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World map ultra</title>
+    <link rel="stylesheet" href="kaken2.2.css"> <!-- 外部CSSファイルをリンク -->
+    <style>
+        /* 背景画像を設定 */
+        body {
+            background-image: url('https://images.rawpixel.com/image_social_landscape/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTEwL3Jhd3BpeGVsb2ZmaWNlNl9waG90b19vZl9lYXJ0aF9mb3JtX3NwYWNlX3JlYWxpc3RpY19zdHlsZV9yZWFsaV9jODA5MDU2My1iNmRkLTQ0ZDgtYTkzMy1hNjRiNzQ0ODVlOWJfMS5qcGc.jpg'); /* ここに背景画像のパスを指定 */
+            background-size: cover; /* 画像を画面全体に拡大・縮小 */
+            background-repeat: no-repeat; /* 画像を繰り返さない */
+            background-attachment: fixed; /* スクロール時に背景を固定 */
+            background-position: center; /* 中央に配置 */
+        }
+
+        /* テキストの視認性を向上 */
+        nav, #quiz-section {
+            background-color: rgba(253, 219, 147, 0.925); /* 背景を半透明に設定 */
+            border-radius: 10px; /* 角を丸くする */
+            padding: 20px;
+            margin: 10px auto;
+            max-width: 1200px;
+        }
+    </style>
+</head>
+<body>
+    <nav id="navigation">
+        <a href="2.kaken2.1.html" class="logo">World map ultra<span>+</span></a>
+        <ul class="links">
+            <li><a href="2.kaken2.1.html">Home</a></li>
+            <li><a href="https://www.google.com/maps" target="_blank">World map</a></li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">Quiz<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="2.africa_quiz.html">Africa</a></li>
+                    <li><a href="2.asia_quiz.html">Asian</a></li>
+                    <li><a href="2.europe_quiz.html">Europe</a></li>
+                    <li><a href="2.north-america_quiz.html">North America</a></li>
+                    <li><a href="2.south-america_quiz.html">South America</a></li>
+                    <li><a href="2.oceania_quiz.html">Oceania</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">Country<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="2.africa.html">Africa</a></li>
+                    <li><a href="2.asia.html">Asian</a></li>
+                    <li><a href="2.europe.html">Europe</a></li>
+                    <li><a href="2.north_america.html">North America</a></li>
+                    <li><a href="2.south_america.html">South America</a></li>
+                    <li><a href="2.oseania.html">Oceania</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">Language<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="1.kaken2.1.html">1.日本語</a></li>
+                    <li><a href="2.kaken2.1.html">2.English (U.S.)</a></li>
+                    <li><a href="3.kaken2.1.html">3.中文</a></li>
+                    <li><a href="4.kaken2.1.html">4.한국어</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    
+    <div id="info-container">
+        <h1>Country Profile for the Europe Region</h1>
+        <p>Please choose from the following countries:</p>
+
+        <!-- ドロップダウンメニュー -->
+        <div class="dropdown">
+            <a href="#" class="trigger-drop">Select a Country<i class="arrow"></i></a>
+            <ul class="drop" id="country-dropdown">
+                <li><a href="#" data-country="holland">The Netherlands</a></li>
+                <li><a href="#" data-country="switzerland">Switzerland</a></li>
+                <li><a href="#" data-country="austria">Austria</a></li>
+                <li><a href="#" data-country="sweden">Sweden</a></li>
+                <li><a href="#" data-country="russia">Russia</a></li>
+            </ul>
+        </div>
+
+        <!-- 国情報セクション -->
+        <div id="country-info" style="display:none;">
+            <h2 id="country-name"></h2>
+            <div id="country-details"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const countryDropdown = document.getElementById('country-dropdown');
+            const countryInfo = document.getElementById('country-info');
+            const countryName = document.getElementById('country-name');
+            const countryDetails = document.getElementById('country-details');
+
+            // 国情報データ
+            const countryData = {
+                holland: {
+                    name: 'The Netherlands',
+                    details: `
+                        <h3>Basic Information</h3>
+                        <ul>
+                            <li><strong>population:</strong> 18 million people</li>
+                            <li><strong>area:</strong> 41,500㎢</li>
+                            <li><strong>capital city:</strong> asteridium </li>
+                            <li><strong>Language:</strong> Dutch</li>
+                            <li><strong>Major Religions:</strong> Christianity</li>
+                        </ul>
+
+                        <h3>living</h3>
+                        <ul>
+                            <li>The Dutch have a liberating generosity to diversity.</li>
+                            <li>The national character is frugal, thrifty, and industrious.</li>
+                            <li>Tap water has a strong lime quality and can be either gassy or non-gassy, so people with weak stomachs should be careful when drinking it.</li>
+                        </ul>
+
+                        <h3>meal</h3>
+                        <ul>
+                            <li>Take simple foods such as bread, cheese, and ham for breakfast and lunch, and eat something hot in the evening.</li>
+                            <li>Stampods, in which potatoes and vegetables are stewed, mashed, and served on a serving tray, are examples.</li>
+                            <li>There is elten soup, in which dried green peas are rehydrated and simmered with bacon and vegetables.</li>
+                        </ul>
+
+                        <h3>manners</h3>
+                        <ul>
+                            <li>In restaurants, tip 10%~15% of the price as a gratuity.</li>
+                            <li>Toilets cost 20~50 cents per person.</li>
+                            <li>Although the area is relatively safe, people should be very careful in souvenir stores because of the high incidence of purse-snatching and purse-lifting.</li>
+                        </ul>
+
+                        <h3>tourist attraction</h3>
+                        <ul>
+                            <li>Asterdam: A city surrounded by canals, famous for its canal cruises.</li>
+                            <li>Keukenhof: The world's largest flower park, open for a limited time only when the tulips are in bloom.</li>
+                        </ul>
+                    `
+                },
+
+                switzerland: {
+                    name: 'Switzerland',
+                    details: `
+                        <h3>Basic Information</h3>
+                        <ul>
+                            <li><strong>population:</strong> 8.85 million</li>
+                            <li><strong>area:</strong> 4,100㎢</li>
+                            <li><strong>capital city:</strong> Berne</li>
+                            <li><strong>Language:</strong> German, French, Italian, English</li>
+                            <li><strong>Major Religions:</strong> Christianity</li>
+                        </ul>
+                        
+                        <h3>living</h3>
+                        <ul>
+                            <li>Prices are high, but this is due to high labor costs, consumption taxes, and policies that protect extensive welfare and the country's agricultural industry.</li>
+                            <li>Security is fairly stable, but care should be taken in urban areas, where petty crimes such as petty theft are common.</li>
+                        </ul>
+
+                        <h3>meal</h3>
+                        <ul>
+                            <li>Switzerland is also reputed to be a “cheese powerhouse,” and cheese and other dairy products are very popular.</li>   
+                            <li>The staple food is bread, which is always provided if you stay at the hotel and can be ordered in addition for free.</li>
+                        </ul>
+
+                        <h3>manners</h3>
+                        <ul>
+                            <li>ipping is not a strong custom and should be left as a courtesy.</li>
+                            <li>Restaurants and cabs should be about 10% of the bill.</li>
+                            <li>Punctuality is important in Switzerland, and you should call if you are going to be late, even by five minutes.</li>  
+                        </ul>
+
+                        <h3>tourist attraction</h3>
+                        <ul>
+                            <li>Mayenfeld: Village famous as the setting of “Heidi, Girl of the Alps.</li>
+                            <li>In Heidi Village, you can see beautiful nature.</li>
+                        </ul>
+                    `
+                },
+                austria: {
+                    name: 'Austria',
+                    details: `
+                        <h3>Basic Information</h3>
+                        <ul>
+                            <li><strong>population:</strong> 9.13 million people</li>
+                            <li><strong>area:</strong> 83,870㎢</li>
+                            <li><strong>capital city:</strong> Vienna</li>
+                            <li><strong>Language:</strong> German </li>
+                            <li><strong>Major Religions:</strong> Catholic</li>
+                        </ul>
+                        
+                        <h3>living</h3>
+                        <ul>
+                            <li>Prices are not particularly high in any one state, but housing costs generally tend to be higher in urban areas.</li>
+                            <li>Security is comparatively good, and the country is considered safe and livable.</li>
+                            <li>Crimes such as robbery, theft, and fraud do occur.</li>
+                        </ul>
+
+                        <h3>meal</h3>
+                        <ul>
+                            <li>Wiener Schnitzel, a typical Viennese dish, is popular.</li>
+                            <li>Wiener schnitzel is deep-fried tenderized veal meat, and the origin of this dish is said to date back to the beginning of the 19th century.</li>
+                        </ul>
+
+                        <h3>manners</h3>
+                        <ul>
+                            <li>Toilets cost about 25~50 cents per person and a tip of about 10% of the cab fare is suggested.</li>
+                            <li>Austrian cashiers require basic conversation such as “hello” and “thank you”.</li>
+                        </ul>
+
+                        <h3>tourist attraction</h3>
+                        <ul>
+                            <li>St. Stephen's Cathedral：A symbol of Vienna's central location.</li>
+                            <li>It was built as a Romanesque boundary, but later the main part of the construction was rebuilt in Gothic style by order of Rudolf IV of the Habsburgs.</li>
+                            <li>Schoenbrunn Palace：The palace was built by the Habsburgs and is a luxurious and opulent palace.<li>
+                        </ul>
+                    `
+                },
+                sweden: {
+                    name: 'Sweden',
+                    details: `
+                        <h3>Basic Information</h3>
+                        <ul>
+                            <li><strong>population:</strong> 10.54 million people</li>
+                            <li><strong>area:</strong> 450,300㎢</li>
+                            <li><strong>capital city:</strong> Stockholm</li>
+                            <li><strong>Language:</strong> Swedish 、English</li>
+                            <li><strong>Major Religions:</strong> Lutheran Church</li>
+                        </ul>
+                        <h3>living</h3>
+                        <ul>
+                            <li>In Sweden, there is a culture of “fika”. This is a kind of so-called coffee break, and people take time for a fika at least once a day.</li>
+                            <li>It means more than a break, and many people take time for fica at 10:00 and 15:00.</li>
+                        </ul>
+                        <h3>meal</h3>
+                        <ul>
+                            <li>The staple food is potatoes, which are eaten as mashed potatoes or French fries, boiled or baked, and served with a variety of dishes ranging from meat to fish.</li>
+                            <li>Salmon is a typical fish dish, and is eaten as a sandwich, for example.</li>
+                        </ul>
+                        <h3>manners</h3>
+                        <ul>
+                            <li>Because Sweden values privacy and respects personal space, it is best to avoid asking personal questions in rapid succession.</li>
+                            <li>Punctuality is important in Sweden, so it is advisable to allow plenty of time for your activities.</li>
+                        </ul>
+
+                        <h3>tourist attraction</h3>
+                        <li>garam stan：The birthplace of Stockholm, founded in the 13th century. There are many stores selling Scandinavian goods.</li>
+                        <li>Vasa Museum：The royal warship sank in Stockholm harbor on its maiden voyage in 1682.</li>
+                        <li>The actual ship, which was raised and restored 33 years after the sinking, is on display.</li>
+                    `
+                },
+                russia: {
+                    name: 'Russia',
+                    details: `
+                        <h3>Basic Information</h3>
+                        <ul>
+                            <li><strong>population:</strong> 146.15 million people</li>
+                            <li><strong>area:</strong> 1,709㎢</li>
+                            <li><strong>capital city:</strong> Moscow</li>
+                            <li><strong>Language:</strong> Russian</li>
+                            <li><strong>Major Religions:</strong> Russian Orthodox Church</li>
+                        </ul>
+
+                        <h3>living</h3>
+                        <ul>
+                            <li>Many are very serious and do not smile affectionately.</li>
+                            <li>Not many people are loose with time and detail-oriented.</li>
+                            <li>In winter, because of the cold weather, the first thing to do is often to keep warm.</li>
+                        </ul>
+
+                        <h3>meal</h3>
+                        <ul>
+                            <li>The taste is simple, rustic, and familiar, and often consists of soups, porridges, and other stewed dishes made with wheat, rye, and other grains, mushrooms, fish, and other ingredients.</li>
+                            <li>There are few spicy or strong flavored foods.</li>
+                            <li>Preserved foods for winter such as pickles and gems have also developed.</li>
+                        </ul>
+
+                        <h3>manners</h3>
+                        <ul>
+                            <li>On public transportation, it is good manners to give up your seat to pregnant or elderly people.</li>
+                            <li>Pointing to oneself with the index finger means “I”. Placing one's hand on one's chest means “from the heart” or “honesty”.</li>
+                        </ul>
+
+                        <h3>tourist attraction</h3>
+                        <ul>
+                            <li>Moscow” Red Square：The square is about 73,000 square meters in size, and the buildings are illuminated in the evening.</li>
+                            <li>Moscow” Kremlin：There are tourist attractions such as a diamond vault and an armory.</li>
+                    `
+                }
+            };
+
+            // 国を選択した際の処理
+            countryDropdown.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                    e.preventDefault();
+                    const selectedCountry = e.target.getAttribute('data-country');
+                    if (selectedCountry && countryData[selectedCountry]) {
+                        const data = countryData[selectedCountry];
+                        countryName.textContent = data.name;
+                        countryDetails.innerHTML = data.details;
+
+                        // 国情報セクションを表示
+                        countryInfo.style.display = 'block';
+                    } else {
+                        countryInfo.style.display = 'none'; // 国情報セクションを隠す
+                    }
+                }
+            });
+        });
+    </script>
+
+    <style>
+        /* 国情報ページのスタイル */
+        #info-container {
+            max-width: 800px;
+            margin: 100px auto;
+            background-color: var(--color-base);
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: var(--color-text);
+        }
+
+        p {
+            text-align: center;
+            font-size: 18px;
+            color: var(--color-text);
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .trigger-drop {
+            padding: 10px;
+            background-color: var(--color-accent);
+            color: var(--color-base);
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .drop {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 100%;
+            background: var(--color-base);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+            z-index: 1000;
+        }
+
+        .dropdown:hover .drop {
+            display: block;
+        }
+
+        .drop li {
+            list-style: none;
+            padding: 10px;
+        }
+
+        .drop li a {
+            display: block;
+            padding: 10px;
+            color: var(--color-text);
+            transition: background-color 0.3s;
+        }
+
+        .drop li a:hover {
+            background-color: var(--color-accent);
+            color: var(--color-base);
+        }
+
+        #country-details {
+            white-space: pre-line;
+            text-align: left;
+        }
+
+        ul {
+            margin-left: 20px;
+        }
+    </style>
+</body>
+</html>

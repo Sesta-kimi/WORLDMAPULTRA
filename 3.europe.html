@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界地図ultra</title>
+    <link rel="stylesheet" href="kaken2.2.css"> <!-- 外部CSSファイルをリンク -->
+    <style>
+        /* 背景画像を設定 */
+        body {
+            background-image: url('https://images.rawpixel.com/image_social_landscape/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTEwL3Jhd3BpeGVsb2ZmaWNlNl9waG90b19vZl9lYXJ0aF9mb3JtX3NwYWNlX3JlYWxpc3RpY19zdHlsZV9yZWFsaV9jODA5MDU2My1iNmRkLTQ0ZDgtYTkzMy1hNjRiNzQ0ODVlOWJfMS5qcGc.jpg'); /* ここに背景画像のパスを指定 */
+            background-size: cover; /* 画像を画面全体に拡大・縮小 */
+            background-repeat: no-repeat; /* 画像を繰り返さない */
+            background-attachment: fixed; /* スクロール時に背景を固定 */
+            background-position: center; /* 中央に配置 */
+        }
+
+        /* テキストの視認性を向上 */
+        nav, #quiz-section {
+            background-color: rgba(253, 219, 147, 0.925); /* 背景を半透明に設定 */
+            border-radius: 10px; /* 角を丸くする */
+            padding: 20px;
+            margin: 10px auto;
+            max-width: 1200px;
+        }
+    </style>
+</head>
+<body>
+    <nav id="navigation">
+        <a href="3.kaken2.1.html" class="logo">世界地图ultra<span>+</span></a>
+        <ul class="links">
+            <li><a href="3.kaken2.1.html">首页</a></li>
+            <li><a href="https://www.google.com/maps" target="_blank">世界地图</a></li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">测试<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="3.africa_quiz.html">非洲</a></li>
+                    <li><a href="3.asia_quiz.html">亚洲</a></li>
+                    <li><a href="3.europe_quiz.html_">欧洲</a></li>
+                    <li><a href="3.north-america_quiz.html">北美</a></li>
+                    <li><a href="3.south-america_quiz.html">南美洲</a></li>
+                    <li><a href="3.oceania_quiz.html">大洋洲</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">国家<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="3.africa.html">非洲</a></li>
+                    <li><a href="3.asia.html">亚洲</a></li>
+                    <li><a href="3.europe.html">欧洲</a></li>
+                    <li><a href="3.north_america.html">北美</a></li>
+                    <li><a href="3.south_america.html">南美洲</a></li>
+                    <li><a href="3.oseania.html">大洋洲</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">Language<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="1.kaken2.1.html">1.日本語</a></li>
+                    <li><a href="2.kaken2.1.html">2.English (U.S.)</a></li>
+                    <li><a href="3.kaken2.1.html">3.中文</a></li>
+                    <li><a href="4.kaken2.1.html">4.한국어</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    
+    <div id="info-container">
+        <h1>欧洲地区国家概况</h1>
+        <p>从以下国家中选择:</p>
+
+        <!-- ドロップダウンメニュー -->
+        <div class="dropdown">
+            <a href="#" class="trigger-drop">选择国家<i class="arrow"></i></a>
+            <ul class="drop" id="country-dropdown">
+                <li><a href="#" data-country="holland">荷兰</a></li>
+                <li><a href="#" data-country="switzerland">瑞士</a></li>
+                <li><a href="#" data-country="austria">奥地利。</a></li>
+                <li><a href="#" data-country="sweden">瑞典</a></li>
+                <li><a href="#" data-country="russia">俄罗斯。</a></li>
+            </ul>
+        </div>
+
+        <!-- 国情報セクション -->
+        <div id="country-info" style="display:none;">
+            <h2 id="country-name"></h2>
+            <div id="country-details"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const countryDropdown = document.getElementById('country-dropdown');
+            const countryInfo = document.getElementById('country-info');
+            const countryName = document.getElementById('country-name');
+            const countryDetails = document.getElementById('country-details');
+
+            // 国情報データ
+            const countryData = {
+                holland: {
+                    name: '荷兰',
+                    details: `
+                        <h3>基本信息</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 1800万人</li>
+                            <li><strong>地区:</strong> 41,500㎢</li>
+                            <li><strong>都城:</strong> 曜</li>
+                            <li><strong>语言:</strong> 荷兰语</li>
+                            <li><strong>主要宗教:</strong> 基督教</li>
+                        </ul>
+
+                        <h3>生命</h3>
+                        <ul>
+                            <li>荷兰人对多样性有一种解放的宽宏大量。</li>
+                            <li>民族性格也是勤俭节约。</li>
+                            <li>此外，自来水含石灰质，可能会有气或无气，因此肠胃敏感的人等在饮用时应小心。</li>
+                        </ul>
+
+                        <h3>膳食</h3>
+                        <ul>
+                            <li>早餐和午餐吃面包、奶酪和火腿等简单食物，晚上吃热食。</li>
+                            <li>其中包括将土豆和蔬菜煮熟、捣碎并放在托盘上食用的 stanpods。</li>
+                            <li></li>此外，还有埃尔登汤（elten soup），将干青豆重新水化后与熏肉和蔬菜一起烹制。
+                        </ul>
+
+                        <h3>礼仪</h3>
+                        <ul>
+                            <li>在餐厅用餐时，小费应为价格的 10%~15%。</li>
+                            <li>厕所的费用也是每人 20 至 50 美分。</li>
+                            <li>虽然情况相对安全，但人们在纪念品商店里还是要非常小心，因为扒窃和乱扔垃圾的现象很常见。</li>
+                        </ul>
+
+                        <h3>旅游景点</h3>
+                        <ul>
+                            <li>阿斯特丹：运河环绕的城市，以运河游船而闻名。</li>
+                            <li>库肯霍夫：世界上最大的花卉公园，因郁金香开花而限时开放。</li>
+                        </ul>
+                    `
+                },
+
+                switzerland: {
+                    name: '瑞士',
+                    details: `
+                        <h3>基本信息</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 885万人</li>
+                            <li><strong>地区:</strong> 4,100㎢</li>
+                            <li><strong>都城:</strong> 伯尔尼</li>
+                            <li><strong>语言:</strong> 德语、法语、意大利语、英语。</li>
+                            <li><strong>主要宗教:</strong> 基督教</li>
+                        </ul>
+                        
+                        <h3>生命</h3>
+                        <ul>
+                            <li>价格虽高，但这是由于劳动力成本高、消费税、广泛的福利和保护该国农业部门的政策造成的。</li>
+                            <li>此外，治安相当稳定，但在城市地区应小心谨慎，因为小偷小摸等轻微犯罪很常见。</li>
+                        </ul>
+
+                        <h3>膳食</h3>
+                        <ul>
+                            <li>瑞士还被誉为 “奶酪王国”，奶酪和其他乳制品非常受欢迎。</li>   
+                            <li>主食也是面包，如果您住在酒店，酒店会提供面包，您还可以免费额外订购面包。</li>
+                        </ul>
+
+                        <h3>礼仪</h3>
+                        <ul>
+                            <li>给小费的习俗并不浓厚，应作为一种礼节。</li>
+                            <li>此外，餐馆和出租车应收取账单 10% 左右的费用。</li>
+                            <li>在瑞士，守时很重要，哪怕迟到五分钟也要打电话通知。</li>  
+                        </ul>
+
+                        <h3>旅游景点</h3>
+                        <ul>
+                            <li>马延费尔德：因《阿尔卑斯山的姑娘海蒂》的取景地而闻名的村庄。</li>
+                            <li>海蒂村拥有美丽的自然风光。</li>
+                        </ul>
+                    `
+                },
+                austria: {
+                    name: '奥地利。',
+                    details: `
+                        <h3>基本信息</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 913.2万人</li>
+                            <li><strong>地区:</strong> 83,870㎢</li>
+                            <li><strong>都城:</strong> 维也纳</li>
+                            <li><strong>语言:</strong> 德语</li>
+                            <li><strong>主要宗教:</strong> 天主教</li>
+                        </ul>
+                        
+                        
+                        <h3>生命</h3>
+                        <ul>
+                            <li>一些州的房价并不特别突出，但城市地区的住房成本通常较高。</li>
+                            <li>此外，该国的治安相对较好，被认为是安全和易于居住的国家。</li>
+                            <li>然而，入室盗窃、偷窃和诈骗等犯罪也时有发生。</li>
+                        </ul>
+
+                        <h3>膳食</h3>
+                        <ul>
+                            <li>维也纳炸肉排是一道典型的维也纳菜，非常受欢迎。</li>
+                            <li>据说，这道菜的起源可以追溯到 19 世纪初。</li>
+                        </ul>
+
+                        <h3>礼仪</h3>
+                        <ul>
+                            <li>厕所的费用约为每人 25 至 50 美分，建议您支付出租车费 10%左右的小费。</li>
+                            <li>此外，在奥地利，收银机前必须进行基本对话，如 “你好 ”和 “谢谢”。</li>
+                        </ul>
+
+                        <h3>旅游景点</h3>
+                        <ul>
+                            <li>圣史蒂芬大教堂：维也纳市中心的象征。</li>
+                            <li>该建筑原为罗马式边界，后来在哈布斯堡王朝鲁道夫四世的命令下重建为哥特式风格。</li>
+                            <li>美泉宫：哈布斯堡王朝建造的华丽宫殿。<li>
+                        </ul>
+                    `
+                },
+                sweden: {
+                    name: '瑞典',
+                    details: `
+                        <h3>基本信息</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 1054万人</li>
+                            <li><strong>地区:</strong> 450,300㎢</li>
+                            <li><strong>都城:</strong> 斯德哥尔摩</li>
+                            <li><strong>语言:</strong> 瑞典语、英语</li>
+                            <li><strong>主要宗教:</strong> 路德会</li>
+                        </ul>
+                        <h3>生命</h3>
+                        <ul>
+                            <li>瑞典有一种 “fika ”文化。 这是一种所谓的 “咖啡时间”，人们每天至少要花一次时间喝咖啡。</li>
+                            <li>这不仅仅意味着休息，许多人还会在 10:00 和 15:00 抽出时间来喝杯咖啡。</li>
+                        </ul>
+                        <h3>膳食</h3>
+                        <ul>
+                            <li>主食是土豆，土豆可以做成土豆泥或油炸土豆，也可以煮着吃或烤着吃，还可以配上从肉到鱼的各种菜肴。</li>
+                            <li>三文鱼也是一道典型的鱼类菜肴，可作为三明治食用。</li>
+                        </ul>
+                        <h3>礼仪</h3>
+                        <ul>
+                            <li>由于瑞典重视隐私并尊重个人空间，因此最好避免接二连三地询问私人问题。</li>
+                            <li>在瑞典，守时也很重要，因此建议您预留充足的时间。</li>
+                        </ul>
+
+                        <h3>旅游景点</h3>
+                        <li></li>
+                        <li>ヴァーサ号博物館：加拉姆-斯坦：斯德哥尔摩的摇篮，始建于 13 世纪。 这里有许多斯堪的纳维亚风格的商店。</li>
+                        <li>在沉没 33 年后被升起和修复的真实船只正在展出。</li>
+                    `
+                },
+                russia: {
+                    name: '俄罗斯。',
+                    details: `
+                        <h3>基本信息</h3>
+                        
+                        <ul>
+                            <li><strong>人口:</strong> 1億4,615万人</li>
+                            <li><strong>地区:</strong> 1,709㎢</li>
+                            <li><strong>都城:</strong> 莫斯科</li>
+                            <li><strong>语言:</strong> 俄语</li>
+                            <li><strong>主要宗教:</strong> 俄罗斯东正教会</li>
+                        </ul>
+
+                        <h3>生命</h3>
+                        <ul>
+                            <li>许多人都非常严肃，不会露出亲切的笑容。</li>
+                            <li>此外，他们也不太可能浪费时间，也不太注重细节。</li>
+                            <li>冬天，由于天气寒冷，首先要做的往往是防寒保暖。</li>
+                        </ul>
+
+                        <h3>膳食</h3>
+                        <ul>
+                            <li>节俭、简单和熟悉的口味，通常是用小麦和黑麦等谷物、蘑菇和鱼制作的汤、粥和其他炖菜。</li>
+                            <li>很少有辛辣或口味重的食物。</li>
+                            <li>腌菜和宝石等冬季腌制食品也得到了发展。</li>
+                        </ul>
+
+                        <h3>礼仪</h3>
+                        <ul>
+                            <li>在公共交通工具上，给孕妇或老人让座是一种礼貌。</li>
+                            <li>用食指指着自己表示 “我”。 手放在胸前表示 “发自内心 ”或 “诚实”。</li>
+                        </ul>
+
+                        <h3>旅游景点</h3>
+                        <ul>
+                            <li>莫斯科红场：占地 7.3 万平方米，每到傍晚，广场上的建筑灯火通明。</li>
+                            <li>莫斯科 "克里姆林宫：钻石库、军械库和其他景点。</li>
+                    `
+                }
+            };
+
+            // 国を選択した際の処理
+            countryDropdown.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                    e.preventDefault();
+                    const selectedCountry = e.target.getAttribute('data-country');
+                    if (selectedCountry && countryData[selectedCountry]) {
+                        const data = countryData[selectedCountry];
+                        countryName.textContent = data.name;
+                        countryDetails.innerHTML = data.details;
+
+                        // 国情報セクションを表示
+                        countryInfo.style.display = 'block';
+                    } else {
+                        countryInfo.style.display = 'none'; // 国情報セクションを隠す
+                    }
+                }
+            });
+        });
+    </script>
+
+    <style>
+        /* 国情報ページのスタイル */
+        #info-container {
+            max-width: 800px;
+            margin: 100px auto;
+            background-color: var(--color-base);
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: var(--color-text);
+        }
+
+        p {
+            text-align: center;
+            font-size: 18px;
+            color: var(--color-text);
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .trigger-drop {
+            padding: 10px;
+            background-color: var(--color-accent);
+            color: var(--color-base);
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .drop {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 100%;
+            background: var(--color-base);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+            z-index: 1000;
+        }
+
+        .dropdown:hover .drop {
+            display: block;
+        }
+
+        .drop li {
+            list-style: none;
+            padding: 10px;
+        }
+
+        .drop li a {
+            display: block;
+            padding: 10px;
+            color: var(--color-text);
+            transition: background-color 0.3s;
+        }
+
+        .drop li a:hover {
+            background-color: var(--color-accent);
+            color: var(--color-base);
+        }
+
+        #country-details {
+            white-space: pre-line;
+            text-align: left;
+        }
+
+        ul {
+            margin-left: 20px;
+        }
+    </style>
+</body>
+</html>

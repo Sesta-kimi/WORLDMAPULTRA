@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界地図ultra</title>
+    <link rel="stylesheet" href="kaken2.2.css"> <!-- 外部CSSファイルをリンク -->
+    <style>
+        /* 背景画像を設定 */
+        body {
+            background-image: url('https://images.rawpixel.com/image_social_landscape/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTEwL3Jhd3BpeGVsb2ZmaWNlNl9waG90b19vZl9lYXJ0aF9mb3JtX3NwYWNlX3JlYWxpc3RpY19zdHlsZV9yZWFsaV9jODA5MDU2My1iNmRkLTQ0ZDgtYTkzMy1hNjRiNzQ0ODVlOWJfMS5qcGc.jpg'); /* ここに背景画像のパスを指定 */
+            background-size: cover; /* 画像を画面全体に拡大・縮小 */
+            background-repeat: no-repeat; /* 画像を繰り返さない */
+            background-attachment: fixed; /* スクロール時に背景を固定 */
+            background-position: center; /* 中央に配置 */
+        }
+
+        /* テキストの視認性を向上 */
+        nav, #quiz-section {
+            background-color: rgba(253, 219, 147, 0.925); /* 背景を半透明に設定 */
+            border-radius: 10px; /* 角を丸くする */
+            padding: 20px;
+            margin: 10px auto;
+            max-width: 1200px;
+        }
+    </style>
+</head>
+<body>
+    <nav id="navigation">
+        <a href="3.kaken2.1.html" class="logo">世界地图ultra<span>+</span></a>
+        <ul class="links">
+            <li><a href="3.kaken2.1.html">首页</a></li>
+            <li><a href="https://www.google.com/maps" target="_blank">世界地图</a></li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">测试<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="3.africa_quiz.html">非洲</a></li>
+                    <li><a href="3.asia_quiz.html">亚洲</a></li>
+                    <li><a href="3.europe_quiz.html_">欧洲</a></li>
+                    <li><a href="3.north-america_quiz.html">北美</a></li>
+                    <li><a href="3.south-america_quiz.html">南美洲</a></li>
+                    <li><a href="3.oceania_quiz.html">大洋洲</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">国家<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="3.africa.html">非洲</a></li>
+                    <li><a href="3.asia.html">亚洲</a></li>
+                    <li><a href="3.europe.html">欧洲</a></li>
+                    <li><a href="3.north_america.html">北美</a></li>
+                    <li><a href="3.south_america.html">南美洲</a></li>
+                    <li><a href="3.oseania.html">大洋洲</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">Language<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="1.kaken2.1.html">1.日本語</a></li>
+                    <li><a href="2.kaken2.1.html">2.English (U.S.)</a></li>
+                    <li><a href="3.kaken2.1.html">3.中文</a></li>
+                    <li><a href="4.kaken2.1.html">4.한국어</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    
+    <div id="info-container">
+        <h1>大洋洲地区国家概况。</h1>
+        <p>从以下国家中选择:</p>
+
+        <!-- ドロップダウンメニュー -->
+        <div class="dropdown">
+            <a href="#" class="trigger-drop">选择国家<i class="arrow"></i></a>
+            <ul class="drop" id="country-dropdown">
+                <li><a href="#" data-country="australia">澳大利亚</a></li>
+                <li><a href="#" data-country="new-zealand">新西兰</a></li>
+                <li><a href="#" data-country="tonga">汤加</a></li>
+                <li><a href="#" data-country="solomon islands">所罗门群岛</a></li>
+                <li><a href="#" data-country="palau">帕劳</a></li>
+            </ul>
+        </div>
+
+        <!-- 国情報セクション -->
+        <div id="country-info" style="display:none;">
+            <h2 id="country-name"></h2>
+            <div id="country-details"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const countryDropdown = document.getElementById('country-dropdown');
+            const countryInfo = document.getElementById('country-info');
+            const countryName = document.getElementById('country-name');
+            const countryDetails = document.getElementById('country-details');
+
+            // 国情報データ
+            const countryData = {
+                australia: {
+                    name: '澳大利亚',
+                    details: `
+                        <h3>基本信息</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 2664 万人</li>
+                            <li><strong>地区:</strong> 7,741,000㎢</li>
+                            <li><strong>都城:</strong> 堪培拉</li>
+                            <li><strong>语言:</strong> 英语</li>
+                            <li><strong>主要宗教:</strong> 基督教、天主教、圣公会（多种多样）。</li>
+                        </ul>
+
+                        <h3>生活</h3>
+                        <ul>
+                            <li>左行是规则</li>
+                            <li>感冒时不要戴口罩</li>
+                        </ul>
+
+                        <h3>膳食</h3>
+                        <ul>
+                            <li>肉馅饼、袋鼠肉、澳洲肺鱼和汉堡是这里的主要食物。</li>
+                            <li>没有给小费的习俗。</li>
+                            <li>喝汤吃面不喧哗。</li>
+                            <li>不要含着食物说话。</li>
+                        </ul>
+
+                        <h3>礼仪</h3>
+                        <ul>
+                            <li>如果他们向你打招呼，请回以微笑。</li>
+                            <li>上车时向司机示意。</li>
+                            <li>嗅闻是违反礼仪的行为，但用手帕或类似的东西约束自己的行为并不违反礼仪。</li>
+                        </ul>
+
+                        <h3>旅游景点</h3>
+                        <ul>
+                            <li>乌鲁鲁</li>
+                            <li>大堡礁</li>
+                            <li>大洋路</li>
+                            <li>悉尼歌剧院</li>
+                        </ul>
+                    `
+                },
+                'new-zealand': {
+                    name: '新西兰',
+                    details: `
+                        <h3>基本信息</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 约 90 万人</li>
+                            <li><strong>地区:</strong> 约 18 300 平方公里</li>
+                            <li><strong>都城:</strong> 苏瓦</li>
+                            <li><strong>语言:</strong> 英语、斐济语。</li>
+                            <li><strong>主要宗教:</strong> 基督教</li>
+                        </ul>
+
+                        <h3>生命</h3>
+                        <ul>
+                            <li>,</li>
+                            <li>,</li>
+                        </ul>
+
+                        <h3>膳食</h3>
+                        <ul>
+                            <li>人们主要食用帝王鲑鱼、炸鱼薯条、羊肉和青筋。</li>
+                            <li>盘子就放在桌上吃。</li>
+                            <li>没有说 “Itadakimasu ”和 “Gochisosama ”的文化。</li>
+                        </ul>
+
+                        <h3>礼仪</h3>
+                        <ul>
+                            <li>在交谈中注视对方的眼睛。</li>
+                            <li>不要伸手去拿东西（让别人去拿）。</li>
+                            <li>如厕后不要关门。</li>
+                        </ul>
+
+                        <h3>旅游景点</h3>
+                        <ul>
+                            <li>奥克兰。</li>
+                            <li>怀卡托</li>
+                            <li>峡湾赛跑</li>
+                            <li>皇后镇</li>
+                        </ul>
+                    `
+                },
+                tonga: {
+                    name: '汤加',
+                    details: `
+                        <h3>基本信息</h3>
+                        <ul>
+                            <li><strong>人口:</strong>107,800人</li>
+                            <li><strong>地区:</strong> 748㎢</li>
+                            <li><strong>都城:</strong> 水藻</li>
+                            <li><strong>语言:</strong> 英语、汤加语</li>
+                            <li><strong>主要宗教:</strong> 基督教</li>
+                        </ul>
+
+                        <h3>生命</h3>
+                        <ul>
+                            <li>,</li>
+                            <li>,</li>
+                        </ul>
+
+                        <h3>膳食</h3>
+                        <ul>
+                            <li>奥塔卡（Otaika）、卡帕布尔（kapabul）和咖喱（kare）是主要食物。</li>
+                            <li>没有固定时间吃饭的文化，人们饿了或有时间就吃。</li>
+                            <li>通常在花园或户外食用，而不是在餐桌上。</li>
+                        </ul>
+
+                        <h3>礼仪</h3>
+                        <ul>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+
+                        <h3>旅游景点</h3>
+                        <ul>
+                            <li>鲸游</li>
+                            <li>阿纳富洞穴</li>
+                            <li>哈阿塔福海滩</li>
+                            <li>Ma Mapuabaca（喷水孔）。</li>
+                        </ul>
+                    `
+                },
+                'solomon islands': {
+                    name: '所罗门群岛',
+                    details: `
+                        <h3>基本信息</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 7.404 亿人</li>
+                            <li><strong>地区:</strong> 28,900㎢</li>
+                            <li><strong>都城:</strong> 霍尼亚拉</li>
+                            <li><strong>语言:</strong> 英语、皮津语</li>
+                            <li><strong>主要宗教:</strong> 罗马天主教、圣公会</li>
+                        </ul>
+
+                        <h3>生命</h3>
+                        <ul>
+                            <li>,</li>
+                            <li>,</li>
+                        </ul>
+
+                        <h3>膳食</h3>
+                        <ul>
+                            <li>木薯、椰子汁和椰子库马拉都很有名。</li>
+                        </ul>
+
+                        <h3>礼仪</h3>
+                        <ul>
+                            <li>将手提行李贴身放好，以防扒手和抢劫者。</li>
+                            <li>不要占用餐厅空间。</li>
+                        </ul>
+
+                        <h3>旅游景点</h3>
+                        <ul>
+                            <li>博内基海滩</li>
+                            <li>所罗门群岛国家博物馆</li>
+                            <li>霍尼亚拉中央市场</li>
+                        </ul>
+                    `
+                },
+                palau: {
+                    name: '帕劳',
+                    details: `
+                        <h3>基本信息</h3>
+                        <ul>
+                            <li><strong>人口:</strong> 180.6 万人</li>
+                            <li><strong>地区:</strong> 458㎢</li>
+                            <li><strong>都城:</strong> 贻贝</li>
+                            <li><strong>语言:</strong> 英语、帕劳语。</li>
+                            <li><strong>主要宗教:</strong> 基督教</li>
+                        </ul>
+
+                        <h3>生命</h3>
+                        <ul>
+                            <li>,</li>
+                            <li>,</li>
+                        </ul>
+
+                        <h3>膳食</h3>
+                        <ul>
+                            <li>以芋头、红树林蟹和蝙蝠汤闻名。</li>
+                        </ul>
+
+                        <h3>礼仪</h3>
+                        <ul>
+                            <li>避免穿着华丽的服装。</li>
+                            <li>不要接受有色物品等，即使是当地人推荐的。</li>
+                        </ul>
+
+                        <h3>旅游景点</h3>
+                        <ul>
+                            <li>银河</li>
+                            <li>七十岛</li>
+                            <li>岩石岛</li>
+                            <li>海湖</li>
+                        </ul>
+                    `
+                }
+            };
+
+            // 国を選択した際の処理
+            countryDropdown.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                    e.preventDefault();
+                    const selectedCountry = e.target.getAttribute('data-country');
+                    if (selectedCountry && countryData[selectedCountry]) {
+                        const data = countryData[selectedCountry];
+                        countryName.textContent = data.name;
+                        countryDetails.innerHTML = data.details;
+
+                        // 国情報セクションを表示
+                        countryInfo.style.display = 'block';
+                    } else {
+                        countryInfo.style.display = 'none'; // 国情報セクションを隠す
+                    }
+                }
+            });
+        });
+    </script>
+
+    <style>
+        /* 国情報ページのスタイル */
+        #info-container {
+            max-width: 800px;
+            margin: 100px auto;
+            background-color: var(--color-base);
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: var(--color-text);
+        }
+
+        p {
+            text-align: center;
+            font-size: 18px;
+            color: var(--color-text);
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .trigger-drop {
+            padding: 10px;
+            background-color: var(--color-accent);
+            color: var(--color-base);
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .drop {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 100%;
+            background: var(--color-base);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+            z-index: 1000;
+        }
+
+        .dropdown:hover .drop {
+            display: block;
+        }
+
+        .drop li {
+            list-style: none;
+            padding: 10px;
+        }
+
+        .drop li a {
+            display: block;
+            padding: 10px;
+            color: var(--color-text);
+            transition: background-color 0.3s;
+        }
+
+        .drop li a:hover {
+            background-color: var(--color-accent);
+            color: var(--color-base);
+        }
+
+        #country-details {
+            white-space: pre-line;
+            text-align: left;
+        }
+
+        ul {
+            margin-left: 20px;
+        }
+    </style>
+</body>
+</html>

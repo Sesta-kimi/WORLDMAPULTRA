@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World map ultra</title>
+    <link rel="stylesheet" href="kaken2.2.css"> <!-- 外部CSSファイルをリンク -->
+    <style>
+        /* 背景画像を設定 */
+        body {
+            background-image: url('https://images.rawpixel.com/image_social_landscape/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTEwL3Jhd3BpeGVsb2ZmaWNlNl9waG90b19vZl9lYXJ0aF9mb3JtX3NwYWNlX3JlYWxpc3RpY19zdHlsZV9yZWFsaV9jODA5MDU2My1iNmRkLTQ0ZDgtYTkzMy1hNjRiNzQ0ODVlOWJfMS5qcGc.jpg'); /* ここに背景画像のパスを指定 */
+            background-size: cover; /* 画像を画面全体に拡大・縮小 */
+            background-repeat: no-repeat; /* 画像を繰り返さない */
+            background-attachment: fixed; /* スクロール時に背景を固定 */
+            background-position: center; /* 中央に配置 */
+        }
+
+        /* テキストの視認性を向上 */
+        nav, #quiz-section {
+            background-color: rgba(253, 219, 147, 0.925); /* 背景を半透明に設定 */
+            border-radius: 10px; /* 角を丸くする */
+            padding: 20px;
+            margin: 10px auto;
+            max-width: 1200px;
+        }
+    </style>
+</head>
+<body>
+    <nav id="navigation">
+        <a href="2.kaken2.1.html" class="logo">World map ultra<span>+</span></a>
+        <ul class="links">
+            <li><a href="2.kaken2.1.html">Home</a></li>
+            <li><a href="https://www.google.com/maps" target="_blank">World map</a></li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">Quiz<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="2.africa_quiz.html">Africa</a></li>
+                    <li><a href="2.asia_quiz.html">Asian</a></li>
+                    <li><a href="2.europe_quiz.html">Europe</a></li>
+                    <li><a href="2.north-america_quiz.html">North America</a></li>
+                    <li><a href="2.south-america_quiz.html">South America</a></li>
+                    <li><a href="2.oceania_quiz.html">Oceania</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">Country<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="2.africa.html">Africa</a></li>
+                    <li><a href="2.asia.html">Asian</a></li>
+                    <li><a href="2.europe.html">Europe</a></li>
+                    <li><a href="2.north_america.html">North America</a></li>
+                    <li><a href="2.south_america.html">South America</a></li>
+                    <li><a href="2.oseania.html">Oceania</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">Language<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="1.kaken2.1.html">1.日本語</a></li>
+                    <li><a href="2.kaken2.1.html">2.English (U.S.)</a></li>
+                    <li><a href="3.kaken2.1.html">3.中文</a></li>
+                    <li><a href="4.kaken2.1.html">4.한국어</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    
+    <div id="info-container">
+        <h1>Country Profile for the North America Region</h1>
+        <p>Please choose from the following countries:</p>
+
+        <!-- ドロップダウンメニュー -->
+        <div class="dropdown">
+            <a href="#" class="trigger-drop">Select a Country<i class="arrow"></i></a>
+            <ul class="drop" id="country-dropdown">
+                <li><a href="#" data-country="cuba">Cuba</a></li>
+                <li><a href="#" data-country="jamaica">Jamaica</a></li>
+                <li><a href="#" data-country="dominican">Dominican Republic</a></li>
+                <li><a href="#" data-country="haiti">Haiti</a></li>
+                <li><a href="#" data-country="jamaica">jamaica</a></li>
+            </ul>
+        </div>
+
+        <!-- 国情報セクション -->
+        <div id="country-info" style="display:none;">
+            <h2 id="country-name"></h2>
+            <div id="country-details"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const countryDropdown = document.getElementById('country-dropdown');
+            const countryInfo = document.getElementById('country-info');
+            const countryName = document.getElementById('country-name');
+            const countryDetails = document.getElementById('country-details');
+
+            // 国情報データ
+            const countryData = {
+                cuba: {
+                    name: 'Cuba',
+                    details: `
+                        <h3>Basic Information</h3>
+                        <ul>
+                            <li><strong>population:</strong> 11.21 million people</li>
+                            <li><strong>area:</strong> 109,884㎢</li>
+                            <li><strong>capital city:</strong> Havana</li>
+                            <li><strong>Language:</strong> Spanish</li>
+                            <li><strong>Major Religions:</strong>free in principle</li>
+                        </ul>
+
+                        <h3>living</h3>
+                        <ul>
+                            <li>There is almost no traffic congestion and none of the stress caused by traffic jams that is common in developing countries.</li>
+                            <li>In Cuba, it is common to rent a car from the Car Rental Corporation on a long-term contract.</li>
+                        </ul>
+
+                        <h3>meal</h3>
+                        <ul>
+                            <li>Cubans drink up the soup first and then start eating other side dishes.</li>
+                            <li>A black kidney bean soup called frijoles is a staple of home cooking.</li>
+                            <li>Eating with one's hands is common in Cuban cuisine, where eating is a social event and conversation and smiling are important during meals.</li>
+                        </ul>
+
+                        <h3>manners</h3>
+                        <ul>
+                            <li>In Cuba, there is flexibility with respect to time, and being late for an appointment is not seen as much of a problem.</li>
+                        </ul>
+
+                        <h3>tourist attraction</h3>
+                        <ul>
+                            <li>Old Town Havana: Also known as “Old Havana,” the Old Town of Havana is the capital of Cuba. Originally built by the Spanish, it has a long history, and one of its attractions is not only the retro buildings but also the classics that run through the city.</li>
+                            <li>Vinales Canyon: A day trip from Havana, but with spectacular views.</li>
+                            <li>San Pedro de la Roca Castle：The architecture, which was registered as a World Heritage site in 1997, uses the Renaissance style, which combines solidity and functional beauty.</li>
+                        </ul>
+
+                    `
+                },
+                jamaica: {
+                    name: 'Jamaica',
+                    details: `
+                        <h3>Basic Information</h3>
+                        <ul>
+                            <li><strong>population:</strong> 2,961,000 million</li>
+                            <li><strong>area:</strong> 10,991㎢</li>
+                            <li><strong>capital city:</strong> Kingston</li>
+                            <li><strong>Language:</strong> English </li>
+                            <li><strong>Major Religions:</strong> Christianity</li>
+                        </ul>
+
+                        <h3>living</h3>
+                        <ul>
+                            <li>Dreadlocks are not only a fashion statement but also a sign of one's religion, although various people enjoy them as a fashionable style.</li>
+                            <li>The Jamaican movement for the return to Africa (Rastafarianism) treats the human body as a temple, with the discipline not to apply blades to one's own body and to leave one's hair long.</li>
+                        </ul>
+
+                        <h3>meal</h3>
+                        <ul>
+                            <li>Steamed bananas and potatoes are staples of the diet, with an emphasis on nutrition.</li>
+                            <li>Accompanying it with ackee & saltfish or chicken is the standard Jamaican breakfast.</li>
+                            <li>In Jamaica, meat-based food is forbidden to be given to children who cannot yet speak.</li>
+                        </ul>
+
+                        <h3>manners</h3>
+                        <ul>
+                            <li>Ladies first is the basic rule.</li>
+                            <li>When speaking, look the other person in the eye and be respectful to the older person.</li>
+                            <li>If you run in public, you will be mistaken for a criminal, so don't rush, don't run, don't rush.</li>
+                            <li>Smoking in public places is not permitted.</li>                        
+                        </ul>
+                        <h3>tourist attraction</h3>
+                        <ul>
+                            <li>Reggae superstar Bob Marley Museum：The house where Bob Marley spent the last six years of his life with his family. Marley's favorite items and records are displayed.</li>
+                            <li>Dunsley-Barfall Park：The most famous of the many waterfalls in Jamaica. Climbing up the 180-meter-long waterfall is popular.</li>
+                        </ul>
+                    `
+                },
+                dominican: {
+                    name: 'Dominican Republic',
+                    details: `
+                        <h3>Basic Information</h3>
+                        <ul>
+                            <li><strong>population:</strong> 11.23 million people</li>
+                            <li><strong>area:</strong> 48,442㎢</li>
+                            <li><strong>capital city:</strong>  Santo Domingo</li>
+                            <li><strong>Language:</strong> Spanish</li>
+                            <li><strong>Major Religions:</strong> Catholic </li>
+                        </ul>
+
+                        <h3>living</h3>
+                        <ul>
+                            <li>Merengue, bachatação, reggaeton, and salsa are popular and have become the national music.</li>
+                            <li>The Merengue Festival is held every month in July in Santo Domingo, where traditional paintings, sculptures, and ceramics by many artists are exhibited, attracting many tourists from home and abroad.</li>
+                        </ul>
+
+                        <h3>meal</h3>
+                        <ul>
+                            <li>The cuisine is a unique mixture of Mediterranean, African, Spanish, and Indio cuisines, with typical examples being mofongo, sancocho, and morro.</li>
+                        </ul>
+
+                        <h3>manners</h3>
+                        <ul>
+                            <li>Guards stand guard at Independence Square and the National Mausoleum to maintain purity, so please refrain from disturbing them.</li>
+                            <li>Photography is prohibited at the border and military facilities. There are also prohibited areas in chapels and other places of worship, so please check before taking pictures.</li>
+                        </ul>
+
+                        <h3>tourist attraction</h3>
+                        <ul>
+                            <li>Bavaro Beach: The pride of the Dominican Republic's beach resort area. You can view the beautiful hotels along the beach while bathing in the ocean.</li>
+                            <li>Hoyo Azul: a fountain of crystal blue water in the caves of Punta Cana.</li>
+                        </ul>
+                    `
+                },
+                haiti: {
+                    name: 'Haiti',
+                    details: `
+                        <h3>Basic Information</h3>
+                        <ul>
+                            <li><strong>population:</strong> 11.58 million people</li>
+                            <li><strong>area:</strong> 27,750㎢</li>
+                            <li><strong>capital city:</strong> Port-au-Prince</li>
+                            <li><strong>Language:</strong> French, Haitian Creole</li>
+                            <li><strong>Major Religions:</strong> Christianity, voodoo, etc.</li>
+                        </ul>
+                        <h3>living</h3>
+                        <ul>
+                            <li>The climate is mild enough to wear short sleeves all year round, there are many hills and mountains, and most of the countryside is not served by public electricity or running water.</li>
+                            <li>Charcoal is used instead of gas, candles or oil lamps are used for lighting, and generators are used when electricity is needed.</li>
+                            <li>Drinking water and domestic water is drawn from springs and rivers in plastic tanks called gallons.</li>
+                        </ul>
+
+                        <h3>meal</h3>
+                        <ul>
+                            <li>Staple foods vary from person to person and include rice, bread, and bananas.</li>
+                            <li>They are usually served with a sauce made of stewed meat or fish.</li>
+                        </ul>
+
+                        <h3>manners</h3>
+                        <ul>
+                            <li>In Haiti, sharing food when eating is considered important.</li>
+                            <li>Haiti is a religiously diverse country, and religious events and festivals are very important and require respect and participation in these events.</li>
+                        </ul>
+
+                        <h3>tourist attraction</h3>
+                        <ul>
+                            <li>Château de Saint-Souci: The area where the historic buildings from the early days of Haiti's independence still stand is a World Heritage Site as a National Historical Park.</li>
+                            <li>Rapadi: A tourist destination famous for its beautiful Caribbean Sea, with a wide range of marine sports and various activities.</li>
+                        </ul>
+                    `
+                },
+                jamaica: {
+                    name: 'Jamaica',
+                    details: `
+                        <h3>Basic Information</h3>
+                        <ul>
+                            <li><strong>population:</strong> 2,961,000 million</li>
+                            <li><strong>area:</strong> 10,991㎢</li>
+                            <li><strong>capital city:</strong> Kingston</li>
+                            <li><strong>Language:</strong> English </li>
+                            <li><strong>Major Religions:</strong> Christianity</li>
+                        </ul>
+
+                        <h3>living</h3>
+                        <ul>
+                            <li>Dreadlocks are not only a fashion statement but also a sign of one's religion, although various people enjoy them as a fashionable style.</li>
+                            <li>The Jamaican movement for the return to Africa (Rastafarianism) treats the human body as a temple, with the discipline not to apply blades to one's own body and to leave one's hair long.</li>
+                        </ul>
+
+                        <h3>meal</h3>
+                        <ul>
+                            <li>Steamed bananas and potatoes are staples of the diet, with an emphasis on nutrition.</li>
+                            <li>Accompanying it with ackee & saltfish or chicken is the standard Jamaican breakfast.</li>
+                            <li>In Jamaica, meat-based food is forbidden to be given to children who cannot yet speak.</li>
+                        </ul>
+
+                        <h3>manners</h3>
+                        <ul>
+                            <li>Ladies first is the basic rule.</li>
+                            <li>When speaking, look the other person in the eye and be respectful to the older person.</li>
+                            <li>If you run in public, you will be mistaken for a criminal, so don't rush, don't run, don't rush.</li>
+                            <li>Smoking in public places is not permitted.</li>                        
+                        </ul>
+                        <h3>tourist attraction</h3>
+                        <ul>
+                            <li>Reggae superstar Bob Marley Museum：The house where Bob Marley spent the last six years of his life with his family. Marley's favorite items and records are displayed.</li>
+                            <li>Dunsley-Barfall Park：The most famous of the many waterfalls in Jamaica. Climbing up the 180-meter-long waterfall is popular.</li>
+                        </ul>
+                    `
+                }
+            };
+
+            // 国を選択した際の処理
+            countryDropdown.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                    e.preventDefault();
+                    const selectedCountry = e.target.getAttribute('data-country');
+                    if (selectedCountry && countryData[selectedCountry]) {
+                        const data = countryData[selectedCountry];
+                        countryName.textContent = data.name;
+                        countryDetails.innerHTML = data.details;
+
+                        // 国情報セクションを表示
+                        countryInfo.style.display = 'block';
+                    } else {
+                        countryInfo.style.display = 'none'; // 国情報セクションを隠す
+                    }
+                }
+            });
+        });
+    </script>
+
+    <style>
+        /* 国情報ページのスタイル */
+        #info-container {
+            max-width: 800px;
+            margin: 100px auto;
+            background-color: var(--color-base);
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: var(--color-text);
+        }
+
+        p {
+            text-align: center;
+            font-size: 18px;
+            color: var(--color-text);
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .trigger-drop {
+            padding: 10px;
+            background-color: var(--color-accent);
+            color: var(--color-base);
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .drop {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 100%;
+            background: var(--color-base);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+            z-index: 1000;
+        }
+
+        .dropdown:hover .drop {
+            display: block;
+        }
+
+        .drop li {
+            list-style: none;
+            padding: 10px;
+        }
+
+        .drop li a {
+            display: block;
+            padding: 10px;
+            color: var(--color-text);
+            transition: background-color 0.3s;
+        }
+
+        .drop li a:hover {
+            background-color: var(--color-accent);
+            color: var(--color-base);
+        }
+    </style>
+</body>
+</html>
+

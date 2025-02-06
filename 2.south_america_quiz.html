@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World map ultra</title>
+    <link rel="stylesheet" href="kaken2.2.css"> <!-- 外部CSSファイルをリンク -->
+</head>
+<body>
+    <nav id="navigation">
+        <a href="2.kaken2.1.html" class="logo">World map ultra<span>+</span></a>
+        <ul class="links">
+            <li><a href="2.kaken2.1.html">Home</a></li>
+            <li><a href="https://www.google.com/maps" target="_blank">World map</a></li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">Quiz<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="2.africa_quiz.html">Africa</a></li>
+                    <li><a href="2.asia_quiz.html">Asian</a></li>
+                    <li><a href="2.europe_quiz.html">Europe</a></li>
+                    <li><a href="2.north-america_quiz.html">North America</a></li>
+                    <li><a href="2.south-america_quiz.html">South America</a></li>
+                    <li><a href="2.oceania_quiz.html">Oceania</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">Country<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="2.africa.html">Africa</a></li>
+                    <li><a href="2.asia.html">Asian</a></li>
+                    <li><a href="2.europe.html">Europe</a></li>
+                    <li><a href="2.north_america.html">North America</a></li>
+                    <li><a href="2.south_america.html">South America</a></li>
+                    <li><a href="2.oseania.html">Oceania</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="trigger-drop">Language<i class="arrow"></i></a>
+                <ul class="drop">
+                    <li><a href="1.kaken2.1.html">1.日本語</a></li>
+                    <li><a href="2.kaken2.1.html">2.English (U.S.)</a></li>
+                    <li><a href="3.kaken2.1.html">3.中文</a></li>
+                    <li><a href="4.kaken2.1.html">4.한국어</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    
+    <div id="quiz-container">
+        <h1>South America Regional Quiz</h1>
+        <p>Please choose from the following countries:</p>
+
+        <!-- ドロップダウンメニュー -->
+        <div class="dropdown">
+            <a href="#" class="trigger-drop">Select a Country<i class="arrow"></i></a>
+            <ul class="drop" id="country-dropdown">
+                <li><a href="#" data-country="brazil">Brazil</a></li>
+                <li><a href="#" data-country="argentina">Argentina</a></li>
+                <li><a href="#" data-country="chile">Chile</a></li>
+                <li><a href="#" data-country="colombia">Colombia</a></li>
+                <li><a href="#" data-country="peru">Peru</a></li>
+            </ul>
+        </div>
+
+        <div id="quiz-section" style="display:none;">
+            <h2 id="quiz-question"></h2>
+            <ul id="quiz-options" class="quiz-options"></ul>
+            <div id="quiz-result"></div>
+            <button id="next-quiz" style="display:none;">Go to next quiz</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const countryDropdown = document.getElementById('country-dropdown');
+            const quizSection = document.getElementById('quiz-section');
+            const quizQuestion = document.getElementById('quiz-question');
+            const quizOptions = document.getElementById('quiz-options');
+            const quizResult = document.getElementById('quiz-result');
+            const nextQuizButton = document.getElementById('next-quiz');
+            const correctSound = new Audio('correct.mp3');
+            const wrongSound = new Audio('wrong.mp3');
+
+            // クイズデータ
+            const quizzes = {
+                brazil: [
+                    {
+                        question: 'What is the capital of Brazil?',
+                        options: ['Brasilia', 'Sao Paulo', 'Rio de Janeiro', 'Salvador'],
+                        correctAnswer: 'Brasilia'
+                    },
+                    {
+                        question: 'What are some famous festivals in Brazil?',
+                        options: ['Carnival', 'Halloween', 'Christmas', 'Thanksgiving'],
+                        correctAnswer: 'carnival'
+                    },
+                    {
+                        question: 'What is the official language of Brazil?',
+                        options: ['Portuguese', 'Spanish', 'English', 'French'],
+                        correctAnswer: 'Portuguese'
+                    }
+                ],
+                argentina: [
+                    {
+                        question: 'Where is the capital of Argentina?',
+                        options: ['Buenos Aires', 'Cordoba', 'Rosario', 'Mendoza'],
+                        correctAnswer: 'Buenos Aires'
+                    },
+                    {
+                        question: 'What is Argentina is famous cuisine?',
+                        options: ['asado', 'tacos', 'pasta', 'curry'],
+                        correctAnswer: 'asado'
+                    },
+                    {
+                        question: 'What is a typical Argentinean dance?',
+                        options: ['Tango', 'Salsa', 'Flamenco', 'Ballet'],
+                        correctAnswer: 'Tango'
+                    }
+                ],
+                chile: [
+                    {
+                        question: 'Where is the capital of Chile?',
+                        options: ['Santiago', 'Valparaiso', 'Concepcion', 'Antofagasta'],
+                        correctAnswer: 'Santiago'
+                    },
+                    {
+                        question: 'What is the famous drink in Chile?',
+                        options: ['Pisco', 'Beer', 'Wine', 'Whiskey'],
+                        correctAnswer: 'Pisco'
+                    },
+                    {
+                        question: 'What are some famous landforms in Chile?',
+                        options: ['Atacama Desert', 'Amazon Rainforest', 'Great Barrier Reef', 'Niagara Falls'],
+                        correctAnswer: 'Atacama Desert'
+                    }
+                ],
+                colombia: [
+                    {
+                        question: 'Where is the capital of Colombia?',
+                        options: ['Bogota', 'Medellín', 'Cartagena', 'Barranquilla'],
+                        correctAnswer: 'Bogota'
+                    },
+                    {
+                        question: 'What are the famous coffee growing regions in Colombia?',
+                        options: ['Coffee growing regions', 'Medellín', 'Cali', 'Bogota'],
+                        correctAnswer: 'Coffee growing regions'
+                    },
+                    {
+                        question: 'What are the colors on the Colombian flag?',
+                        options: ['Yellow, blue, red', 'red, white, blue', 'blue, white, green', 'red, yellow, black'],
+                        correctAnswer: 'Yellow, blue, red'
+                    }
+                ],
+                peru: [
+                    {
+                        question: 'Where is the capital of Peru?',
+                        options: ['Lima', 'Arequipa', 'Cusco', 'Trujillo'],
+                        correctAnswer: 'Lima'
+                    },
+                    {
+                        question: 'What are the famous archaeological sites in Peru?',
+                        options: ['Machu Picchu', 'Tiwanaku', 'Nazca Lines', 'Chichen Itza'],
+                        correctAnswer: 'Machu Picchu'
+                    },
+                    {
+                        question: 'What is a typical Peruvian dish?',
+                        options: ['Ceviche', 'Tacos', 'Curry', 'Pasta'],
+                        correctAnswer: 'Ceviche'
+                    }
+                ]
+            };
+
+        let currentCountry;
+        let currentQuizIndex = 0;
+        let correctCounts = {};
+        
+        for (const country in quizzes) {
+            correctCounts[country] = 0;
+        }
+        
+        function shuffleArray(array) {
+        return array.slice().sort(() => Math.random() - 0.5); // 新しい配列を返す
+        }
+
+        countryDropdown.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A') {
+                e.preventDefault();
+                const selectedCountry = e.target.getAttribute('data-country');
+                if (selectedCountry && quizzes[selectedCountry]) {
+                    currentCountry = selectedCountry;
+                    currentQuizIndex = 0;
+                    quizzes[currentCountry] = shuffleArray(quizzes[currentCountry]); 
+                    loadQuiz();
+                } else {
+                    quizSection.style.display = 'none';
+                }
+            }
+        });
+        
+        function loadQuiz() {
+            const quizData = quizzes[currentCountry][currentQuizIndex];
+            quizQuestion.textContent = quizData.question;
+            quizOptions.innerHTML = '';
+            quizData.options.forEach(option => {
+                const li = document.createElement('li');
+                const button = document.createElement('button');
+                button.textContent = option;
+                button.classList.add('quiz-option');
+                button.setAttribute('data-answer', option);
+                li.appendChild(button);
+                quizOptions.appendChild(li);
+
+                button.addEventListener('click', () => {
+                    document.querySelectorAll('.quiz-option').forEach(btn => {
+                        btn.disabled = true;
+                        if (btn.textContent === quizData.correctAnswer) {
+                            btn.style.backgroundColor = '#4CAF50';
+                        } else {
+                            btn.style.backgroundColor = '#FF6347';
+                        }
+                    });
+
+                    if (option === quizData.correctAnswer) {
+                        quizResult.innerHTML = `<h3 style="color: #4CAF50;">Correct！congratulations！</h3>`;
+                        correctCounts[currentCountry]++;
+                        correctSound.play();
+                    } else {
+                        quizResult.innerHTML = `<h3 style="color: #FF6347;">Unfortunately, it is incorrect.<br>The correct answer is  <strong>${quizData.correctAnswer}</strong> です。</h3>`;
+                        wrongSound.play();
+                    }
+                    nextQuizButton.style.display = 'block';
+                });
+            });
+
+            quizSection.style.display = 'block';
+            quizResult.innerHTML = '';
+            nextQuizButton.style.display = 'none';
+        }
+
+        nextQuizButton.addEventListener('click', () => {
+            currentQuizIndex++;
+            if (currentQuizIndex < quizzes[currentCountry].length) {
+                loadQuiz();
+            } else {
+                quizResult.innerHTML = `<h3>${currentCountry.toUpperCase()}Quiz Ends！${quizzes[currentCountry].length}out of${correctCounts[currentCountry]}questions correct！</h3>`;
+                nextQuizButton.style.display = 'none';
+            }
+        });
+    });
+    </script>
+
+    <style>
+        /* クイズページのスタイル */
+        #quiz-container {
+            max-width: 800px;
+            margin: 100px auto;
+            background-color: var(--color-base);
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: var(--color-text);
+        }
+
+        p {
+            text-align: center;
+            font-size: 18px;
+            color: var(--color-text);
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .trigger-drop {
+            padding: 10px;
+            background-color: var(--color-accent);
+            color: var(--color-base);
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .drop {
+            display: none;
+            position: absolute;
+            left: 0;
+            top: 100%;
+            background: var(--color-base);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+            z-index: 1000;
+        }
+
+        .dropdown:hover .drop {
+            display: block;
+        }
+
+        .drop li {
+            list-style: none;
+            padding: 10px;
+        }
+
+        .drop li a {
+            display: block;
+            padding: 10px;
+            color: var(--color-text);
+            transition: background-color 0.3s;
+        }
+
+        .drop li a:hover {
+            background-color: var(--color-accent);
+            color: var(--color-base);
+        }
+
+        .quiz-options {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .quiz-option {
+            padding: 10px;
+            background-color: var(--color-accent);
+            color: var(--color-base);
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .quiz-option:hover {
+            background-color: lighten(var(--color-accent), 20%);
+        }
+
+        #quiz-result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+        }
+    </style>
+</body>
+</html>
