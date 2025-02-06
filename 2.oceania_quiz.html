@@ -102,92 +102,112 @@
 
             // クイズデータ
             const quizzes = {
-                australia: [
-                    {
-                        question: 'What is the next capital of Australia?',
-                        options: ['Canberra', 'Sydney', 'Melbourne', 'Brisbane'],
-                        correctAnswer: 'Canberra'
-                    },
-                    {
-                        question: 'What animals are famous in Australia?',
-                        options: ['Kangaroo', 'Lion', 'Elephant', 'Bear'],
-                        correctAnswer: 'Kangaroo'
-                    },
-                    {
-                        question: 'How many stars are on the Australian flag?',
-                        options: ['5', '6', '7', '8'],
-                        correctAnswer: '6'
-                    }
-                ],
-                new_zealand: [
-                    {
-                        question: 'Where is the capital of New Zealand?',
-                        options: ['Wellington', 'Auckland', 'Christchurch', 'Dunedin'],
-                        correctAnswer: 'Wellington'
-                    },
-                    {
-                        question: 'What is New Zealand is famous bird?',
-                        options: ['Kiwi', 'Penguin', 'Parrot', 'Crane'],
-                        correctAnswer: 'Kiwi'
-                    },
-                    {
-                        question: 'What is the official language of New Zealand?',
-                        options: ['English', 'French', 'German', 'Spanish'],
-                        correctAnswer: 'English'
-                    }
-                ],
-                fiji: [
-                    {
-                        question: 'Where is the capital of Fiji?',
-                        options: ['Suba', 'Lautoka', 'Nandi', 'Baila'],
-                        correctAnswer: 'Suba'
-                    },
-                    {
-                        question: 'What is the famous drink in Fiji?',
-                        options: ['Coconut water', 'orange juice', 'wine', 'beer'],
-                        correctAnswer: 'Coconut water'
-                    },
-                    {
-                        question: 'What is Fiji known for?',
-                        options: ['Beach', 'Mountains', 'Desert', 'Forest'],
-                        correctAnswer: 'Beach'
-                    }
-                ],
-                papua_new_guinea: [
-                    {
-                        question: 'Where is the capital of Papua New Guinea?',
-                        options: ['Port Moresby', 'Rabaul', 'Madang', 'Wewak'],
-                        correctAnswer: 'Port Moresby'
-                    },
-                    {
-                        question: 'What languages are spoken in Papua New Guinea?',
-                        options: ['Tok Pisun', 'English', 'French', 'Spanish'],
-                        correctAnswer: 'Tok Pisun'
-                    },
-                    {
-                        question: 'What is Papua New Guinea is famous culture?',
-                        options: ['Banyar Culture', 'Maori Culture', 'Aboriginal Culture', 'Ainu Culture'],
-                        correctAnswer: 'Banyar Culture'
-                    }
-                ],
-                samoa: [
-                    {
-                        question: 'Where is the capital of Samoa?',
-                        options: ['Apia', 'Sabaii', 'Samoa City', 'Atauro'],
-                        correctAnswer: 'Apia'
-                    },
-                    {
-                        question: 'What are some famous events in Samoa?',
-                        options: ['Hula Dance', 'Halloween', 'Christmas', 'New Year'],
-                        correctAnswer: 'Hula Dance'
-                    },
-                    {
-                        question: 'What are the traditional foods of Samoa?',
-                        options: ['Poi', 'Tacos', 'Sushi', 'Curry'],
-                        correctAnswer: 'Poi'
-                    }
-                ]
-            };
+    australia: [
+        {
+            question: "What is illegal for a young child to do?",
+            options: [
+                "Watch TV alone",
+                "Commute to school alone",
+                "Commute to school with an adult",
+                "Watch TV with an adult"
+            ],
+            correctAnswer: "Commute to school alone"
+        },
+        {
+            question: "What does turning on hazard lights while driving mean in Australia?",
+            options: ["Temporary stop", "Expression of gratitude", "Emergency", "Aggressive driving"],
+            correctAnswer: "Emergency"
+        }
+    ],
+    new_zealand: [
+        {
+            question: "Which is the correct table manner in New Zealand?",
+            options: [
+                "Enjoy conversation",
+                "Eat silently",
+                "Leave some food",
+                "Say 'Gochisousama' (Thank you for the meal)"
+            ],
+            correctAnswer: "Enjoy conversation"
+        },
+        {
+            question: "Which is the correct conversation etiquette?",
+            options: [
+                "Avoid eye contact while speaking",
+                "Make eye contact while speaking",
+                "Cross your arms while talking",
+                "Interrupt the other person"
+            ],
+            correctAnswer: "Make eye contact while speaking"
+        }
+    ],
+    tonga: [
+        {
+            question: "What should you not do in public in Tonga?",
+            options: [
+                "Speak the local language",
+                "Wear clothes that expose the shoulders",
+                "Greet with a smile",
+                "Enter a house with shoes on"
+            ],
+            correctAnswer: "Wear clothes that expose the shoulders"
+        },
+        {
+            question: "Which action is generally avoided in Tonga?",
+            options: [
+                "Eating while standing",
+                "Showing respect to elders",
+                "Taking off shoes before entering a house",
+                "Engaging in friendly conversation"
+            ],
+            correctAnswer: "Eating while standing"
+        }
+    ],
+    solomon_islands: [
+        {
+            question: "What should you avoid when handing something to someone in the Solomon Islands?",
+            options: [
+                "Using your right hand",
+                "Using both hands",
+                "Using your left hand",
+                "Making eye contact while handing it over"
+            ],
+            correctAnswer: "Using your left hand"
+        },
+        {
+            question: "What should be avoided in public in the Solomon Islands?",
+            options: [
+                "Shaking hands with someone",
+                "Speaking calmly",
+                "Greeting with a smile",
+                "Hugging or kissing a partner in public"
+            ],
+            correctAnswer: "Hugging or kissing a partner in public"
+        }
+    ],
+    palau: [
+        {
+            question: "Littering and stepping on coral are strictly prohibited in Palau. What regulation enforces this?",
+            options: [
+                "Palau Contract",
+                "Palau Pledge",
+                "Palau Covenant",
+                "Palau Ordinance"
+            ],
+            correctAnswer: "Palau Pledge"
+        },
+        {
+            question: "Which fishing activity is prohibited in Palau?",
+            options: [
+                "Collecting coral without permission from locals",
+                "Buying fish from local fishermen",
+                "Fishing using environmentally friendly methods",
+                "Catching fish or shellfish without permission"
+            ],
+            correctAnswer: "Catching fish or shellfish without permission"
+        }
+    ]
+};
 
             let currentCountry;
         let currentQuizIndex = 0;
