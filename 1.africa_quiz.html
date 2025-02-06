@@ -100,6 +100,7 @@
             const nextQuizButton = document.getElementById('next-quiz');
             const correctSound = new Audio('correct.mp3');
             const wrongSound = new Audio('wrong.mp3');
+            const resultSound = new Audio('result.mp3');
 
             // クイズデータ
             const quizzes = {
@@ -263,6 +264,7 @@
                 loadQuiz();
             } else {
                 quizResult.innerHTML = `<h3>${currentCountry.toUpperCase()}のクイズ終了！${quizzes[currentCountry].length}問中${correctCounts[currentCountry]}問正解しました。</h3>`;
+                resultSound.plwy();
                 nextQuizButton.style.display = 'none';
             }
         });
