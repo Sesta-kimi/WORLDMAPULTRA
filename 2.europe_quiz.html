@@ -103,92 +103,118 @@
 
             // クイズデータ
             const quizzes = {
-                france: [
-                    {
-                        question: 'Where is the capital of France?',
-                        options: ['Paris', 'Marseille', 'Lyon', 'Tours'],
-                        correctAnswer: 'Paris'
-                    },
-                    {
-                        question: 'What are the colors on the French flag?',
-                        options: ['blue, white, red', 'blue, white, green', 'red, white, black', 'yellow, white, red'],
-                        correctAnswer: 'blue, white, red'
-                    },
-                    {
-                        question: 'What is the most famous dish in France?',
-                        options: ['Pizza', 'Pasta', 'Croissant', 'Sushi'],
-                        correctAnswer: 'Croissant'
-                    }
-                ],
-                germany: [
-                    {
-                        question: 'What is the capital of Germany?',
-                        options: ['Berlin', 'Munich', 'Frankfurt', 'Cologne'],
-                        correctAnswer: 'Berlin'
-                    },
-                    {
-                        question: 'What is a typical German beer?',
-                        options: ['Ale', 'Lager', 'Pilsner', 'Stout'],
-                        correctAnswer: 'Pilsner'
-                    },
-                    {
-                        question: 'What are some famous festivals in Germany?',
-                        options: ['Oktoberfest', 'Diwali', 'Halloween', 'Christmas'],
-                        correctAnswer: 'Oktoberfest'
-                    }
-                ],
-                italy: [
-                    {
-                        question: 'Where is the capital of Italy?',
-                        options: ['Rome', 'Milan', 'Naples', 'Florence'],
-                        correctAnswer: 'Rome'
-                    },
-                    {
-                        question: 'What is Italy is most famous dish?',
-                        options: ['Tacos', 'Pizza', 'Sushi', 'Banh Mi'],
-                        correctAnswer: 'Pizza'
-                    },
-                    {
-                        question: 'What is the most spoken language in Italy?',
-                        options: ['Italian', 'Spanish', 'English', 'French'],
-                        correctAnswer: 'Italian'
-                    }
-                ],
-                spain: [
-                    {
-                        question: 'Where is the capital of Spain?',
-                        options: ['Madrid', 'Barcelona', 'Seville', 'Valencia'],
-                        correctAnswer: 'Madrid'
-                    },
-                    {
-                        question: 'What is a typical Spanish dish?',
-                        options: ['Paella', 'Curry', 'Pizza', 'Sushi'],
-                        correctAnswer: 'Paella'
-                    },
-                    {
-                        question: 'What are the colors on the Spanish flag?',
-                        options: ['red and yellow', 'blue and white', 'green and white', 'red and blue'],
-                        correctAnswer: 'red and yellow'
-                    }
-                ],
-                uk: [
-                    {
-                        question: 'Where is the capital of the United Kingdom?',
-                        options: ['London', 'Manchester', 'Birmingham', 'Liverpool'],
-                        correctAnswer: 'London'
-                    },
-                    {
-                        question: 'What is the famous drink of England?',
-                        options: ['Tea', 'Coffee', 'Green tea', 'Juice'],
-                        correctAnswer: 'Tea'
-                    },
-                    {
-                        question: 'What is a famous food in England?',
-                        options: ['Fish and Chips', 'Paella', 'Sushi', 'Tacos'],
-                        correctAnswer: 'Fish and Chips'
-                    }
-                ]
-            };
+    holland: [
+        {
+            question: "What should you not do in public places?",
+            options: [
+                "Taking photos around the Red Light District",
+                "Shaking hands with people",
+                "Riding a bicycle",
+                "Hugging"
+            ],
+            correctAnswer: "Taking photos around the Red Light District"
+        },
+        {
+            question: "What should you avoid doing in front of others?",
+            options: [
+                "Sniffling",
+                "Putting hands together",
+                "Making eye contact at a restaurant",
+                "Clapping"
+            ],
+            correctAnswer: "Sniffling"
+        }
+    ],
+    switzerland: [
+        {
+            question: "What should you not do in Switzerland?",
+            options: [
+                "Hang futons on the balcony",
+                "Make noise on Wednesdays",
+                "Drink alcohol",
+                "Raise your hand"
+            ],
+            correctAnswer: "Hang futons on the balcony"
+        },
+        {
+            question: "How do Swiss people greet each other?",
+            options: [
+                "Kissing on the lips",
+                "High-fiving",
+                "Hugging",
+                "Kissing on the cheek"
+            ],
+            correctAnswer: "Kissing on the cheek"
+        }
+    ],
+    austria: [
+        {
+            question: "What is required at the cash register in Austrian stores?",
+            options: [
+                "A basic greeting",
+                "A large tip",
+                "A reusable bag",
+                "A hug"
+            ],
+            correctAnswer: "A basic greeting"
+        },
+        {
+            question: "Which hand gesture should you avoid in Austria?",
+            options: [
+                "Thumbs up",
+                "Peace sign",
+                "Showing your palm to someone",
+                "Raising your pinky finger"
+            ],
+            correctAnswer: "Peace sign"
+        }
+    ],
+    sweden: [
+        {
+            question: "What is hardly needed in Sweden?",
+            options: [
+                "Cash",
+                "A credit card",
+                "A pillow",
+                "A passport"
+            ],
+            correctAnswer: "Cash"
+        },
+        {
+            question: "What is considered taboo in Sweden?",
+            options: [
+                "Drinking alcohol",
+                "Driving without headlights during the day",
+                "Hanging clothes outside",
+                "Going for a morning run"
+            ],
+            correctAnswer: "Driving without headlights during the day"
+        }
+    ],
+    russia: [
+        {
+            question: "What should you avoid doing in Russia?",
+            options: [
+                "Taking Pabron (a Japanese cold medicine)",
+                "Drinking Coca-Cola",
+                "Drinking milk in the morning",
+                "Giving alcohol as a gift"
+            ],
+            correctAnswer: "Taking Pabron (a Japanese cold medicine)"
+        },
+        {
+            question: "What should you not do on the street?",
+            options: [
+                "Smoking",
+                "Drinking alcohol",
+                "Setting off fireworks",
+                "Playing in water"
+            ],
+            correctAnswer: "Drinking alcohol"
+        }
+    ],
+};
+
 
             let currentCountry;
         let currentQuizIndex = 0;
