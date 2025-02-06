@@ -262,7 +262,7 @@
             if (currentQuizIndex < quizzes[currentCountry].length) {
                 loadQuiz();
             } else {
-                quizResult.innerHTML = `<h3>${currentCountry.toUpperCase()}のクイズ終了！${quizzes[currentCountry].length}問中${correctCounts[currentCountry]}問正解しました。</h3>`
+                quizResult.innerHTML = `<h3>${currentCountry.toUpperCase()}のクイズ終了！${quizzes[currentCountry].length}問中${correctCounts[currentCountry]}問正解しました。</h3>`;
                 nextQuizButton.style.display = 'none';
             }
         });
