@@ -102,92 +102,93 @@
 
             // クイズデータ
             const quizzes = {
-                usa: [
-                    {
-                        question: 'What is the capital of the United States?',
-                        options: ['Washington D.C.', 'New York', 'Los Angeles', 'Chicago'],
-                        correctAnswer: 'Washington D.C.'
-                    },
-                    {
-                        question: 'What is a typical American dish?',
-                        options: ['Burgers', 'Pasta', 'Curry', 'Tacos'],
-                        correctAnswer: 'Burgers'
-                    },
-                    {
-                        question: 'What is the number of stars on the American flag?',
-                        options: ['50', '48', '52', '45'],
-                        correctAnswer: '50'
-                    }
-                ],
-                canada: [
-                    {
-                        question: 'Where is the capital of Canada?',
-                        options: ['Ottawa', 'Toronto', 'Vancouver', 'Montreal'],
-                        correctAnswer: 'Ottawa'
-                    },
-                    {
-                        question: 'What type of leaf is on the Canadian flag?',
-                        options: ['Maple', 'Oak', 'Poplar', 'Pine'],
-                        correctAnswer: 'Maple'
-                    },
-                    {
-                        question: 'What are some famous festivals in Canada?',
-                        options: ['Canada Day', 'Halloween', 'Christmas', 'Thanksgiving'],
-                        correctAnswer: 'Canada Day'
-                    }
-                ],
-                mexico: [
-                    {
-                        question: 'Where is the capital of Mexico?',
-                        options: ['Mexico City', 'Guadalajara', 'Monterrey', 'Cancun'],
-                        correctAnswer: 'Mexico City'
-                    },
-                    {
-                        question: 'What is a typical Mexican dish?',
-                        options: ['Tacos', 'Pasta', 'Pizza', 'Curry'],
-                        correctAnswer: 'Tacos'
-                    },
-                    {
-                        question: 'What is the famous drink in Mexico?',
-                        options: ['Tequila', 'Wine', 'Beer', 'Whiskey'],
-                        correctAnswer: 'Tequila'
-                    }
-                ],
-                jamaica: [
-                    {
-                        question: 'Where is the capital of Jamaica?',
-                        options: ['Kingston', 'Montego Bay', 'Auchorrios', 'Manchester'],
-                        correctAnswer: 'Kingston'
-                    },
-                    {
-                        question: 'What music genres are famous in Jamaica?',
-                        options: ['Reggae', 'Rock', 'Jazz', 'Blues'],
-                        correctAnswer: 'Reggae'
-                    },
-                    {
-                        question: 'What are the colors on the Jamaican flag?',
-                        options: ['black, green, gold', 'red, white, blue', 'blue, white, green', 'red, yellow, black'],
-                        correctAnswer: 'black, green, gold'
-                    }
-                ],
-                cuba: [
-                    {
-                        question: 'Where is the capital of Cuba?',
-                        options: ['Havana', 'Matanzas', 'Santa Clara', 'Trinidad'],
-                        correctAnswer: 'Havana'
-                    },
-                    {
-                        question: 'What music genres are famous in Cuba?',
-                        options: ['Salsa', 'Rock', 'Pop', 'Jazz'],
-                        correctAnswer: 'Salsa'
-                    },
-                    {
-                        question: 'What are the colors on the Cuban flag?',
-                        options: ['Blue, white, red', 'red, green, black', 'blue, white, green', 'black, red, yellow'],
-                        correctAnswer: 'Blue, white, red'
-                    }
-                ]
-            };
+    cuba: [
+        {
+            question: "What should you not do? Going out alone at midnight.",
+            options: ["Alone", "In a group", "4", "9"],
+            correctAnswer: "Alone"
+        },
+        {
+            question: "What kind of items should you not wear?",
+            options: ["Cheap", "Affordable", "Expensive", "Stylish"],
+            correctAnswer: "Expensive"
+        },
+        {
+            question: "What is the capital of Cuba?",
+            options: ["Havana", "Banana", "Nanaba", "Nanana"],
+            correctAnswer: "Havana"
+        }
+    ],
+    jamaica: [
+        {
+            question: "What kind of water should you not drink?",
+            options: ["Tap water", "Well water", "Bottled water", "Canned water"],
+            correctAnswer: "Tap water"
+        },
+        {
+            question: "What should you avoid getting close to in Jamaica?",
+            options: ["Drug dealers", "Shops", "Wells", "Fish"],
+            correctAnswer: "Drug dealers"
+        },
+        {
+            question: "What is the capital of Jamaica?",
+            options: ["Kingston", "Sunkington", "Tontonkin", "Kinkinkin"],
+            correctAnswer: "Kingston"
+        }
+    ],
+    dominican_republic: [
+        {
+            question: "What kind of place should you not go to?",
+            options: ["Main street", "Unknown places", "Shops", "Supermarkets"],
+            correctAnswer: "Unknown places"
+        },
+        {
+            question: "What should you not do at midnight?",
+            options: ["Walk alone", "Walk infinitely", "Walk in pairs", "Walk in groups of four"],
+            correctAnswer: "Walk alone"
+        },
+        {
+            question: "What is the capital of the Dominican Republic?",
+            options: ["Santo Domingo", "Doflamingo", "Migomigo", "Gogogo"],
+            correctAnswer: "Santo Domingo"
+        }
+    ],
+    haiti: [
+        {
+            question: "What is the most common issue?",
+            options: ["Crime", "Convenience stores", "Restaurants", "Shops"],
+            correctAnswer: "Crime"
+        },
+        {
+            question: "What kind of people are the most common?",
+            options: ["Criminals", "Good people", "Children", "Adults"],
+            correctAnswer: "Criminals"
+        },
+        {
+            question: "What is the capital of Haiti?",
+            options: ["Port-au-Prince", "France", "Popopo", "Fufufu"],
+            correctAnswer: "Port-au-Prince"
+        }
+    ],
+    america: [
+        {
+            question: "What should you not do while eating?",
+            options: ["Make noise", "Stack blocks", "Hold a stick", "Hold a person"],
+            correctAnswer: "Make noise"
+        },
+        {
+            question: "What is something you should not do?",
+            options: ["Sniffle", "Blink", "Breathe", "Talk"],
+            correctAnswer: "Sniffle"
+        },
+        {
+            question: "How many stars are on the U.S. flag?",
+            options: ["50", "48", "52", "60"],
+            correctAnswer: "50"
+        }
+    ]
+};
+
 
             let currentCountry;
         let currentQuizIndex = 0;
