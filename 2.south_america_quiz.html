@@ -83,92 +83,108 @@
 
             // クイズデータ
             const quizzes = {
-                brazil: [
-                    {
-                        question: 'What is the capital of Brazil?',
-                        options: ['Brasilia', 'Sao Paulo', 'Rio de Janeiro', 'Salvador'],
-                        correctAnswer: 'Brasilia'
-                    },
-                    {
-                        question: 'What are some famous festivals in Brazil?',
-                        options: ['Carnival', 'Halloween', 'Christmas', 'Thanksgiving'],
-                        correctAnswer: 'carnival'
-                    },
-                    {
-                        question: 'What is the official language of Brazil?',
-                        options: ['Portuguese', 'Spanish', 'English', 'French'],
-                        correctAnswer: 'Portuguese'
-                    }
-                ],
-                argentina: [
-                    {
-                        question: 'Where is the capital of Argentina?',
-                        options: ['Buenos Aires', 'Cordoba', 'Rosario', 'Mendoza'],
-                        correctAnswer: 'Buenos Aires'
-                    },
-                    {
-                        question: 'What is Argentina is famous cuisine?',
-                        options: ['asado', 'tacos', 'pasta', 'curry'],
-                        correctAnswer: 'asado'
-                    },
-                    {
-                        question: 'What is a typical Argentinean dance?',
-                        options: ['Tango', 'Salsa', 'Flamenco', 'Ballet'],
-                        correctAnswer: 'Tango'
-                    }
-                ],
-                chile: [
-                    {
-                        question: 'Where is the capital of Chile?',
-                        options: ['Santiago', 'Valparaiso', 'Concepcion', 'Antofagasta'],
-                        correctAnswer: 'Santiago'
-                    },
-                    {
-                        question: 'What is the famous drink in Chile?',
-                        options: ['Pisco', 'Beer', 'Wine', 'Whiskey'],
-                        correctAnswer: 'Pisco'
-                    },
-                    {
-                        question: 'What are some famous landforms in Chile?',
-                        options: ['Atacama Desert', 'Amazon Rainforest', 'Great Barrier Reef', 'Niagara Falls'],
-                        correctAnswer: 'Atacama Desert'
-                    }
-                ],
-                colombia: [
-                    {
-                        question: 'Where is the capital of Colombia?',
-                        options: ['Bogota', 'Medellín', 'Cartagena', 'Barranquilla'],
-                        correctAnswer: 'Bogota'
-                    },
-                    {
-                        question: 'What are the famous coffee growing regions in Colombia?',
-                        options: ['Coffee growing regions', 'Medellín', 'Cali', 'Bogota'],
-                        correctAnswer: 'Coffee growing regions'
-                    },
-                    {
-                        question: 'What are the colors on the Colombian flag?',
-                        options: ['Yellow, blue, red', 'red, white, blue', 'blue, white, green', 'red, yellow, black'],
-                        correctAnswer: 'Yellow, blue, red'
-                    }
-                ],
-                peru: [
-                    {
-                        question: 'Where is the capital of Peru?',
-                        options: ['Lima', 'Arequipa', 'Cusco', 'Trujillo'],
-                        correctAnswer: 'Lima'
-                    },
-                    {
-                        question: 'What are the famous archaeological sites in Peru?',
-                        options: ['Machu Picchu', 'Tiwanaku', 'Nazca Lines', 'Chichen Itza'],
-                        correctAnswer: 'Machu Picchu'
-                    },
-                    {
-                        question: 'What is a typical Peruvian dish?',
-                        options: ['Ceviche', 'Tacos', 'Curry', 'Pasta'],
-                        correctAnswer: 'Ceviche'
-                    }
-                ]
-            };
+    argentina: [
+        {
+            question: "What should you be careful about in daily life in Argentina?",
+            options: [
+                "Not sniffling",
+                "Not walking around in revealing clothes",
+                "Wearing a hat with a brim",
+                "Not wearing flashy accessories"
+            ],
+            correctAnswer: "Not sniffling"
+        },
+        {
+            question: "What should you avoid doing at a restaurant in Argentina?",
+            options: [
+                "Eating without wearing an apron",
+                "Placing your belongings on the floor",
+                "Speaking in a loud and high-pitched voice",
+                "Making funny faces while eating"
+            ],
+            correctAnswer: "Placing your belongings on the floor"
+        }
+    ],
+    chile: [
+        {
+            question: "What is important in Chilean communication?",
+            options: ["Hugging", "Greeting", "Kissing on the cheek", "Saluting"],
+            correctAnswer: "Greeting"
+        },
+        {
+            question: "What should you be careful about while eating in Chile?",
+            options: [
+                "Not touching food with your hands",
+                "Not using chopsticks and spoons",
+                "Speaking while having food in your mouth",
+                "Always eating in a specific order"
+            ],
+            correctAnswer: "Not touching food with your hands"
+        }
+    ],
+    brazil: [
+        {
+            question: "Which hand gesture is especially offensive in Brazil?",
+            options: [
+                "The OK sign (thumb and index finger forming a circle)",
+                "Crossing both index fingers to form an X",
+                "Making a peace sign with both hands",
+                "A reversed peace sign"
+            ],
+            correctAnswer: "The OK sign (thumb and index finger forming a circle)"
+        },
+        {
+            question: "What is something you should never do when communicating in Brazil?",
+            options: [
+                "Not showing emotions",
+                "Making funny faces",
+                "Ignoring someone",
+                "Avoiding eye contact while talking"
+            ],
+            correctAnswer: "Ignoring someone"
+        }
+    ],
+    colombia: [
+        {
+            question: "Which city should you be especially careful in while walking around?",
+            options: ["Bogotá", "Medellín", "Cartagena", "Barranquilla"],
+            correctAnswer: "Bogotá"
+        },
+        {
+            question: "What is the correct way to walk around in Colombia for safety?",
+            options: [
+                "Walk with no bag and wear a secret money belt",
+                "Never ride a motorcycle at high speed",
+                "Look at maps openly in public",
+                "Walk while looking down"
+            ],
+            correctAnswer: "Walk with no bag and wear a secret money belt"
+        }
+    ],
+    peru: [
+        {
+            question: "What is prohibited on long-distance buses in Peru?",
+            options: [
+                "Urinating in the toilet",
+                "Defecating in the toilet",
+                "Not using toilet paper",
+                "Flushing toilet paper down the toilet"
+            ],
+            correctAnswer: "Defecating in the toilet"
+        },
+        {
+            question: "What is banned in public spaces in Peru?",
+            options: [
+                "Urinating outdoors",
+                "Smoking indoors",
+                "Talking outdoors",
+                "Playing music indoors"
+            ],
+            correctAnswer: "Smoking indoors"
+        }
+    ]
+};
+
 
         let currentCountry;
         let currentQuizIndex = 0;
